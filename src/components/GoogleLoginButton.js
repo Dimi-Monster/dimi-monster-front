@@ -2,7 +2,7 @@ import React from 'react';
 import loginbutton from '../images/loginbutton.svg';
 import './GoogleLoginButton.css';
 
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 
 export default function GoogleLoginButton() {
     //const navigate = useNavigate();

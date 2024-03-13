@@ -6,7 +6,7 @@ header {
 
     display: flex;
     flex-direction: row;
-    align-items: end;
+    align-items: flex-end;
 
     background-color: #FFFDFE;
 
@@ -38,7 +38,7 @@ header > .navlink {
 header > .header-right {
     display: flex;
     flex-direction: column;
-    align-items: end;
+    align-items: flex-end;
     margin-right: 1.5rem;
 }
 
