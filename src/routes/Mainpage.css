@@ -1,0 +1,23 @@
+.mainpage {
+    width: 100vw;
+    min-height: calc(100vh - 4rem);
+
+    background-color: #FFFBFD;
+
+    box-sizing: border-box;
+    padding: 1rem;
+}
+
+/* .mainpage > .contents {
+    box-sizing: border-box;
+
+    padding: 1rem;
+} */
+
+.mainpage .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, minmax(100px, auto));
+
+    gap: 1rem;
+}

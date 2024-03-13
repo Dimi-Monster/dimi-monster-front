@@ -1,0 +1,15 @@
+.content {
+    display: flex;
+    flex-direction: column;
+
+    /* width: fit-content; */
+    width: 100%;
+}
+
+.content > .title {
+    font-size: 1.2rem;
+    margin: 0.5rem;
+    margin-left: 1rem;
+
+    color: #333333;
+}

@@ -1,0 +1,84 @@
+.imageview {
+    border: 1px solid #BEBEBE;
+
+    border-radius: 1rem;
+    padding: 1.2rem;
+
+    display: flex;
+    flex-direction: row;
+
+    position: relative;
+}
+
+.imageview > img {
+    width: 7rem;
+    height: 7rem;
+
+    min-width: 7rem;
+
+    border-radius: 0.8rem;
+
+    margin-right: 1.2rem;
+}
+
+.imageview > .rightbox {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+}
+
+.imageview > div > .title {
+    color: #DD0D75;
+    font-size: 1.3rem;
+
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+
+    /* oXong!! */
+}
+
+.imageview > div > .content {
+    color: #929292;
+    font-size: 0.8rem;
+}
+
+.imageview > div > .margin {
+    flex-grow: 1;
+}
+
+.imageview > div > button {
+    background-color: #DD0D75;
+    padding: 0.6rem;
+    border-radius: 0.6rem;
+    color: white;
+}
+
+.imageview > div > .disabled {
+    background-color: #8A8A8A;
+    cursor: default;
+}
+
+.imageview > .floatbox {
+    padding: 0.5rem;
+    background-color: #FFFDFE;
+
+    position: absolute;
+
+    bottom: 0.7rem;
+    left: 0.7rem;
+
+    display: flex;
+    flex-direction: row;
+    font-size: 0.8rem;
+
+    border: 1px solid #BEBEBE;
+    border-radius: 0.7rem;
+}
+
+.imageview > .floatbox > img {
+    height: 0.8rem;
+    color: #333333;
+
+    margin-right: 0.1rem;
+}
