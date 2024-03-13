@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import "./Mainpage.css";
 import Content from "../components/Content";
 import ImageView from "../components/ImageView";
@@ -7,7 +7,7 @@ import ImageView from "../components/ImageView";
 import test from '../images/test.jpeg';
 
 export default function Mainpage() {
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
 
     useEffect(() => {
         console.log(1);

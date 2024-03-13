@@ -1,8 +1,9 @@
+import React from "react";
 import { useEffect } from "react"
 import { useSearchParams } from "react-router-dom";
 
 export default function GAuthRoute() {
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams, /*setSearchParams*/] = useSearchParams();
 
     useEffect(() => {
         alert(`code: ${searchParams.get('code')}`);

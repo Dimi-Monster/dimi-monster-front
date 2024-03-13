@@ -1,3 +1,4 @@
+import React from 'react';
 import './ImageView.css';
 import heart from '../images/heart.svg';
 
@@ -11,7 +12,7 @@ export default function ImageView(props) {
 
                 <div className="margin"/>
 
-                <button class={props.enabled ? '' : 'disabled'}>좋아요</button>
+                <button className={props.enabled ? '' : 'disabled'}>좋아요</button>
             </div>
 
             <div className='floatbox'>
