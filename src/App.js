@@ -7,6 +7,7 @@ import NotFound from './routes/NotFound.js';
 import Layout from './Layout.js';
 import About from './routes/About.js';
 import GAuthRoute from './routes/GAuthRoute.js';
+import Upload from './routes/Upload.js';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route element={<Layout/>}>
           <Route path='/' element={<Mainpage/>} />
           <Route path='/about' element={<About/>} />
+          <Route path='/upload' element={<Upload/>} />
 
           <Route path='/*' element={<NotFound/>} />
         </Route>

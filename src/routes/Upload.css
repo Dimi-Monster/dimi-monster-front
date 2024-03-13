@@ -1,0 +1,44 @@
+.upload-outer-box {
+    background-color: #FFFBFD;
+
+    width: 100vw;
+    height: calc(100vh - 4rem);
+
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: center;
+}
+
+.upload-inner-box {
+    border: 1px solid #BEBEBE;
+    border-radius: 1rem;
+    padding: 1rem;
+    box-sizing: border-box;
+
+    width: calc(100% - 5rem);
+    height: calc(100% - 5rem);
+
+    background-color: #FFFDFE;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.upload-inner-box .logo {
+    height: 4rem;
+    margin-right: 0.5rem;
+}
+.upload-inner-box .title {
+    font-size: 2.2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    color: #333333;
+}
+
+.upload-inner-box .default-image {
+    width: 10rem;
+}
