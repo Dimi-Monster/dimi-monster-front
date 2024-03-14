@@ -8,9 +8,7 @@ class API {
     async login(code) {
         const url = `${this.serverUrl}/auth/login?code=${code}`;
         let data = await fetch(url, {
-            headers: {
-                'ngrok-skip-browser-warning': 'osong'
-            }
+            headers: {}
         });
         if(data.status != 200)
             return false;
@@ -64,7 +62,7 @@ class API {
         const url = `${this.serverUrl}/auth/refresh`;
 
         let data = await fetch(url, {
-            method: 'DELETE',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -81,6 +79,38 @@ class API {
         localStorage.setItem('access-token', json['access-token']);
         localStorage.setItem('expires', (Math.floor(Date.now() / 1000) + json['at-expire']).toString());
         return true;
+    }
+    async getImage(pageIdx) {
+        const url = `${this.serverUrl}/image/list?page=${pageIdx}`;
+
+        let data = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Authorization': localStorage.getItem('access-token')
+            }
+        });
+
+        if(data.status != 200)
+            return false;
+
+        let json = await data.json();
+        console.log(json);
+
+        return true;
+    }
+    async uploadImage(img) { // 만드는 중
+        const url = `${this.serverUrl}/image/upload`;
+
+        let data = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            body: JSON.stringify({
+                'email': email,
+                'refresh-token': refreshToken
+            })
+        });
     }
 }
 

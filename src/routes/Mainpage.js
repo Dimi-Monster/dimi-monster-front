@@ -6,6 +6,8 @@ import ImageView from "../components/ImageView";
 
 import test from '../images/test.jpeg';
 
+import api from "../utils/API";
+
 export default function Mainpage() {
     const navigate = useNavigate();
 
@@ -14,6 +16,9 @@ export default function Mainpage() {
 
         if(localStorage.getItem('refresh-token') === null)
             navigate('/login');
+
+
+        api.getImage(0);
     }, []);
 
     return (
