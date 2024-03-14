@@ -2,7 +2,7 @@
     background-color: #FFFBFD;
 
     width: 100vw;
-    height: calc(100vh - 4rem);
+    height: calc(100vh - 4.5rem);
 
     display: flex;
     /* flex-direction: column; */
@@ -31,14 +31,26 @@
     height: 4rem;
     margin-right: 0.5rem;
 }
-.upload-inner-box .title {
+.upload-inner-box > .title {
     font-size: 2.2rem;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
     color: #333333;
+
+    margin-bottom: 3rem;
 }
 
 .upload-inner-box .default-image {
     width: 10rem;
+}
+.upload-inner-box > .contents {
+    display: flex;
+    flex-direction: row;
+
+    margin-bottom: 3rem;
+}
+
+.upload-inner-box > .contents > .contents-left {
+    margin-right: 2rem;
 }

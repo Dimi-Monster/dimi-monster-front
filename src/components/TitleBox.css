@@ -1,4 +1,4 @@
-.content {
+.titlebox {
     display: flex;
     flex-direction: column;
 
@@ -6,7 +6,7 @@
     width: 100%;
 }
 
-.content > .title {
+.titlebox > .title {
     font-size: 1.2rem;
     margin: 0.5rem;
     margin-left: 1rem;

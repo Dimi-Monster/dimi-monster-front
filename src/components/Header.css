@@ -2,7 +2,7 @@ header {
     box-sizing: border-box;
 
     width: 100vw;
-    height: 4rem;
+    height: 4.5rem;
 
     display: flex;
     flex-direction: row;
@@ -12,8 +12,14 @@ header {
 
     border-bottom: 1px solid #BEBEBE;
 
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 1.4rem;
+    padding-bottom: 1.1rem;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    z-index: 10000;
 }
 
 header > * {
@@ -45,4 +51,5 @@ header > .header-right {
 header > .header-right > .logout {
     color: #DD0D75;
     font-size: 0.6rem;
+    margin-bottom: 0.1rem;
 }

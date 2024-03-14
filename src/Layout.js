@@ -6,6 +6,7 @@ export default function Layout() {
     return (
         <>
             <Header/>
+            <div style={{paddingTop: '4.5rem'}}/>
             <Outlet/>
         </>
     );

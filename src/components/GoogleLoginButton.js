@@ -14,7 +14,7 @@ export default function GoogleLoginButton() {
     );
 
     function click() {
-        alert('로그인 버튼');
+        //alert('로그인 버튼');
         
         // 로그인 처리
 

@@ -1,6 +1,6 @@
 .about-div {
     background-color: #FFFBFD;
-    min-height: calc(100vh - 4rem);
+    min-height: calc(100vh - 4.5rem);
 
     display: flex;
     flex-direction: column;

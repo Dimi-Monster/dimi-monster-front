@@ -1,34 +1,35 @@
 import React, {useEffect} from "react";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Mainpage.css";
-import Content from "../components/Content";
+import TitleBox from "../components/TitleBox";
 import ImageView from "../components/ImageView";
 
 import test from '../images/test.jpeg';
 
 export default function Mainpage() {
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
 
     useEffect(() => {
-        console.log(1);
+        //console.log(1);
 
-        //navigate('/login');
+        if(localStorage.getItem('refresh-token') === null)
+            navigate('/login');
     }, []);
 
     return (
         <div className="mainpage">
-            <Content title='인기 사진'>
+            <TitleBox title='인기 사진'>
                 <ImageView src={test} title='신관앞' content='점심시간 디미고 풍경사진' hearts={95} enabled={true}/>
-            </Content>
+            </TitleBox>
 
-            <Content title='사진관' className='contents' innerClassName='gallery'>
+            <TitleBox title='사진관' className='contents' innerClassName='gallery'>
                 <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={23} enabled={false}/>
                 <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={23} enabled={true}/>
                 <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={23} enabled={false}/>
                 <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={23} enabled={false}/>
                 <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={23} enabled={false}/>
                 <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={57} enabled={true}/>
-            </Content>
+            </TitleBox>
         </div>
     )
 }

@@ -1,9 +1,9 @@
 import React from 'react';
-import './Content.css';
+import './TitleBox.css';
 
-export default function Content(props) {
+export default function TitleBox(props) {
     return (
-        <div className={`content ${props.className}`}>
+        <div className={`titlebox ${props.className}`}>
             <div className="title">{props.title}</div>
 
             <div className={props.innerClassName}>
