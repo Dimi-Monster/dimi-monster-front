@@ -17,6 +17,9 @@ export default function Upload() {
 
     const [cropState, setCropState] = useState(false);
 
+    const [locationName, setLocationName] = useState('');
+    const [explanation, setExplanation] = useState('');
+
     return (
         <div className='upload-outer-box'>
             <div className='upload-inner-box'>
@@ -32,10 +35,10 @@ export default function Upload() {
                     </button>
                     <div className='contents-right'>
                         <TitleBox title='장소'>
-                            <input type='text' placeholder='장소를 입력해주세요.' />
+                            <input type='text' placeholder='장소를 입력해주세요.' value={locationName} onChange={onLocationChanged}/>
                         </TitleBox>
                         <TitleBox title='간단 설명' className='explain-box' innerStyle={{ display: 'flex', flexGrow: 1 }}>
-                            <input type='text' placeholder='장소 설명을 입력해주세요.' className='explain' />
+                            <input type='text' placeholder='장소 설명을 입력해주세요.' className='explain' value={explanation} onChange={onExplanationChanged}/>
                         </TitleBox>
                     </div>
                 </div>
@@ -118,6 +121,15 @@ export default function Upload() {
         f();
     }
 
+    function onLocationChanged(e) {
+        setLocationName(e.target.value);
+        console.log(e.target.value);
+    }
+    
+    function onExplanationChanged(e) {
+        setExplanation(e.target.value);
+    }
+
     function onUpload(event) {
         event.preventDefault();
         
@@ -126,8 +138,8 @@ export default function Upload() {
 
         api.uploadImage({
             img: imageBlob,
-            location: '오송역',
-            description: '오송역의 풍경',
+            location: locationName,
+            description: explanation,
             token: token
         })
         .then(isSuccess => {
