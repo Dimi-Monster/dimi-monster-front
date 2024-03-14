@@ -98,20 +98,20 @@ class API {
 
         return true;
     }
-    async uploadImage(img) { // 만드는 중
-        const url = `${this.serverUrl}/image/upload`;
+    // async uploadImage(img) { // 만드는 중
+    //     const url = `${this.serverUrl}/image/upload`;
 
-        let data = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            },
-            body: JSON.stringify({
-                'email': email,
-                'refresh-token': refreshToken
-            })
-        });
-    }
+    //     let data = await fetch(url, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'multipart/form-data'
+    //         },
+    //         body: JSON.stringify({
+    //             'email': email,
+    //             'refresh-token': refreshToken
+    //         })
+    //     });
+    // }
 }
 
 let api = new API();
