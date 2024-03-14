@@ -10,6 +10,10 @@ export default function GAuthRoute() {
     useEffect(() => {
         async function login() {
             const code = searchParams.get('code');
+            const state = searchParams.get('state');
+            if (state === "dev") {
+                document.location.href = `http://localhost:5173/redirect/gauth?code=${code}`;
+            }
 
             if(await api.login(code))
                 navigate('/');
