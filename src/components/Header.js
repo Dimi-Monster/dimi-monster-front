@@ -5,6 +5,8 @@ import { NavLink, Link, useNavigate } from 'react-router-dom';
 
 import logo from '../images/logo.png';
 
+import api from '../utils/API';
+
 export default function Header() {
     const navigate = useNavigate();
 
@@ -28,8 +30,7 @@ export default function Header() {
     )
 
     function logout() {
-        localStorage.removeItem('access-token');
-        localStorage.removeItem('refresh-token');
+        api.logout();
 
         navigate('/login');
     }
