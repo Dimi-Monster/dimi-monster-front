@@ -80,13 +80,21 @@ class API {
         localStorage.setItem('expires', (Math.floor(Date.now() / 1000) + json['at-expire']).toString());
         return true;
     }
+    async refreshIfExpired() {
+        let current = Math.floor(Date.now() / 1000);
+
+        if(parseInt(localStorage.getItem('expires')) - 50 < current)
+            await this.refresh();
+    }
     async getImage(pageIdx) {
+        await this.refreshIfExpired();
+
         const url = `${this.serverUrl}/image/list?page=${pageIdx}`;
 
         let data = await fetch(url, {
             method: 'GET',
             headers: {
-                'Authorization': localStorage.getItem('access-token')
+                'Authorization': `Bearer ${localStorage.getItem('access-token')}`
             }
         });
 
@@ -98,20 +106,35 @@ class API {
 
         return true;
     }
-    // async uploadImage(img) { // 만드는 중
-    //     const url = `${this.serverUrl}/image/upload`;
+    async uploadImage({img, location, description, token}) { // token: 리캡차 토큰
+        await this.refreshIfExpired();
+        console.log(img);
 
-    //     let data = await fetch(url, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'multipart/form-data'
-    //         },
-    //         body: JSON.stringify({
-    //             'email': email,
-    //             'refresh-token': refreshToken
-    //         })
-    //     });
-    // }
+        //const blob = new Blob([img], { type: 'image/jpeg' });
+        const blob = img;
+
+        const url = `${this.serverUrl}/image/upload`;
+
+        let formData = new FormData();
+        formData.append('token', token);
+        formData.append('description', description);
+        formData.append('location', location);
+        formData.append('image', blob, 'a.jpg');
+
+        let data = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('access-token')}`,
+                'Content-Type': 'multipart/form-data'
+            },
+            body: formData
+        });
+
+        if(data.status != 200)
+            return false;
+        
+        return true;
+    }
 }
 
 let api = new API();
