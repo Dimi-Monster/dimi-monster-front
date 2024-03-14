@@ -3,12 +3,16 @@ import './Upload.css';
 import logo from '../images/logo.png';
 import defaultImage from '../images/default-image.png';
 import TitleBox from "../components/TitleBox";
+import CropView from "../components/CropView";
 
 export default function Upload() {
     const inputFile = useRef(null);
     const image = useRef(null);
 
+    const [croppedImageSrc, setCroppedImageSrc] = useState(defaultImage);
     const [imageSrc, setImageSrc] = useState(defaultImage);
+
+    const [cropState, setCropState] = useState(false);
 
     return (
         <div className='upload-outer-box'>
@@ -20,7 +24,7 @@ export default function Upload() {
 
                 <div className='contents'>
                     <button className='contents-left' onClick={selectFile}>
-                        <img src={imageSrc} ref={image} className='image'/>
+                        <img src={croppedImageSrc} ref={image} className='image'/>
                         <div>이미지 선택하기</div>
                     </button>
                     <div className='contents-right'>
@@ -36,6 +40,7 @@ export default function Upload() {
                 <button>사진 업로드</button>
             </div>
 
+            {cropState ? <CropView image={imageSrc} ratio={1} onFinished={onCropFinished} className="cropview"/> : <div/>}
             <input type="file" id="file" ref={inputFile} style={{display: "none"}} accept="image/*" onChange={onFileChanged}/>
         </div>
     )
@@ -52,5 +57,13 @@ export default function Upload() {
         console.log(fileUrl);
 
         setImageSrc(fileUrl);
+        setCroppedImageSrc(fileUrl); // 테스트
+        
+        setCropState(true);
+    }
+    function onCropFinished(imgUrl) {
+        setCroppedImageSrc(imgUrl);
+
+        setCropState(false);
     }
 }

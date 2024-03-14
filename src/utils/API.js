@@ -42,8 +42,7 @@ class API {
         let data = await fetch(url, {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json',
-                'ngrok-skip-browser-warning': 'osong'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 'email': email,
@@ -67,8 +66,7 @@ class API {
         let data = await fetch(url, {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json',
-                'ngrok-skip-browser-warning': 'osong'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 'email': email,
