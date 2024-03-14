@@ -10,11 +10,11 @@ export default function GAuthRoute() {
     useEffect(() => {
         async function login() {
             const code = searchParams.get('code');
-            
+
             if(await api.login(code))
                 navigate('/');
             else {
-                alert('로그인에 실패했습니다.');
+                alert('디미고 구글 계정으로만 로그인할 수 있습니다.');
                 navigate('/login');
             }
         }

@@ -24,14 +24,12 @@ export default function Header() {
 
             <button className='header-right' onClick={logout}>
                 <div className='logout'>로그아웃</div>
-                <div>3423 이동현</div>
+                <div>{localStorage.getItem('name')}</div>
             </button>
         </header>
     )
 
     function logout() {
-        api.logout();
-
-        navigate('/login');
+        api.logout().then(() => navigate('/login'));
     }
 }

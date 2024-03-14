@@ -41,9 +41,12 @@
     margin-bottom: 3rem;
 }
 
-.upload-inner-box .default-image {
+.upload-inner-box .image {
     width: 10rem;
     margin-top: 0.5rem;
+
+    border-radius: 1rem;
+    border: 1px solid #BEBEBE;
 }
 .upload-inner-box > .contents {
     display: flex;

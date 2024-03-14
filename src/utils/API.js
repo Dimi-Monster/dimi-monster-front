@@ -22,6 +22,8 @@ class API {
         localStorage.setItem('email', json['email']);
         localStorage.setItem('access-token', json['access-token']);
         localStorage.setItem('refresh-token', json['refresh-token']);
+        localStorage.setItem('name', json['name']);
+        localStorage.setItem('expires', (Math.floor(Date.now() / 1000) + json['at-expire']).toString());
 
         let blob = await data.then((response) => response.blob());
         const objectURL = URL.createObjectURL(blob);
@@ -60,7 +62,7 @@ class API {
         let email = localStorage.getItem('email');
         let refreshToken = localStorage.getItem('refresh-token');
 
-        const url = `${this.serverUrl}/auth/logout`;
+        const url = `${this.serverUrl}/auth/refresh`;
 
         let data = await fetch(url, {
             method: 'DELETE',
@@ -79,6 +81,7 @@ class API {
         let json = await data.json();
 
         localStorage.setItem('access-token', json['access-token']);
+        localStorage.setItem('expires', (Math.floor(Date.now() / 1000) + json['at-expire']).toString());
         return true;
     }
 }
