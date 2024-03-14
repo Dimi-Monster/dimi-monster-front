@@ -1,9 +1,14 @@
-import React from "react"
+import React from "react";
+import "./NotFound.css";
+import notfoundImage from '../images/notfound.png';
+import logo from '../images/logo.png';
 
 export default function NotFound() {
     return (
-        <div>
-            잘못된 페이지에 접근하면 김승억 님이 노하십니다. 주의해 주세요.
+        <div className="notfound">
+            <img src={notfoundImage} className='notfound-image'/>
+            <img src={logo} className='logo-image'/>
+            <div>잘못 찾아오신 것 같아요.</div>
         </div>
     )
 }

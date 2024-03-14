@@ -6,7 +6,7 @@ export default function TitleBox(props) {
         <div className={`titlebox ${props.className}`}>
             <div className="title">{props.title}</div>
 
-            <div className={props.innerClassName}>
+            <div className={props.innerClassName} style={props.innerStyle}>
                 {props.children}
             </div>
         </div>

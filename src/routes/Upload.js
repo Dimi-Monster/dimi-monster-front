@@ -22,11 +22,13 @@ export default function Upload() {
                         <TitleBox title='장소'>
                             <input type='text' placeholder='장소를 입력해주세요.'/>
                         </TitleBox>
-                        <TitleBox title='간단 설명'>
-                        <input type='text' placeholder='장소 설명을 입력해주세요.'/>
+                        <TitleBox title='간단 설명' className='explain-box' innerStyle={{display: 'flex', flexGrow: 1 }}>
+                            <input type='text' placeholder='장소 설명을 입력해주세요.' className='explain'/>
                         </TitleBox>
                     </div>
                 </div>
+
+                <button>사진 업로드</button>
             </div>
         </div>
     )

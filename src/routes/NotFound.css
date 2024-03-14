@@ -1,0 +1,29 @@
+.notfound {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFBFD;
+    height: calc(100vh - 4.5rem);
+}
+
+.notfound > .notfound-image {
+    max-width: 55vw;
+    max-height: 55vh;
+    object-fit: contain;
+}
+
+.notfound > .logo-image {
+    max-width: 55vw;
+    max-height: 10vh;
+    object-fit: contain;
+
+    transform: translateY(-1.5rem);
+}
+
+.notfound > div {
+    margin-top: 0.5rem;
+    font-size: 1.5rem;
+    margin-bottom: 4rem;
+    color: #444444;
+}

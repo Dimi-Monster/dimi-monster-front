@@ -43,6 +43,7 @@
 
 .upload-inner-box .default-image {
     width: 10rem;
+    margin-top: 0.5rem;
 }
 .upload-inner-box > .contents {
     display: flex;
@@ -52,5 +53,33 @@
 }
 
 .upload-inner-box > .contents > .contents-left {
-    margin-right: 2rem;
+    margin-right: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.upload-inner-box > .contents > .contents-left > div {
+    font-size: 0.65rem;
+    color: #DD0D75;
+    margin-top: 0.2rem;
+}
+
+.upload-inner-box > .contents > .contents-right {
+    display: flex;
+    flex-direction: column;
+    height: 10.5rem;
+}
+
+.upload-inner-box > .contents > .contents-right .explain-box {
+    flex-grow: 1;
+    margin-top: 0.5rem;
+}
+
+.upload-inner-box > .contents > .contents-right .explain {
+    flex-grow: 1;
+}
+
+.upload-inner-box > .contents > .contents-right input {
+    width: 13rem;
 }
