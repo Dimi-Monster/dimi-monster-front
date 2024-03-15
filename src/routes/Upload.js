@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import './Upload.css';
 import logo from '../images/logo.png';
 import defaultImage from '../images/default-image.png';
@@ -22,6 +22,15 @@ export default function Upload() {
 
     const [locationName, setLocationName] = useState('');
     const [explanation, setExplanation] = useState('');
+
+    useEffect(() => {
+        const script = document.createElement("script");
+
+        script.src = "https://www.google.com/recaptcha/enterprise.js";
+        script.async = true;
+    
+        document.body.appendChild(script);
+    }, []);
 
     return (
         <div className='upload-outer-box'>
