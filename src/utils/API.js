@@ -124,8 +124,7 @@ class API {
         let data = await fetch(url, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${localStorage.getItem('access-token')}`,
-                'Content-Type': 'multipart/form-data'
+                'Authorization': `Bearer ${localStorage.getItem('access-token')}`
             },
             body: formData
         });
