@@ -31,16 +31,29 @@
     height: 25rem; */
     width: min(70vw, 70vh);
     height: min(70vw, 70vh);
+    aspect-ratio: 1;
 }
 
 .image-preview > .bottom-bar {
-    height: 2rem;
+    height: 10%;
     color: white;
 
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 4%;
+    left: 4%;
+    right: 4%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.image-preview > .bottom-bar > .title-contents-box {
+    flex-grow: 1;
+    height: 100%;
+
+    border: 1px solid blue;
+    background-color: red;
+    margin-right: 5%;
 }
 
 .image-preview > .close {

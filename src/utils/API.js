@@ -62,6 +62,7 @@ class API {
 
         localStorage.removeItem('access-token');
         localStorage.removeItem('refresh-token');
+        localStorage.removeItem('image-token');
 
         return true;
     }
@@ -127,6 +128,10 @@ class API {
         })
 
         return res;
+    }
+    getOriginalImageUrl(id) { // 얘는 서버호출은 아니지만 여기있어야 이쁠거같아서 여기 넣음
+        const url = `${this.serverUrl}/download/${id}?image-token=${localStorage.getItem('image-token')}`;
+        return url;
     }
     async uploadImage({img, location, description, token}) { // token: 리캡차 토큰
         await this.refreshIfExpired();

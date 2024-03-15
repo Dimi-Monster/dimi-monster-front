@@ -12,36 +12,6 @@ import imageManager from "../utils/ImageManager";
 export default function Mainpage() {
     //const navigate = useNavigate();
 
-    // let imageList = [
-    //     // {src: test, title: '2학년 3반', content: '2학년 3반의 명물 버섯입니다!', hearts: 23, enabled: false},
-    //     // {src: test, title: '2학년 3반', content: '2학년 3반의 명물 버섯입니다!', hearts: 24, enabled: false},
-    //     // {src: test, title: '2학년 3반', content: '2학년 3반의 명물 버섯입니다!', hearts: 25, enabled: false},
-    //     // {src: test, title: '2학년 3반', content: '2학년 3반의 명물 버섯입니다!', hearts: 25, enabled: false},
-    //     // {src: test, title: '2학년 3반', content: '2학년 3반의 명물 버섯입니다!', hearts: 25, enabled: true},
-    //     // {src: test, title: '2학년 3반', content: '2학년 3반의 명물 버섯입니다!', hearts: 25, enabled: false},
-    //     // {src: test, title: '2학년 3반', content: '2학년 3반의 명물 버섯입니다!', hearts: 25, enabled: true},
-    //     // {src: test, title: '2학년 3반', content: '2학년 3반의 명물 버섯입니다!', hearts: 25, enabled: true},
-    //     // {src: test, title: '2학년 3반', content: '2학년 3반의 명물 버섯입니다!', hearts: 25, enabled: true},
-    //     // {src: test, title: '2학년 3반', content: '2학년 3반의 명물 버섯입니다!', hearts: 25, enabled: true},
-    //     // {src: test, title: '2학년 3반', content: '2학년 3반의 명물 버섯입니다!', hearts: 25, enabled: true},
-    //     // {src: test, title: '2학년 3반', content: '2학년 3반의 명물 버섯입니다!', hearts: 25, enabled: true},
-    //     // {src: test, title: '2학년 3반', content: '2학년 3반의 명물 버섯입니다!', hearts: 25, enabled: true},
-    //     // {src: test, title: '2학년 3반', content: '2학년 3반의 명물 버섯입니다!', hearts: 25, enabled: true},
-    //     // {src: test, title: '2학년 3반', content: '2학년 3반의 명물 버섯입니다!', hearts: 25, enabled: true},
-    //     // {src: test, title: '2학년 3반', content: '2학년 3반의 명물 버섯입니다!', hearts: 25, enabled: true},
-    //     // {src: test, title: '2학년 3반', content: '2학년 3반의 명물 버섯입니다!', hearts: 25, enabled: true},
-    //     // {src: test, title: '2학년 3반', content: '2학년 3반의 명물 버섯입니다!', hearts: 25, enabled: true},
-    //     // {src: test, title: '2학년 3반', content: '2학년 3반의 명물 버섯입니다!', hearts: 25, enabled: true},
-    //     // {src: test, title: '2학년 3반', content: '2학년 3반의 명물 버섯입니다!', hearts: 25, enabled: true},
-    //     // {src: test, title: '2학년 3반', content: '2학년 3반의 명물 버섯입니다!', hearts: 25, enabled: true},
-    //     // {src: test, title: '2학년 3반', content: '2학년 3반의 명물 버섯입니다!', hearts: 25, enabled: true},
-    //     // {src: test, title: '2학년 3반', content: '2학년 3반의 명물 버섯입니다!', hearts: 25, enabled: true},
-    //     // {src: test, title: '2학년 3반', content: '2학년 3반의 명물 버섯입니다!', hearts: 25, enabled: true},
-    //     // {src: test, title: '2학년 3반', content: '2학년 3반의 명물 버섯입니다!', hearts: 25, enabled: true},
-    //     // {src: test, title: '2학년 3반', content: '2학년 3반의 명물 버섯입니다!', hearts: 25, enabled: true},
-    //     // {src: test, title: '2학년 3반', content: '2학년 3반의 명물 버섯입니다!', hearts: 25, enabled: true},
-    // ];
-
     const [imageList, setImageList] = useState([]);
 
     useEffect(() => {
@@ -61,7 +31,8 @@ export default function Mainpage() {
             </TitleBox>
 
             <TitleBox title='사진관' className='contents' innerClassName='gallery'>
-                {imageList && imageList.map(({src, title, content, hearts, enabled}) => <ImageView
+                {imageList && imageList.map(({id, src, title, content, hearts, enabled}) => <ImageView
+                    id={id}
                     src={src}
                     title={title}
                     content={content}
