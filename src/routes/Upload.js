@@ -8,6 +8,7 @@ import imageCompression from "browser-image-compression";
 import api from "../utils/API";
 import Button from "../components/Button";
 import dimibug from '../images/dimibug.svg';
+import { useNavigate } from "react-router-dom";
 
 export default function Upload() {
     const inputFile = useRef(null);
@@ -21,6 +22,10 @@ export default function Upload() {
 
     const [locationName, setLocationName] = useState('');
     const [explanation, setExplanation] = useState('');
+
+    const [buttonTitle, setButtonTitle] = useState('사진 업로드');
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const script = document.createElement("script");
@@ -57,7 +62,7 @@ export default function Upload() {
                 <form onSubmit={(e) => onUpload(e)}>
                     <div className="g-recaptcha" data-sitekey="6LdgSpgpAAAAAJKMC4NiXgYWrnn9ln7It_kpeIEQ" data-action="image_upload"></div>
                     {/* <button type='submit'>사진 업로드</button> */}
-                    <Button title='사진 업로드' imgSrc={dimibug} color='default' height='1.2rem' type='submit'/>
+                    <Button title={buttonTitle} imgSrc={dimibug} color='default' height='1.2rem' type='submit'/>
                 </form>
                 {/* <button onClick={onUpload}>사진 업로드</button> */}
 
@@ -160,6 +165,8 @@ export default function Upload() {
             return;
         }
 
+        setButtonTitle('업로드 중...');
+
         api.uploadImage({
             img: imageBlob,
             location: locationName,
@@ -167,12 +174,15 @@ export default function Upload() {
             token: token
         })
         .then(isSuccess => {
+            setButtonTitle('사진 업로드');
+
             if(!isSuccess) {
                 alert('업로드에 실패했습니다.');
-                return;
             }
+            else
+                alert('업로드에 성공했습니다.');
 
-            alert('업로드에 성공했습니다.');
+            navigate('/');
         })
     }
 }
