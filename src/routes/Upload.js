@@ -6,6 +6,9 @@ import TitleBox from "../components/TitleBox";
 import CropView from "../components/CropView";
 import imageCompression from "browser-image-compression";
 import api from "../utils/API";
+import Button from "../components/Button";
+import loginbutton from '../images/loginbutton.svg';
+import dimibug from '../images/dimibug.svg';
 
 export default function Upload() {
     const inputFile = useRef(null);
@@ -64,7 +67,10 @@ export default function Upload() {
                 /> */}
 
                 
-                
+                <Button title="osong" imgSrc={dimibug} color='default' height='1rem'/>
+                <Button title="디미고 계정으로 로그인" imgSrc={dimibug} color='enabled'/>
+                <Button title="좋아요" imgSrc={dimibug} color='disabled'/>
+                <img src={loginbutton} style={{height: '3rem'}}/>
             </div>
 
             {cropState ? <CropView image={imageSrc} ratio={1} onFinished={onCropFinished} className="cropview" /> : <div />}

@@ -1,0 +1,24 @@
+.pretty-button {
+    display: flex;
+    flex-direction: row;
+
+    border-radius: 0.8rem;
+    border: 1px solid #CDCDCD;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    justify-content: center;
+    align-items: center;
+
+    height: 3rem;
+    width: 18rem;
+}
+
+.pretty-button > img {
+    height: 2rem;
+    margin-right: 1rem;
+}
+
+.pretty-button > div {
+    font-size: 1rem;
+    /* color: #333333; */
+}
