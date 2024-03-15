@@ -67,14 +67,11 @@ export default function CropView(props) {
     const [croppedArea, setCroppedArea] = useState({ x: 0, y: 0, width: 0, height: 0 });
 
     const onCropComplete = useCallback((croppedArea, croppedAreaPixel) => {
-        console.log(croppedAreaPixel);
         setCroppedArea(croppedAreaPixel);
     }, []);
 
     const finish = () => {
         async function f() {
-            console.log(croppedArea);
-
             let img = await getCroppedImg(image, croppedArea);
             props.onFinished(img);
         }

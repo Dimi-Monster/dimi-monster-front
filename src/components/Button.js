@@ -19,7 +19,7 @@ export default function Button(props) {
     };
 
     return (
-        <button className='pretty-button' type={props.type} style={{
+        <button className='pretty-button' type={props.type} onClick={props.onClick} style={{
             backgroundColor: backgroundColorPalette[color],
             color: colorPalette[color]
             }}>

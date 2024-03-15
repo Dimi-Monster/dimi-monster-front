@@ -1,6 +1,7 @@
 import React from 'react';
-import loginbutton from '../images/loginbutton.svg';
 import './GoogleLoginButton.css';
+import Button from './Button';
+import googlelogo from '../images/googlelogo.png';
 
 //import { useNavigate } from 'react-router-dom';
 
@@ -8,9 +9,7 @@ export default function GoogleLoginButton() {
     //const navigate = useNavigate();
 
     return (
-        <button onClick={click}>
-            <img src={loginbutton} className="login-button"/>
-        </button>
+        <Button onClick={click} title="디미고 계정으로 로그인" imgSrc={googlelogo} height='1.4rem'/>
     );
 
     function click() {

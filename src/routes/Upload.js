@@ -95,7 +95,7 @@ export default function Upload() {
 
             let fileUrl = window.URL.createObjectURL(compressedFile);
 
-            console.log(fileUrl);
+            //console.log(fileUrl);
 
             setImageSrc(fileUrl);
             setCroppedImageSrc(fileUrl); // 테스트
@@ -116,7 +116,7 @@ export default function Upload() {
 
     function onCropFinished(imgUrl) {
         async function f() {
-            console.log(imgUrl);
+            //console.log(imgUrl);
             let file = await convertURLtoFile(imgUrl);
             let compressedFile = await imageCompression(file, {
                 maxSizeMB: 1,
@@ -130,7 +130,7 @@ export default function Upload() {
 
             // Blob을 URL로 변환
             const compressedUrl = URL.createObjectURL(blob);
-            console.log(compressedUrl);
+            //console.log(compressedUrl);
 
             setCroppedImageSrc(compressedUrl);
             setImageBlob(blob);
