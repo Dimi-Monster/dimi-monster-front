@@ -7,14 +7,10 @@ class ImageManager {
     set = new Set();
 
     async getImageBottom(setImageList) {
-        console.log(this.imageList);
-
         let res = await api.getImage(this.currentIdx);
 
         if(!res)
             return false;
-
-        console.log(res);
 
         let addData = [];
         for(const k of res) {
@@ -24,7 +20,6 @@ class ImageManager {
             addData.push(k);
             this.set.add(k.id);
         }
-        console.log(this.set);
 
         this.imageList = [...this.imageList, ...addData];
         setImageList(this.imageList);

@@ -20,8 +20,6 @@
 }
 
 .image-preview {
-    width: 25rem;
-    height: 25rem;
     border-radius: 2rem;
     overflow: hidden;
 
@@ -29,8 +27,10 @@
 }
 
 .image-preview > img {
-    width: 25rem;
-    height: 25rem;
+    /* width: 25rem;
+    height: 25rem; */
+    width: min(70vw, 70vh);
+    height: min(70vw, 70vh);
 }
 
 .image-preview > .bottom-bar {

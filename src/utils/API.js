@@ -128,21 +128,6 @@ class API {
 
         return res;
     }
-    async getImageBottom(imageList, setImageList) {
-        console.log(setImageList);
-        let res = await this.getImage(this.currentIdx);
-
-        if(!res)
-            return false;
-
-        console.log(res);
-        setImageList([...imageList, ...res]);
-
-        return true;
-    }
-    async getImageTop() {
-
-    }
     async uploadImage({img, location, description, token}) { // token: 리캡차 토큰
         await this.refreshIfExpired();
         console.log(img);
