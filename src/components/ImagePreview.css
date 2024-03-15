@@ -49,3 +49,6 @@
     right: 1.5rem;
     color: white;
 }
+.image-preview > .close > img {
+    width: 1rem;
+}

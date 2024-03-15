@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import './Upload.css';
 import logo from '../images/logo.svg';
-import defaultImage from '../images/default-image.png';
+import defaultImage from '../images/default-image.svg';
 import TitleBox from "../components/TitleBox";
 import CropView from "../components/CropView";
 import imageCompression from "browser-image-compression";
@@ -49,7 +49,7 @@ export default function Upload() {
                             <input type='text' placeholder='장소를 입력해주세요.' value={locationName} onChange={onLocationChanged}/>
                         </TitleBox>
                         <TitleBox title='간단 설명' className='explain-box' innerStyle={{ display: 'flex', flexGrow: 1 }}>
-                            <input type='text' placeholder='장소 설명을 입력해주세요.' className='explain' value={explanation} onChange={onExplanationChanged}/>
+                            <textarea placeholder='장소 설명을 입력해주세요.' className='explain' value={explanation} onChange={onExplanationChanged}/>
                         </TitleBox>
                     </div>
                 </div>

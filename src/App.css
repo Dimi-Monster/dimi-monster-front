@@ -22,18 +22,27 @@ button, input[type="submit"], input[type="reset"] {
   font-weight: 400;
   font-style: normal;
 }
+@font-face {
+  font-family: 'Pretendard-Bold';
+  src: url('./fonts/Pretendard-Bold.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
 
 html, body {
   font-family: 'Pretendard-SemiBold';
 }
 
-input {
+input, textarea {
   border: 1px solid #BEBEBE;
   border-radius: 0.7rem;
   padding: 0.5rem;
   padding-left: 0.7rem;
   padding-right: 0.7rem;
   outline: none;
+  resize: none;
+  font-family: 'Pretendard';
+  font-size: 0.87rem;
 }
 
 .App {

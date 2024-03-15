@@ -20,6 +20,9 @@ header {
     left: 0;
 
     z-index: 10000;
+
+    font-family: 'Pretendard-Bold';
+    font-size: 1.035rem;
 }
 
 header > * {
@@ -50,6 +53,6 @@ header > .header-right {
 
 header > .header-right > .logout {
     color: #DD0D75;
-    font-size: 0.6rem;
+    font-size: 0.67rem;
     margin-bottom: 0.1rem;
 }

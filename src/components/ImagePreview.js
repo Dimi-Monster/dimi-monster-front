@@ -1,5 +1,6 @@
 import React from "react";
 import "./ImagePreview.css";
+import x from '../images/x.svg';
 
 export default function ImagePreview(props) {
     return (
@@ -10,7 +11,7 @@ export default function ImagePreview(props) {
                     {props.content}
                 </div>
                 <button className='close' onClick={onClose}>
-                    X
+                    <img src={x}/>
                 </button>
             </div>
         </div>

@@ -32,13 +32,18 @@
     margin-right: 0.5rem;
 }
 .upload-inner-box > .title {
-    font-size: 2.2rem;
+    font-size: 2.3rem;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
     color: #333333;
+    font-family: 'Pretendard-SemiBold';
 
     margin-bottom: 3rem;
+}
+.upload-inner-box > .title > img {
+    margin-right: 0.56rem;
+    transform: translateY(-0.1rem);
 }
 
 .upload-inner-box .image {
@@ -52,7 +57,7 @@
     display: flex;
     flex-direction: row;
 
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 .upload-inner-box > .contents > .contents-left {
@@ -81,9 +86,13 @@
 
 .upload-inner-box > .contents > .contents-right .explain {
     flex-grow: 1;
+    justify-content: start;
 }
 
 .upload-inner-box > .contents > .contents-right input {
+    width: 13rem;
+}
+.upload-inner-box > .contents > .contents-right textarea {
     width: 13rem;
 }
 
@@ -113,4 +122,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.upload-inner-box > form > button {
+    margin-top: 2rem;
 }
