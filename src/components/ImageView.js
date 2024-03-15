@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import './ImageView.css';
 import heart from '../images/heart.svg';
 import ImagePreview from './ImagePreview';
-import api from '../utils/API';
+//import api from '../utils/API';
+//import defaultImage from '../images/default-image.svg';
 
 export default function ImageView(props) {
     const [previewState, setPreviewState] = useState(false);
+    //const [imageUrl, /*setImageUrl*/] = useState('');
 
     function onImageClicked() {
         setPreviewState(true);
@@ -34,7 +36,7 @@ export default function ImageView(props) {
             </div>
 
             {previewState && <ImagePreview 
-                src={api.getOriginalImageUrl(props.id)}
+                id={props.id}
                 title={props.title}
                 content={props.content}
                 onFinish={onPreviewFinished}

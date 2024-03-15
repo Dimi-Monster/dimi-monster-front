@@ -1,21 +1,31 @@
-import React, {useRef, useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import "./ImagePreview.css";
 import x from '../images/x.svg';
+import api from "../utils/API";
 
 export default function ImagePreview(props) {
-    const bottomBar = useRef(null);
-    const [bottomBarStyle, setBottomBarStyle] = useState({});
+    // const bottomBar = useRef(null);
+    // const [bottomBarStyle, setBottomBarStyle] = useState({});
+
+    // useEffect(() => {
+    //     console.log(bottomBar.offsetWidth);
+    //     setBottomBarStyle({...bottomBarStyle, fontSize: bottomBar.offsetWidth + 'px'});
+    // }, [bottomBar]);
+
+    const [imageUrl, setImageUrl] = useState('');
 
     useEffect(() => {
-        console.log(bottomBar.offsetWidth);
-        setBottomBarStyle({...bottomBarStyle, fontSize: bottomBar.offsetWidth + 'px'});
-    }, [bottomBar]);
+        api.getOriginalImageUrl(props.id).then((url) => {
+            console.log(url);
+            setImageUrl(url);
+        });
+    }, []);
 
     return (
         <div className='image-preview-box'>
             <div className='image-preview'>
-                <img src={props.src}/>
-                <div className='bottom-bar' ref={bottomBar} style={bottomBarStyle}>
+                <img src={imageUrl}/>
+                <div className='bottom-bar' /*ref={bottomBar} style={bottomBarStyle}*/>
                     <div className='title-contents-box'>{props.content}</div>
                     <div>좋아요버튼</div>
                 </div>

@@ -129,7 +129,9 @@ class API {
 
         return res;
     }
-    getOriginalImageUrl(id) { // 얘는 서버호출은 아니지만 여기있어야 이쁠거같아서 여기 넣음
+    async getOriginalImageUrl(id) {
+        await this.refreshIfExpired();
+
         const url = `${this.serverUrl}/download/${id}?image-token=${localStorage.getItem('image-token')}`;
         return url;
     }
