@@ -1,6 +1,7 @@
 class API {
     serverUrl = '';
     lastError = '';
+    currentIdx = 0;
 
     constructor() {
         this.serverUrl = process.env.REACT_APP_API_URL;
@@ -114,7 +115,32 @@ class API {
         let json = await data.json();
         console.log(json);
 
+        let res = json.map(json => {
+            return {
+                src: json['thumbnail'], 
+                hearts: json['like'],
+                title: json['location'],
+                content: json['description'],
+                enabled: true // 이거 어디서 가져오지?
+            }
+        })
+
+        return res;
+    }
+    async getImageBottom(imageList, setImageList) {
+        console.log(setImageList);
+        let res = await this.getImage(this.currentIdx);
+
+        if(!res)
+            return false;
+
+        console.log(res);
+        setImageList([...imageList, ...res]);
+
         return true;
+    }
+    async getImageTop() {
+
     }
     async uploadImage({img, location, description, token}) { // token: 리캡차 토큰
         await this.refreshIfExpired();
