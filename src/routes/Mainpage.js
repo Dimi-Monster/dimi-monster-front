@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import "./Mainpage.css";
 import TitleBox from "../components/TitleBox";
 import ImageView from "../components/ImageView";
@@ -9,13 +9,11 @@ import test from '../images/test.jpeg';
 import api from "../utils/API";
 
 export default function Mainpage() {
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
 
     useEffect(() => {
-        //console.log(1);
-
-        if(localStorage.getItem('refresh-token') === null)
-            navigate('/login');
+        // if(localStorage.getItem('refresh-token') === null)
+        //     navigate('/login');
 
 
         api.getImage(0);

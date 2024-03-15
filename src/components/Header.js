@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './Header.css';
 
 import { NavLink, Link, useNavigate } from 'react-router-dom';
@@ -9,6 +9,11 @@ import api from '../utils/API';
 
 export default function Header() {
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if(localStorage.getItem('refresh-token') === null)
+            navigate('/login');
+    }, []);
 
     return (
         <header>

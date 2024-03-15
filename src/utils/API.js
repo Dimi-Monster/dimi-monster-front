@@ -1,8 +1,13 @@
 class API {
     serverUrl = '';
+    lastError = '';
 
     constructor() {
         this.serverUrl = process.env.REACT_APP_API_URL;
+    }
+
+    getLastError() {
+        return this.lastError;
     }
 
     async login(code) {
@@ -10,8 +15,10 @@ class API {
         let data = await fetch(url, {
             headers: {}
         });
-        if(data.status != 200)
+        if(data.status != 200) {
+            this.lastError = new TextDecoder().decode(await data.arrayBuffer());
             return false;
+        }
 
         let json = await data.json();
 

@@ -18,7 +18,12 @@ export default function GAuthRoute() {
             if(await api.login(code))
                 navigate('/');
             else {
-                alert('디미고 구글 계정으로만 로그인할 수 있습니다.');
+                let error = api.getLastError();
+
+                if(error == 'Invalid Email Address')
+                    alert('디미고 구글 계정으로만 로그인할 수 있습니다.');
+                else
+                    alert('오류가 발생했습니다. 관리자에게 문의해주세요.');
                 navigate('/login');
             }
         }
