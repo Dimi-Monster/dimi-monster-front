@@ -20,6 +20,7 @@ class API {
         localStorage.setItem('email', json['email']);
         localStorage.setItem('access-token', json['access-token']);
         localStorage.setItem('refresh-token', json['refresh-token']);
+        localStorage.setItem('image-token', json['image-token']);
         localStorage.setItem('name', json['name']);
         localStorage.setItem('expires', (Math.floor(Date.now() / 1000) + json['at-expire']).toString());
 
@@ -28,6 +29,7 @@ class API {
         // 여기서 프로필 이미지 처리
         //console.log(objectURL);
         localStorage.setItem('profile-image', objectURL);
+        
 
         return true;
     }
@@ -77,6 +79,7 @@ class API {
         let json = await data.json();
 
         localStorage.setItem('access-token', json['access-token']);
+        localStorage.setItem('image-token', json['image-token']);
         localStorage.setItem('expires', (Math.floor(Date.now() / 1000) + json['at-expire']).toString());
         return true;
     }
