@@ -1,7 +1,7 @@
 import React from "react";
 import "./NotFound.css";
 import notfoundImage from '../images/notfound.png';
-import logo from '../images/logo.png';
+import logo from '../images/logo.svg';
 
 export default function NotFound() {
     return (

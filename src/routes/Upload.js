@@ -1,13 +1,12 @@
 import React, { useRef, useState, useEffect } from "react";
 import './Upload.css';
-import logo from '../images/logo.png';
+import logo from '../images/logo.svg';
 import defaultImage from '../images/default-image.png';
 import TitleBox from "../components/TitleBox";
 import CropView from "../components/CropView";
 import imageCompression from "browser-image-compression";
 import api from "../utils/API";
 import Button from "../components/Button";
-import loginbutton from '../images/loginbutton.svg';
 import dimibug from '../images/dimibug.svg';
 
 export default function Upload() {
@@ -57,7 +56,8 @@ export default function Upload() {
 
                 <form onSubmit={(e) => onUpload(e)}>
                     <div className="g-recaptcha" data-sitekey="6LdgSpgpAAAAAJKMC4NiXgYWrnn9ln7It_kpeIEQ" data-action="image_upload"></div>
-                    <button type='submit'>사진 업로드</button>
+                    {/* <button type='submit'>사진 업로드</button> */}
+                    <Button title='사진 업로드' imgSrc={dimibug} color='default' height='1.2rem' type='submit'/>
                 </form>
                 {/* <button onClick={onUpload}>사진 업로드</button> */}
 
@@ -74,12 +74,6 @@ export default function Upload() {
                         console.log(value);
                     }}
                 /> */}
-
-                
-                <Button title="osong" imgSrc={dimibug} color='default' height='1rem'/>
-                <Button title="디미고 계정으로 로그인" imgSrc={dimibug} color='enabled'/>
-                <Button title="좋아요" imgSrc={dimibug} color='disabled'/>
-                <img src={loginbutton} style={{height: '3rem'}}/>
             </div>
 
             {cropState ? <CropView image={imageSrc} ratio={1} onFinished={onCropFinished} className="cropview" /> : <div />}
@@ -91,16 +85,24 @@ export default function Upload() {
         inputFile.current.click();
     }
     function onFileChanged(event) {
-        let fileObj = event.target.files[0];
-        let fileUrl = window.URL.createObjectURL(fileObj);
+        async function f() {
+            let fileObj = event.target.files[0];
+            let compressedFile = await imageCompression(fileObj, {
+                // maxSizeMB: 1,
+                maxWidthOrHeight: 2048,
+                fileType: 'image/jpeg'
+            });
 
-        console.log(fileObj);
-        console.log(fileUrl);
+            let fileUrl = window.URL.createObjectURL(compressedFile);
 
-        setImageSrc(fileUrl);
-        setCroppedImageSrc(fileUrl); // 테스트
+            console.log(fileUrl);
 
-        setCropState(true);
+            setImageSrc(fileUrl);
+            setCroppedImageSrc(fileUrl); // 테스트
+
+            setCropState(true);
+        }
+        f();
     }
 
     async function convertURLtoFile(url) {
@@ -114,6 +116,7 @@ export default function Upload() {
 
     function onCropFinished(imgUrl) {
         async function f() {
+            console.log(imgUrl);
             let file = await convertURLtoFile(imgUrl);
             let compressedFile = await imageCompression(file, {
                 maxSizeMB: 1,
@@ -127,6 +130,7 @@ export default function Upload() {
 
             // Blob을 URL로 변환
             const compressedUrl = URL.createObjectURL(blob);
+            console.log(compressedUrl);
 
             setCroppedImageSrc(compressedUrl);
             setImageBlob(blob);

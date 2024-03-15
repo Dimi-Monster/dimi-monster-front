@@ -5,11 +5,12 @@
     border-radius: 0.8rem;
     border: 1px solid #CDCDCD;
     box-sizing: border-box;
-    padding: 0.5rem;
+    /* padding: 0.5rem; */
     justify-content: center;
     align-items: center;
 
     height: 3rem;
+    min-height: 3rem;
     width: 18rem;
 }
 

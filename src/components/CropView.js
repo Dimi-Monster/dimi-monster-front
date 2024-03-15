@@ -44,7 +44,9 @@ async function getCroppedImg(
     ctx.putImageData(data, 0, 0);
 
     // As Base64 string
-    return canvas.toDataURL('image/png');
+    const blob = await new Promise(resolve => canvas.toBlob(resolve));
+    return URL.createObjectURL(blob);
+    //return canvas.toDataURL('image/png');
 
     // As a blob
     //   return new Promise((resolve, reject) => {
