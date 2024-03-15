@@ -10,7 +10,7 @@
     position: relative;
 }
 
-.imageview > img {
+.imageview > button > img {
     width: 7rem;
     height: 7rem;
 

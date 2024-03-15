@@ -142,7 +142,7 @@ export default function Upload() {
 
     function onLocationChanged(e) {
         setLocationName(e.target.value);
-        console.log(e.target.value);
+        //console.log(e.target.value);
     }
     
     function onExplanationChanged(e) {
@@ -153,7 +153,7 @@ export default function Upload() {
         event.preventDefault();
         
         let token = event.target[0].value;
-        console.log(token);
+        //console.log(token);
 
         api.uploadImage({
             img: imageBlob,

@@ -1,0 +1,51 @@
+.image-preview-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    /* From https://css.glass */
+    /* background: rgba(255, 255, 255, 0.1); */
+    background: #FFEBF530;
+    /* box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1); */
+    backdrop-filter: blur(3.5px);
+    -webkit-backdrop-filter: blur(3.5px);
+    z-index: 20000;
+}
+
+.image-preview {
+    width: 25rem;
+    height: 25rem;
+    border-radius: 2rem;
+    overflow: hidden;
+
+    position: relative;
+}
+
+.image-preview > img {
+    width: 25rem;
+    height: 25rem;
+}
+
+.image-preview > .bottom-bar {
+    height: 2rem;
+    color: white;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.image-preview > .close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    color: white;
+}

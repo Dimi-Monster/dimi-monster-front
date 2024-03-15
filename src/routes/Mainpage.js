@@ -34,6 +34,28 @@ export default function Mainpage() {
                 <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={23} enabled={false}/>
                 <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={23} enabled={false}/>
                 <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={57} enabled={true}/>
+                <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={57} enabled={true}/>
+                <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={57} enabled={true}/>
+                <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={57} enabled={true}/>
+                <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={57} enabled={true}/>
+                <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={57} enabled={true}/>
+                <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={57} enabled={true}/>
+                <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={57} enabled={true}/>
+                <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={57} enabled={true}/>
+                <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={57} enabled={true}/>
+                <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={57} enabled={true}/>
+                <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={57} enabled={true}/>
+                <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={57} enabled={true}/>
+                <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={57} enabled={true}/>
+                <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={57} enabled={true}/>
+                <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={57} enabled={true}/>
+                <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={57} enabled={true}/>
+                <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={57} enabled={true}/>
+                <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={57} enabled={true}/>
+                <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={57} enabled={true}/>
+                <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={57} enabled={true}/>
+                <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={57} enabled={true}/>
+                <ImageView src={test} title='2학년 3반' content='2학년 3반의 명물 버섯입니다!' hearts={57} enabled={true}/>
             </TitleBox>
         </div>
     )
