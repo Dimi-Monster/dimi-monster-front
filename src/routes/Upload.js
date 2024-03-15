@@ -153,7 +153,12 @@ export default function Upload() {
         event.preventDefault();
         
         let token = event.target[0].value;
-        //console.log(token);
+        console.log(token);
+
+        if(token === '' || token === null) {
+            alert('당신이 로봇이 아니라는 것을 보여주세요.');
+            return;
+        }
 
         api.uploadImage({
             img: imageBlob,
