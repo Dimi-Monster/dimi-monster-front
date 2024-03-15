@@ -6,7 +6,8 @@ import ImageView from "../components/ImageView";
 
 import test from '../images/test.jpeg';
 
-import api from "../utils/API";
+//import api from "../utils/API";
+import imageManager from "../utils/ImageManager";
 
 export default function Mainpage() {
     //const navigate = useNavigate();
@@ -49,7 +50,8 @@ export default function Mainpage() {
 
 
         //api.getImage(0);
-        api.getImageBottom(imageList, setImageList);
+        //api.getImageBottom(imageList, setImageList);
+        imageManager.getImageBottom(setImageList);
     }, []);
 
     return (

@@ -117,6 +117,7 @@ class API {
 
         let res = json.map(json => {
             return {
+                id: json['id'],
                 src: json['thumbnail'], 
                 hearts: json['like'],
                 title: json['location'],
