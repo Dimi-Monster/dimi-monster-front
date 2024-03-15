@@ -91,6 +91,10 @@ export default function CropView(props) {
                     onCropComplete={onCropComplete}
                     onZoomChange={setZoom}
                     cropShape={cropShape}
+                    style={{
+                        containerStyle: {borderRadius: '2rem', border: '2px solid #BEBEBE'},
+                        cropAreaStyle: {borderRadius: '1rem'}
+                    }}
                 />
             </div>
             <button onClick={finish}>완료</button>
