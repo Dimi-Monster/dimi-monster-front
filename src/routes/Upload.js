@@ -25,6 +25,8 @@ export default function Upload() {
 
     const [buttonTitle, setButtonTitle] = useState('사진 업로드');
 
+    const [uploadingState, setUplodingState] = useState(false);
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -156,15 +158,19 @@ export default function Upload() {
 
     function onUpload(event) {
         event.preventDefault();
+
+        if(uploadingState)
+            return;
         
         let token = event.target[0].value;
         console.log(token);
 
         if(token === '' || token === null) {
-            alert('당신이 로봇이 아니라는 것을 보여주세요.');
+            alert('캡챠 인증 후 업로드해주세요.');
             return;
         }
 
+        setUplodingState(true);
         setButtonTitle('업로드 중...');
 
         api.uploadImage({
@@ -174,6 +180,7 @@ export default function Upload() {
             token: token
         })
         .then(isSuccess => {
+            setUplodingState(false);
             setButtonTitle('사진 업로드');
 
             if(!isSuccess) {
