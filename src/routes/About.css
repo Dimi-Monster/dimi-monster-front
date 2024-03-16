@@ -15,7 +15,7 @@
 
 .about-div > .logo {
     max-height: 20vh;
-    max-width: 60vw;
+    max-width: 35vw;
 }
 
 .about-div > div {
@@ -23,4 +23,43 @@
     margin-top: 4rem;
 
     color: #444444;
+    text-align: center;
+}
+
+@media (max-width: 1000px) {
+    .about-div > .logo {
+        max-width: 50vw;
+    }
+    .about-div > div {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-div > .logo2 {
+        max-height: 30vh;
+        max-width: 50vw;
+    }
+    .about-div > .logo {
+        max-height: 20vh;
+        max-width: 60vw;
+    }
+    .about-div > div {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .about-div > .logo2 {
+        max-width: 40vw;
+        margin-bottom: 1rem;
+    }
+    .about-div > .logo {
+        max-width: 80vw;
+    }
+    .about-div > div {
+        font-size: 1.2rem;
+        line-height: 1.5rem;
+        margin-top: 2rem;
+    }
 }
