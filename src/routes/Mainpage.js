@@ -30,12 +30,14 @@ export default function Mainpage() {
         //api.getImage(0);
         //api.getImageBottom(imageList, setImageList);
         //imageManager.getImageBottom(setImageList);
-        setInterval(() => imageManager.getImageTop(setImageList), 25000);
+        const timer = setInterval(() => imageManager.getImageTop(setImageList), 25000);
         imageManager.getCurrentList(setImageList); // 얘 async 아님
 
         imageManager.getImageTop(setImageList).then(() => {
             setLoadedState(true);
         })
+
+        return () => clearInterval(timer);
     }, []);
 
     return (
