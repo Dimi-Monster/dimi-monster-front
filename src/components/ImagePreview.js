@@ -12,9 +12,9 @@ export default function ImagePreview(props) {
     //     setBottomBarStyle({...bottomBarStyle, fontSize: bottomBar.offsetWidth + 'px'});
     // }, [bottomBar]);
 
-    const [imageUrl, setImageUrl] = useState(props.src);
+    const [imageUrl, setImageUrl] = useState(props.src); // 기본값은 썸네일
 
-    useEffect(() => {
+    useEffect(() => { // 고화질 이미지 불러오기
         api.getOriginalImageUrl(props.id).then((url) => {
             console.log(url);
             setImageUrl(url);

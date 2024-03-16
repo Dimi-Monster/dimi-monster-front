@@ -22,7 +22,7 @@ function App() {
           <Route path='/about' element={<About/>} />
           <Route path='/upload' element={<Upload/>} />
         </Route>
-        
+
         <Route path='/*' element={<NotFound/>} />
       </Routes>
     </BrowserRouter>
