@@ -21,7 +21,9 @@ export default function Mainpage() {
 
         //api.getImage(0);
         //api.getImageBottom(imageList, setImageList);
-        imageManager.getImageBottom(setImageList);
+        //imageManager.getImageBottom(setImageList);
+        setInterval(() =>
+            imageManager.getImageTop(setImageList), 5000);
     }, []);
 
     return (

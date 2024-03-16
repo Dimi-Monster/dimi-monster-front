@@ -114,7 +114,7 @@ class API {
             return false;
 
         let json = await data.json();
-        console.log(json);
+        //console.log(json);
 
         let res = json.map(json => {
             return {
@@ -128,6 +128,24 @@ class API {
         })
 
         return res;
+    }
+    async getRecentImageID() {
+        await this.refreshIfExpired();
+
+        const url = `${this.serverUrl}/image/recent`;
+
+        let data = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('access-token')}`
+            }
+        });
+
+        if(data.status != 200)
+            return false;
+
+        let json = await data.json();
+        return json.id;
     }
     async getOriginalImageUrl(id) {
         await this.refreshIfExpired();

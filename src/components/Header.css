@@ -15,9 +15,9 @@ header {
     padding-top: 1.4rem;
     padding-bottom: 1.1rem;
 
-    position: fixed;
+    /* position: fixed;
     top: 0;
-    left: 0;
+    left: 0; */
 
     z-index: 10000;
 

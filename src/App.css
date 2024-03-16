@@ -31,6 +31,7 @@ button, input[type="submit"], input[type="reset"] {
 
 html, body {
   font-family: 'Pretendard-SemiBold';
+  overflow: hidden;
 }
 
 input, textarea {
