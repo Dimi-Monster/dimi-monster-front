@@ -12,7 +12,7 @@ export default function ImagePreview(props) {
     //     setBottomBarStyle({...bottomBarStyle, fontSize: bottomBar.offsetWidth + 'px'});
     // }, [bottomBar]);
 
-    const [imageUrl, setImageUrl] = useState('');
+    const [imageUrl, setImageUrl] = useState(props.src);
 
     useEffect(() => {
         api.getOriginalImageUrl(props.id).then((url) => {

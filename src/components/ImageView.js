@@ -44,6 +44,7 @@ export default function ImageView(props) {
                 title={props.title}
                 content={props.content}
                 onFinish={onPreviewFinished}
+                src={props.src} /* 썸네일 이미지 */
                 />}
         </div>
     )
