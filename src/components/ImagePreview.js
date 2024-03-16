@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import "./ImagePreview.css";
 import x from '../images/x.svg';
-import api from "../utils/API";
+import imageManager from "../utils/ImageManager";
 
 export default function ImagePreview(props) {
     // const bottomBar = useRef(null);
@@ -15,10 +15,13 @@ export default function ImagePreview(props) {
     const [imageUrl, setImageUrl] = useState(props.src); // 기본값은 썸네일
 
     useEffect(() => { // 고화질 이미지 불러오기
-        api.getOriginalImageUrl(props.id).then((url) => {
-            console.log(url);
-            setImageUrl(url);
-        });
+        // api.getOriginalImageUrl(props.id).then((url) => {
+        //     console.log(url);
+        //     setImageUrl(url);
+        // });
+        imageManager.getOriginalImage(props.id).then((img) => {
+            setImageUrl(img);
+        })
     }, []);
 
     return (

@@ -5,6 +5,7 @@ class ImageManager {
     imageList = [];
     
     set = new Set();
+    originalImages = {};
 
     async getImageBottom(setImageList) {
         let res = await api.getImage(this.currentIdx);
@@ -70,6 +71,21 @@ class ImageManager {
     }
     getCurrentList(setImageList) {
         setImageList(this.imageList);
+    }
+    async getOriginalImage(id) {
+        if(id in this.originalImages)
+            return this.originalImages[id];
+
+        let res = await fetch(await api.getOriginalImageUrl(id));
+
+        if(res.status != 200)
+            return false;
+
+        let blob = await res.blob();
+        const img = URL.createObjectURL(blob);
+
+        this.originalImages[id] = img;
+        return img;
     }
 }
 
