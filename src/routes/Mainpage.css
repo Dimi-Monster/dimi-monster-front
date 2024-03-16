@@ -42,15 +42,15 @@
     } */
 }
 @media (max-width: 1200px) {
-    .mainpage {
-        padding-left: calc((100% - 50rem) / 2);
-        padding-right: calc((100% - 50rem) / 2);
-    }
-}
-@media (max-width: 930px) {
     .mainpage .gallery {
         grid-template-columns: repeat(2, 1fr);
     }
+    .mainpage {
+        padding-left: calc((100% - 45rem) / 2);
+        padding-right: calc((100% - 45rem) / 2);
+    }
+}
+@media (max-width: 865px) {
     .mainpage {
         padding-left: 2rem;
         padding-right: 2rem;

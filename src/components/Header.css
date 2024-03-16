@@ -56,13 +56,13 @@ header > .header-right {
         margin-left: 1rem;
     }
     header > :nth-child(1) {
-        margin-left: calc((100% - 50rem) / 2);
+        margin-left: calc((100% - 45rem) / 2);
     }
     header > .header-right {
-        margin-right: calc((100% - 50rem) / 2);
+        margin-right: calc((100% - 45rem) / 2);
     }
 }
-@media (max-width: 930px) {
+@media (max-width: 865px) {
     header > * {
         margin-left: 1rem;
     }
