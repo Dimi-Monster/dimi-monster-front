@@ -8,22 +8,34 @@ import test from '../images/test.jpeg';
 
 //import api from "../utils/API";
 import imageManager from "../utils/ImageManager";
+import { useInView } from "react-intersection-observer";
 
 export default function Mainpage() {
     //const navigate = useNavigate();
 
     const [imageList, setImageList] = useState([]);
+    const [isLoaded, setLoadedState] = useState(false);
+    const [ref, /*inView, entry*/] = useInView({
+        /* Optional options */
+        threshold: 0,
+        onChange: (inView) => {
+            console.log('inview onchange', isLoaded);
+            if(inView && isLoaded)
+                imageManager.getImageBottom(setImageList);
+        }
+    });
 
     useEffect(() => {
-        // if(localStorage.getItem('refresh-token') === null)
-        //     navigate('/login');
-
-
+        console.log('useeffect');
         //api.getImage(0);
         //api.getImageBottom(imageList, setImageList);
         //imageManager.getImageBottom(setImageList);
-        setInterval(() =>
-            imageManager.getImageTop(setImageList), 5000);
+        setInterval(() => imageManager.getImageTop(setImageList), 25000);
+        imageManager.getCurrentList(setImageList); // 얘 async 아님
+
+        imageManager.getImageTop(setImageList).then(() => {
+            setLoadedState(true);
+        })
     }, []);
 
     return (
@@ -41,6 +53,7 @@ export default function Mainpage() {
                     hearts={hearts}
                     enabled={enabled}
                     />)}
+                <div ref={ref}/>
             </TitleBox>
         </div>
     )

@@ -68,6 +68,9 @@ class ImageManager {
         this.currentIdx = Math.floor(this.imageList.length / 20);
         return true;
     }
+    getCurrentList(setImageList) {
+        setImageList(this.imageList);
+    }
 }
 
 let imageManager = new ImageManager();

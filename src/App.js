@@ -21,9 +21,9 @@ function App() {
           <Route path='/' element={<Mainpage/>} />
           <Route path='/about' element={<About/>} />
           <Route path='/upload' element={<Upload/>} />
-
-          <Route path='/*' element={<NotFound/>} />
         </Route>
+        
+        <Route path='/*' element={<NotFound/>} />
       </Routes>
     </BrowserRouter>
   );
