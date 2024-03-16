@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './ImageView.css';
 import heart from '../images/heart.svg';
 import ImagePreview from './ImagePreview';
-//import api from '../utils/API';
+import api from '../utils/API';
 //import defaultImage from '../images/default-image.svg';
 
 export default function ImageView(props) {
@@ -16,6 +16,10 @@ export default function ImageView(props) {
         setPreviewState(false);
     }
 
+    function onLikeClicked() {
+        api.like(props.id);
+    }
+
     return (
         <div className="imageview">
             <button onClick={onImageClicked}>
@@ -27,7 +31,7 @@ export default function ImageView(props) {
 
                 <div className="margin"/>
 
-                <button className={props.enabled ? '' : 'disabled'}>좋아요</button>
+                <button className={props.enabled ? '' : 'disabled'} onClick={onLikeClicked}>좋아요</button>
             </div>
 
             <div className='floatbox'>

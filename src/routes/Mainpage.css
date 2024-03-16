@@ -24,3 +24,19 @@
 
     gap: 1rem;
 }
+@media (max-width: 968px) {
+    .mainpage .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 668px) {
+    .mainpage .gallery {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+@media (max-width: 468px) {
+    
+}
+@media (max-width: 368px) {
+    
+}

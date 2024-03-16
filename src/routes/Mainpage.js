@@ -19,14 +19,12 @@ export default function Mainpage() {
         /* Optional options */
         threshold: 0,
         onChange: (inView) => {
-            console.log('inview onchange', isLoaded);
             if(inView && isLoaded)
                 imageManager.getImageBottom(setImageList);
         }
     });
 
     useEffect(() => {
-        console.log('useeffect');
         //api.getImage(0);
         //api.getImageBottom(imageList, setImageList);
         //imageManager.getImageBottom(setImageList);

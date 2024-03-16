@@ -4,11 +4,15 @@ import './Header.css';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 
 import logo from '../images/logo.svg';
+import logoMobile from '../images/logo-mobile.svg';
 
 import api from '../utils/API';
 
+import { useMediaQuery } from 'react-responsive';
+
 export default function Header() {
     const navigate = useNavigate();
+    const isMobile = useMediaQuery({query : "(max-width:520px)"});
 
     useEffect(() => {
         if(localStorage.getItem('refresh-token') === null)
@@ -18,7 +22,8 @@ export default function Header() {
     return (
         <header>
             <Link to='/' className='logo'>
-                <img src={logo} className='logo'/>
+                {!isMobile && <img src={logo} className='logo'/>}
+                {isMobile && <img src={logoMobile} className='logo'/>}
             </Link>
 
             <NavLink to='/' className="navlink" style={({isActive}) => ({color:isActive ? '#DD0D75' : 'black'})}>메인</NavLink>

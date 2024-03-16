@@ -16,3 +16,23 @@
 
     margin-bottom: 40vh;
 }
+@media (max-width: 768px) {
+    .login-div > .logo {
+        width: 70vw;
+    }
+}
+@media (max-width: 568px) {
+    .login-div > .logo {
+        width: 80vw;
+    }
+}
+@media (max-width: 468px) {
+    .login-div > .logo {
+        width: 85vw;
+    }
+}
+@media (max-width: 368px) {
+    .login-div > .logo {
+        width: 90vw;
+    }
+}

@@ -181,6 +181,38 @@ class API {
         
         return true;
     }
+    async like(id) {
+        await this.refreshIfExpired();
+        const url = `${this.serverUrl}/image/like/${id}`;
+
+        let data = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('access-token')}`
+            }
+        });
+
+        if(data.status != 200)
+            return false;
+
+        return true;
+    }
+    async unlike(id) {
+        await this.refreshIfExpired();
+        const url = `${this.serverUrl}/image/like/${id}`;
+
+        let data = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('access-token')}`
+            }
+        });
+
+        if(data.status != 200)
+            return false;
+
+        return true;
+    }
 }
 
 let api = new API();
