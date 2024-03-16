@@ -24,6 +24,16 @@
 
     gap: 1rem;
 }
+@media (min-width: 1650px) {
+    .mainpage .gallery {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+@media (min-width: 2150px) {
+    .mainpage .gallery {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
 @media (max-width: 968px) {
     .mainpage .gallery {
         grid-template-columns: repeat(2, 1fr);
