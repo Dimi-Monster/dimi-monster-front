@@ -51,11 +51,36 @@ header > .header-right {
     margin-right: calc((100% - 70rem) / 2);
 }
 
+@media (max-width: 1200px) {
+    header > * {
+        margin-left: 1rem;
+    }
+    header > :nth-child(1) {
+        margin-left: calc((100% - 50rem) / 2);
+    }
+    header > .header-right {
+        margin-right: calc((100% - 50rem) / 2);
+    }
+}
+@media (max-width: 930px) {
+    header > * {
+        margin-left: 1rem;
+    }
+    header > :nth-child(1) {
+        margin-left: 2rem;
+    }
+    header > .header-right {
+        margin-right: 2rem;
+    }
+}
 @media (max-width: 520px) {
     header {
         align-items: center;
     }
     header > * {
+        margin-left: 1rem;
+    }
+    header > :nth-child(1) {
         margin-left: 1rem;
     }
     header > .header-right {
@@ -64,6 +89,9 @@ header > .header-right {
 }
 @media (max-width: 340px) {
     header > * {
+        margin-left: 0.6rem;
+    }
+    header > :nth-child(1) {
         margin-left: 0.6rem;
     }
     header > .header-right {
