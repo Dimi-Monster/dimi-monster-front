@@ -61,8 +61,17 @@
         grid-template-columns: repeat(1, 1fr);
     }
 }
-@media (max-width: 468px) {
-    
+@media (max-width: 520px) {
+    .mainpage {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+@media (max-width: 340px) {
+    .mainpage {
+        padding-left: 0.6rem;
+        padding-right: 0.6rem;
+    }
 }
 @media (max-width: 368px) {
     
