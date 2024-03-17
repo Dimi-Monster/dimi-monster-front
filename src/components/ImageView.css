@@ -8,6 +8,7 @@
     flex-direction: row;
 
     position: relative;
+    background: #FFFDFE;
 }
 
 .imageview > button > img {
