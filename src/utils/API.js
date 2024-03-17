@@ -240,6 +240,23 @@ class API {
             enabled: !json['liked-by-me']
         };
     }
+    async getLikeCount(id) {
+        await this.refreshIfExpired();
+        const url = `${this.serverUrl}/image/like/${id}`;
+
+        let data = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('access-token')}`
+            }
+        });
+
+        if(data.status != 200)
+            return false;
+
+        let json = await data.json();
+        return json.like;
+    }
 }
 
 let api = new API();

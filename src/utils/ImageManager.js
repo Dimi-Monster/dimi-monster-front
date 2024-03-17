@@ -23,7 +23,7 @@ class ImageManager {
         }
 
         this.imageList = [...this.imageList, ...addData];
-        setImageList(this.imageList);
+        setImageList([...this.imageList]);
 
         //this.currentIdx++;
         this.currentIdx = Math.floor(this.imageList.length / 21);
@@ -70,7 +70,7 @@ class ImageManager {
         return true;
     }
     getCurrentList(setImageList) {
-        setImageList(this.imageList);
+        setImageList([...this.imageList]);
     }
     async getOriginalImage(id) {
         if(id in this.originalImages)
@@ -95,6 +95,60 @@ class ImageManager {
         this.currentIdx = 0;
         this.imageList = [];
         this.set.clear();
+    }
+    async like(id, setImageList) {
+        let promise = api.like(id);
+
+        for(let i=0; i<this.imageList.length; i++) {
+            const now = this.imageList[i];
+
+            if(now.id != id)
+                continue;
+
+            now.hearts++;
+            now.enabled = false;
+        }
+        setImageList([...this.imageList]);
+
+        await promise;
+
+        for(let i=0; i<this.imageList.length; i++) {
+            const now = this.imageList[i];
+
+            if(now.id != id)
+                continue;
+
+            now.hearts = await api.getLikeCount(id);
+            //now.enabled = false;
+        }
+        setImageList([...this.imageList]);
+    }
+    async unlike(id, setImageList) {
+        let promise = api.unlike(id);
+
+        for(let i=0; i<this.imageList.length; i++) {
+            const now = this.imageList[i];
+
+            if(now.id != id)
+                continue;
+
+            now.hearts--;
+            now.enabled = true;
+        }
+        setImageList([...this.imageList]);
+
+        await promise;
+
+        for(let i=0; i<this.imageList.length; i++) {
+            const now = this.imageList[i];
+
+            if(now.id != id)
+                continue;
+
+            now.hearts = await api.getLikeCount(id);
+            //now.enabled = true;
+        }
+        setImageList([...this.imageList]);
     }
 }
 
