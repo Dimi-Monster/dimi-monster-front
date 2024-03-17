@@ -57,6 +57,7 @@ export default function Mainpage() {
         <div className="mainpage" ref={mainpageRef}>
             <TitleBox title='주간 몬스터'>
                 {weeklyImage && <ImageView 
+                    key={weeklyImage.id}
                     id={weeklyImage.id}
                     src={weeklyImage.src} 
                     title={weeklyImage.title}
@@ -67,6 +68,7 @@ export default function Mainpage() {
 
             <TitleBox title='사진관' className='contents' innerClassName='gallery'>
                 {imageList && imageList.map(({id, src, title, content, hearts, enabled}) => <ImageView
+                    key={id}
                     id={id}
                     src={src}
                     title={title}
