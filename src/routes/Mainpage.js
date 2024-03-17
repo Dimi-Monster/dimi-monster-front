@@ -9,7 +9,7 @@ import ImageView from "../components/ImageView";
 import api from "../utils/API";
 import imageManager from "../utils/ImageManager";
 import { useInView } from "react-intersection-observer";
-import loadingImg from '../images/loading.png';
+import loadingImg from '../images/loading.webp';
 
 export default function Mainpage() {
     //const navigate = useNavigate();
@@ -92,7 +92,7 @@ export default function Mainpage() {
                     onUnlike={onUnlike} />)}
             </TitleBox>
             <div ref={ref} style={{marginTop: '1rem'}}>
-                <img src={loadingImg} style={{width: '2rem'}}/>
+                <img src={loadingImg} style={{width: '2rem'}} alt='로딩 이미지'/>
             </div>
         </div>
     )

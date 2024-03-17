@@ -42,13 +42,13 @@ export default function Upload() {
         <div className='upload-outer-box'>
             <div className='upload-inner-box'>
                 <div className='title'>
-                    <img src={logo} className='logo' />
+                    <img src={logo} className='logo' alt='디미몬스터 로고'/>
                     <div>업로드</div>
                 </div>
 
                 <div className='contents'>
                     <button className='contents-left' onClick={selectFile}>
-                        <img src={croppedImageSrc} ref={image} className='image' />
+                        <img src={croppedImageSrc} ref={image} className='image' alt='업로드할 몬스터 사진'/>
                         <div>이미지 선택하기</div>
                     </button>
                     <div className='contents-right'>

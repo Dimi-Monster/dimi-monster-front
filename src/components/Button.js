@@ -23,7 +23,7 @@ export default function Button(props) {
             backgroundColor: backgroundColorPalette[color],
             color: colorPalette[color]
             }}>
-            {props.imgSrc && <img src={props.imgSrc} style={{height: props.height}}/>}
+            {props.imgSrc && <img src={props.imgSrc} style={{height: props.height}} alt={props.title + '버튼'}/>}
             <div>{props.title}</div>
         </button>
     )

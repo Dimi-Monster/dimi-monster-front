@@ -31,7 +31,7 @@ export default function ImageView(props) {
     return (
         <div className="imageview">
             <button onClick={onImageClicked}>
-                <img src={props.src}/>
+                <img src={props.src} alt='몬스터 이미지'/>
             </button>
             <div className="rightbox">
                 <div className="title">{props.title}</div>
@@ -39,11 +39,13 @@ export default function ImageView(props) {
 
                 <div className="margin"/>
 
-                <button className={props.enabled ? '' : 'disabled'} onClick={onLikeClicked}>좋아요</button>
+                <button className={props.enabled ? '' : 'disabled'} onClick={onLikeClicked}>
+                    {props.enabled ? '좋아요' : '좋아요 취소'}
+                    </button>
             </div>
 
             <div className='floatbox'>
-                <img src={heart}/>
+                <img src={heart} alt='좋아요'/>
                 <div>+{props.hearts}</div>
             </div>
 

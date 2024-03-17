@@ -42,7 +42,7 @@ export default function GAuthRoute() {
                     width: '50vw', 
                     height: 'auto' 
                 }
-            } alt="Wait Logo" />
+            } alt="기다리는 중" />
         </div>
     )
 }

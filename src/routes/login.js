@@ -7,7 +7,7 @@ import GoogleLoginButton from "../components/GoogleLoginButton";
 export default function Login() {
     return (
         <div className="login-div">
-            <img src={logo} className="logo"/>
+            <img src={logo} className="logo" alt='디미몬스터 로고'/>
             
             <GoogleLoginButton/>
         </div>
