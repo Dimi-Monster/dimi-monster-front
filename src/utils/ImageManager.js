@@ -76,7 +76,11 @@ class ImageManager {
         if(id in this.originalImages)
             return this.originalImages[id];
 
-        let res = await fetch(await api.getOriginalImageUrl(id));
+        let res = await fetch(await api.getOriginalImageUrl(id), {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('access-token')}`
+            }
+        });
 
         if(res.status != 200)
             return false;

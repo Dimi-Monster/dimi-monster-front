@@ -155,7 +155,7 @@ class API {
     async getOriginalImageUrl(id) {
         await this.refreshIfExpired();
 
-        const url = `${this.serverUrl}/download/${id}?image-token=${localStorage.getItem('image-token')}`;
+        const url = `${this.serverUrl}/image/${id}`;
         return url;
     }
     async uploadImage({img, location, description, token}) { // token: 리캡차 토큰
