@@ -10,11 +10,18 @@ import api from "../utils/API";
 import imageManager from "../utils/ImageManager";
 import { useInView } from "react-intersection-observer";
 import loadingImg from '../images/loading.webp';
+import defaultImage from '../images/default-image.svg';
 
 export default function Mainpage() {
     //const navigate = useNavigate();
 
-    const [imageList, setImageList] = useState([]);
+    const [imageList, setImageList] = useState(Array(21).fill({
+        src: defaultImage,
+        title: '',
+        content: '',
+        hearts: 0,
+        enabled: true
+    }));
     const [isLoaded, setLoadedState] = useState(false);
     const [weeklyImage, setWeeklyImage] = useState(false);
     const mainpageRef = useRef(null);
@@ -40,7 +47,7 @@ export default function Mainpage() {
 
         imageManager.getImageTop(setImageList).then(() => {
             setLoadedState(true);
-        })
+        });
 
         api.getWeeklyImage().then((data) => {
             setWeeklyImage(data);
@@ -67,7 +74,7 @@ export default function Mainpage() {
     return (
         <div className="mainpage" ref={mainpageRef}>
             <TitleBox title='주간 몬스터'>
-                {weeklyImage && <ImageView 
+                {weeklyImage ? <ImageView 
                     key={weeklyImage.id}
                     id={weeklyImage.id}
                     src={weeklyImage.src} 
@@ -76,7 +83,17 @@ export default function Mainpage() {
                     hearts={weeklyImage.hearts}
                     enabled={weeklyImage.enabled}
                     onLike={onLike}
-                    onUnlike={onUnlike} />}
+                    onUnlike={onUnlike} />
+                : <ImageView 
+                    // key={1}
+                    // id={1}
+                    src={defaultImage} 
+                    title={''}
+                    content={''}
+                    hearts={0}
+                    enabled={true}
+                    onLike={onLike}
+                    onUnlike={onUnlike}/>}
             </TitleBox>
 
             <TitleBox title='사진관' className='contents' innerClassName='gallery'>
