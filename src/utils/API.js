@@ -218,6 +218,31 @@ class API {
 
         return true;
     }
+    async getWeeklyImage() {
+        await this.refreshIfExpired();
+
+        const url = `${this.serverUrl}/image/weekly`;
+
+        let data = await fetch(url, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('access-token')}`
+            }
+        });
+
+        if(data.status != 200)
+            return false;
+
+        //console.log(await data.json());
+        let json = await data.json();
+        return {
+            id: json['id'],
+            src: json['thumbnail'], 
+            hearts: json['like'],
+            title: json['location'],
+            content: json['description'],
+            enabled: !json['liked-by-me']
+        };
+    }
 }
 
 let api = new API();

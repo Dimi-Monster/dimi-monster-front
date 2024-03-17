@@ -4,9 +4,9 @@ import "./Mainpage.css";
 import TitleBox from "../components/TitleBox";
 import ImageView from "../components/ImageView";
 
-import test from '../images/test.jpeg';
+//import test from '../images/test.jpeg';
 
-//import api from "../utils/API";
+import api from "../utils/API";
 import imageManager from "../utils/ImageManager";
 import { useInView } from "react-intersection-observer";
 
@@ -15,6 +15,7 @@ export default function Mainpage() {
 
     const [imageList, setImageList] = useState([]);
     const [isLoaded, setLoadedState] = useState(false);
+    const [weeklyImage, setWeeklyImage] = useState(false);
     const mainpageRef = useRef(null);
     const [ref, /*inView*/, /*entry*/] = useInView({
         /* Optional options */
@@ -37,6 +38,10 @@ export default function Mainpage() {
             setLoadedState(true);
         })
 
+        api.getWeeklyImage().then((data) => {
+            setWeeklyImage(data);
+        });
+
         return () => clearInterval(timer);
     }, []);
     useEffect(() => {
@@ -50,8 +55,14 @@ export default function Mainpage() {
 
     return (
         <div className="mainpage" ref={mainpageRef}>
-            <TitleBox title='인기 사진'>
-                <ImageView src={test} title='신관앞' content='점심시간 디미고 풍경사진' hearts={95} enabled={true}/>
+            <TitleBox title='주간 몬스터'>
+                {weeklyImage && <ImageView 
+                    id={weeklyImage.id}
+                    src={weeklyImage.src} 
+                    title={weeklyImage.title}
+                    content={weeklyImage.content}
+                    hearts={weeklyImage.hearts}
+                    enabled={weeklyImage.enabled}/>}
             </TitleBox>
 
             <TitleBox title='사진관' className='contents' innerClassName='gallery'>
