@@ -18,6 +18,9 @@ export default function Mainpage() {
     const [isLoaded, setLoadedState] = useState(false);
     const [weeklyImage, setWeeklyImage] = useState(false);
     const mainpageRef = useRef(null);
+
+    //const [, forceUpdate] = useReducer(x => x + 1, 0);
+
     const [ref, /*inView*/, /*entry*/] = useInView({
         /* Optional options */
         threshold: 0,
@@ -54,6 +57,13 @@ export default function Mainpage() {
             imageManager.getImageBottom(setImageList);
     }, [isLoaded]);
 
+    function onLike(id) {
+        imageManager.like(id, setImageList);
+    }
+    function onUnlike(id) {
+        imageManager.unlike(id, setImageList);
+    }
+
     return (
         <div className="mainpage" ref={mainpageRef}>
             <TitleBox title='주간 몬스터'>
@@ -64,7 +74,9 @@ export default function Mainpage() {
                     title={weeklyImage.title}
                     content={weeklyImage.content}
                     hearts={weeklyImage.hearts}
-                    enabled={weeklyImage.enabled}/>}
+                    enabled={weeklyImage.enabled}
+                    onLike={onLike}
+                    onUnlike={onUnlike} />}
             </TitleBox>
 
             <TitleBox title='사진관' className='contents' innerClassName='gallery'>
@@ -76,7 +88,8 @@ export default function Mainpage() {
                     content={content}
                     hearts={hearts}
                     enabled={enabled}
-                    />)}
+                    onLike={onLike}
+                    onUnlike={onUnlike} />)}
             </TitleBox>
             <div ref={ref} style={{marginTop: '1rem'}}>
                 <img src={loadingImg} style={{width: '2rem'}}/>

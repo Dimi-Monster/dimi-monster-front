@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import './ImageView.css';
 import heart from '../images/heart.svg';
 import ImagePreview from './ImagePreview';
-import api from '../utils/API';
+//import api from '../utils/API';
+//import imageManager from '../utils/ImageManager';
 //import defaultImage from '../images/default-image.svg';
 
 export default function ImageView(props) {
@@ -17,7 +18,14 @@ export default function ImageView(props) {
     }
 
     function onLikeClicked() {
-        api.like(props.id);
+        // if(props.enabled)
+        //     imageManager.like(props.id);
+        // else
+        //     imageManager.unlike(props.id);
+        if(props.enabled)
+            props.onLike(props.id);
+        else
+            props.onUnlike(props.id);
     }
 
     return (
