@@ -39,13 +39,13 @@ html, body {
 input, textarea {
   border: 1px solid #BEBEBE;
   border-radius: 0.7rem;
-  padding: 0.5rem;
-  padding-left: 0.7rem;
-  padding-right: 0.7rem;
+  padding: 0.65rem;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
   outline: none;
   resize: none;
   font-family: 'Pretendard';
-  font-size: 0.87rem;
+  font-size: 0.83rem;
 }
 
 .App {
