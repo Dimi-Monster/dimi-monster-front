@@ -23,7 +23,7 @@ export default function GAuthRoute() {
                 if(error == 'Invalid Email Address')
                     alert('디미고 구글 계정으로만 로그인할 수 있습니다.');
                 else
-                    alert('오류가 발생했습니다. 관리자에게 문의해주세요.');
+                    alert('오류가 발생했습니다. 관리자에게 문의해주세요.\n\n에러 타입: '+error);
                 navigate('/login');
             }
         }
