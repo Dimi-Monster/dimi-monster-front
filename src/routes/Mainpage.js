@@ -9,6 +9,7 @@ import ImageView from "../components/ImageView";
 import api from "../utils/API";
 import imageManager from "../utils/ImageManager";
 import { useInView } from "react-intersection-observer";
+import loadingImg from '../images/loading.png';
 
 export default function Mainpage() {
     //const navigate = useNavigate();
@@ -76,8 +77,10 @@ export default function Mainpage() {
                     hearts={hearts}
                     enabled={enabled}
                     />)}
-                <div ref={ref}/>
             </TitleBox>
+            <div ref={ref} style={{marginTop: '1rem'}}>
+                <img src={loadingImg} style={{width: '2rem'}}/>
+            </div>
         </div>
     )
 }
