@@ -28,7 +28,6 @@ class API {
         localStorage.setItem('email', json['email']);
         localStorage.setItem('access-token', json['access-token']);
         localStorage.setItem('refresh-token', json['refresh-token']);
-        localStorage.setItem('image-token', json['image-token']);
         localStorage.setItem('name', json['name']);
         localStorage.setItem('expires', (Math.floor(Date.now() / 1000) + json['at-expire']).toString());
 
@@ -62,7 +61,6 @@ class API {
 
         localStorage.removeItem('access-token');
         localStorage.removeItem('refresh-token');
-        localStorage.removeItem('image-token');
 
         return true;
     }
@@ -90,7 +88,6 @@ class API {
         let json = await data.json();
 
         localStorage.setItem('access-token', json['access-token']);
-        localStorage.setItem('image-token', json['image-token']);
         localStorage.setItem('expires', (Math.floor(Date.now() / 1000) + json['at-expire']).toString());
         return true;
     }
