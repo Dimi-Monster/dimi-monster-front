@@ -82,8 +82,10 @@ class API {
                 'refresh-token': refreshToken
             })
         });
-        if(data.status != 200)
+        if(data.status != 200) {
+            this.lastError = 'Invalid Refresh Token';
             return false;
+        }
 
         let json = await data.json();
 
@@ -95,8 +97,11 @@ class API {
     async refreshIfExpired() {
         let current = Math.floor(Date.now() / 1000);
 
-        if(parseInt(localStorage.getItem('expires')) - 50 < current)
-            await this.refresh();
+        if(parseInt(localStorage.getItem('expires')) - 50 < current) {
+            if(!await this.refresh())
+                return false;
+        }
+        return true;
     }
     async getImage(pageIdx) {
         await this.refreshIfExpired();
@@ -123,7 +128,7 @@ class API {
                 hearts: json['like'],
                 title: json['location'],
                 content: json['description'],
-                enabled: true // 이거 어디서 가져오지?
+                enabled: !json['liked-by-me']
             }
         })
 

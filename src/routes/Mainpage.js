@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 //import { useNavigate } from "react-router-dom";
 import "./Mainpage.css";
 import TitleBox from "../components/TitleBox";
@@ -15,7 +15,8 @@ export default function Mainpage() {
 
     const [imageList, setImageList] = useState([]);
     const [isLoaded, setLoadedState] = useState(false);
-    const [ref, /*inView, entry*/] = useInView({
+    const mainpageRef = useRef(null);
+    const [ref, /*inView*/, /*entry*/] = useInView({
         /* Optional options */
         threshold: 0,
         onChange: (inView) => {
@@ -29,7 +30,8 @@ export default function Mainpage() {
         //api.getImageBottom(imageList, setImageList);
         //imageManager.getImageBottom(setImageList);
         const timer = setInterval(() => imageManager.getImageTop(setImageList), 25000);
-        imageManager.getCurrentList(setImageList); // 얘 async 아님
+        //imageManager.getCurrentList(setImageList); // 얘 async 아님
+        imageManager.clear();
 
         imageManager.getImageTop(setImageList).then(() => {
             setLoadedState(true);
@@ -37,9 +39,17 @@ export default function Mainpage() {
 
         return () => clearInterval(timer);
     }, []);
+    useEffect(() => {
+        if(!isLoaded)
+            return;
+
+        console.log(window.innerHeight, mainpageRef.current.clientHeight);
+        if(window.innerHeight > mainpageRef.current.clientHeight)
+            imageManager.getImageBottom(setImageList);
+    }, [isLoaded]);
 
     return (
-        <div className="mainpage">
+        <div className="mainpage" ref={mainpageRef}>
             <TitleBox title='인기 사진'>
                 <ImageView src={test} title='신관앞' content='점심시간 디미고 풍경사진' hearts={95} enabled={true}/>
             </TitleBox>

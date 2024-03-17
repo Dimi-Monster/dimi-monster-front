@@ -26,7 +26,7 @@ class ImageManager {
         setImageList(this.imageList);
 
         //this.currentIdx++;
-        this.currentIdx = Math.floor(this.imageList.length / 20);
+        this.currentIdx = Math.floor(this.imageList.length / 21);
         return true;
     }
     async getImageTop(setImageList) {
@@ -66,7 +66,7 @@ class ImageManager {
         this.imageList = [...addData, ...this.imageList];
         setImageList(this.imageList);
 
-        this.currentIdx = Math.floor(this.imageList.length / 20);
+        this.currentIdx = Math.floor(this.imageList.length / 21);
         return true;
     }
     getCurrentList(setImageList) {
@@ -86,6 +86,11 @@ class ImageManager {
 
         this.originalImages[id] = img;
         return img;
+    }
+    async clear() {
+        this.currentIdx = 0;
+        this.imageList = [];
+        this.set.clear();
     }
 }
 
