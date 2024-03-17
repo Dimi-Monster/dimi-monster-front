@@ -38,7 +38,10 @@ export default function GAuthRoute() {
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
             <img src={waitlogo} style={
-                { width: '50vw', height: 'auto' }
+                { 
+                    width: '50vw', 
+                    height: 'auto' 
+                }
             } alt="Wait Logo" />
         </div>
     )
