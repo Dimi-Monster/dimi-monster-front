@@ -65,10 +65,10 @@ export default function Mainpage() {
     }, [isLoaded]);
 
     function onLike(id) {
-        imageManager.like(id, setImageList);
+        imageManager.like(id, setImageList, weeklyImage, setWeeklyImage);
     }
     function onUnlike(id) {
-        imageManager.unlike(id, setImageList);
+        imageManager.unlike(id, setImageList, weeklyImage, setWeeklyImage);
     }
 
     return (
