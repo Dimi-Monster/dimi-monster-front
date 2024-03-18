@@ -37,7 +37,7 @@ html, body {
 }
 
 input, textarea {
-  border: 1px solid #BEBEBE;
+  border: .9px solid #BEBEBE;
   border-radius: 0.7rem;
   padding: 0.65rem;
   padding-left: 0.8rem;

@@ -1,5 +1,5 @@
 .imageview {
-    border: 1px solid #BEBEBE;
+    border: .9px solid #BEBEBE;
 
     border-radius: 1rem;
     padding: 1.2rem;
@@ -19,6 +19,7 @@
 
     border-radius: 0.8rem;
 
+    border: .9px solid #BEBEBE;
     margin-right: 1.2rem;
 }
 
@@ -52,6 +53,8 @@
     background-color: #DD0D75;
     padding: 0.6rem;
     border-radius: 0.6rem;
+    font-size: 0.9rem;
+    border: .5px solid #BEBEBE;
     color: white;
 }
 
@@ -73,7 +76,7 @@
     flex-direction: row;
     font-size: 0.8rem;
 
-    border: 1px solid #BEBEBE;
+    border: .5px solid #BEBEBE;
     border-radius: 0.7rem;
 }
 
