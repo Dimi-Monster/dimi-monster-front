@@ -12,8 +12,13 @@ export default function About() {
         <div className='about-div'>
             <img className='logo2' src={logo2}/>
             <img className='logo' src={logo}/>
-            {!isMobile && <div>한국디지털미디어고등학교 익명 사진공유 서비스, 디미몬스터</div>}
-            {isMobile && <div>한국디지털미디어고등학교<br/>익명 사진공유 서비스</div>}
+            {!isMobile && <div className='introduce'>한국디지털미디어고등학교 익명 사진공유 서비스, 디미몬스터</div>}
+            {isMobile && <div className='introduce'>한국디지털미디어고등학교<br/>익명 사진공유 서비스</div>}
+
+            <div className='privacy'>
+                <a href='https://privacy.dimi.monster/'>개인정보처리방침 &gt;</a>
+                <a href='https://term.dimi.monster/'>이용약관 &gt;</a>
+            </div>
         </div>
     )
 }

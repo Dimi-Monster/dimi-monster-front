@@ -18,7 +18,19 @@
     max-width: 35vw;
 }
 
-.about-div > div {
+.about-div > .privacy {
+    margin-top: 1.6rem;
+    display: flex;
+    flex-direction: row;
+}
+.about-div > .privacy > a {
+    margin-left: 0.35rem;
+    margin-right: 0.35rem;
+    font-size: 1.1rem;
+    text-decoration: none;
+}
+
+.about-div > .introduce {
     font-size: 1.5rem;
     margin-top: 4rem;
 
@@ -30,7 +42,7 @@
     .about-div > .logo {
         max-width: 50vw;
     }
-    .about-div > div {
+    .about-div > .introduce {
         font-size: 1.3rem;
     }
 }
@@ -44,7 +56,7 @@
         max-height: 20vh;
         max-width: 60vw;
     }
-    .about-div > div {
+    .about-div > .introduce {
         font-size: 1.2rem;
     }
 }
@@ -57,7 +69,7 @@
     .about-div > .logo {
         max-width: 80vw;
     }
-    .about-div > div {
+    .about-div > .introduce {
         font-size: 1.2rem;
         line-height: 1.5rem;
         margin-top: 2rem;
