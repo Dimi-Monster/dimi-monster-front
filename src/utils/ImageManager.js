@@ -27,7 +27,11 @@ class ImageManager {
 
         //this.currentIdx++;
         this.currentIdx = Math.floor(this.imageList.length / 21);
-        return true;
+
+        if(addData.length > 0)
+            return {end: false};
+        else
+            return {end: true};
     }
     async getImageTop(setImageList) {
         if(this.set.size == 0)

@@ -25,6 +25,7 @@ export default function Mainpage() {
     const [isLoaded, setLoadedState] = useState(false);
     const [weeklyImage, setWeeklyImage] = useState(false);
     const mainpageRef = useRef(null);
+    const [isEnd, setEndState] = useState(false);
 
     //const [, forceUpdate] = useReducer(x => x + 1, 0);
 
@@ -32,8 +33,18 @@ export default function Mainpage() {
         /* Optional options */
         threshold: 0,
         onChange: (inView) => {
-            if(inView && isLoaded)
-                imageManager.getImageBottom(setImageList);
+            if(inView && isLoaded) {
+                imageManager.getImageBottom(setImageList).then((res) => {
+                    if(!res) {
+                        alert('정보를 불러오는 데 실패했습니다.');
+                        return;
+                    }
+                    if(res.end) {
+                        setEndState(true);
+                        return;
+                    }
+                });
+            }
         }
     });
 
@@ -109,7 +120,7 @@ export default function Mainpage() {
                     onUnlike={onUnlike} />)}
             </TitleBox>
             <div ref={ref} style={{marginTop: '1rem'}}>
-                <img src={loadingImg} style={{width: '2rem'}} alt='로딩 이미지'/>
+                {!isEnd && <img src={loadingImg} style={{width: '2rem'}} alt='로딩 이미지'/>}
             </div>
         </div>
     )
