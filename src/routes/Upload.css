@@ -153,6 +153,16 @@
 }
 
 @media (max-width: 520px) {
+    .upload-outer-box {
+        box-sizing: border-box;
+        min-height: calc(100vh - 4.5rem);
+        height: auto;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        /* padding-top: 1rem;
+        padding-bottom: 1rem; */
+        position: absolute;
+    }
     .upload-inner-box > .title {
         font-size: 1.5rem;
         margin-bottom: 1rem;
@@ -164,8 +174,16 @@
     }
     .upload-inner-box {
         width: calc(100% - 2rem);
-        height: calc(100% - 2rem);
-        padding: 0.5rem;
+        height: auto; /*calc(100% - 2rem); */
+        /* padding: 0.5rem; */
+        padding-top: 3rem;
+        padding-bottom: 2rem;
+
+        /* position: relative;
+        top: 1rem;
+        bottom: 1rem;
+        left: 1rem;
+        right: 1rem; */
     }
     .upload-inner-box .image {
         width: 47vw;
@@ -199,7 +217,7 @@
         padding-bottom: 0.5rem;
     }
     .upload-inner-box > form {
-        transform: scale(0.7);
+        transform: scale(0.85);
     }
     .upload-inner-box > form > button {
         margin-top: 1rem;
