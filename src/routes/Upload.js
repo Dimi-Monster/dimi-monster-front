@@ -11,6 +11,18 @@ import dimibug from '../images/dimibug.svg';
 import { useNavigate } from "react-router-dom";
 
 export default function Upload() {
+    const locationList = [
+        "다목적 학습실",
+        "열람실",
+        "본관 교무실",
+        "신관 교무실",
+        "본관 로비",
+        "운동장",
+        "체육관",
+        "실외 공간",
+        "디미카페",
+    ];
+
     const inputFile = useRef(null);
     const image = useRef(null);
 
@@ -20,7 +32,7 @@ export default function Upload() {
 
     const [cropState, setCropState] = useState(false);
 
-    const [locationName, setLocationName] = useState('');
+    const [locationName, setLocationName] = useState(locationList[0]);
     const [explanation, setExplanation] = useState('');
 
     const [buttonTitle, setButtonTitle] = useState('사진 업로드');
@@ -53,7 +65,10 @@ export default function Upload() {
                     </button>
                     <div className='contents-right'>
                         <TitleBox title='장소'>
-                            <input type='text' placeholder='장소를 입력해주세요.' value={locationName} onChange={onLocationChanged}/>
+                            {/* <input type='text' placeholder='장소를 입력해주세요.' value={locationName} onChange={onLocationChanged}/> */}
+                            <select onChange={onLocationChanged}>
+                                { locationList.map(loc => <option value={loc}>{loc}</option>) }
+                            </select>
                         </TitleBox>
                         <TitleBox title='간단 설명' className='explain-box' innerStyle={{ display: 'flex', flexGrow: 1 }}>
                             <textarea placeholder='장소 설명을 입력해주세요.' className='explain' value={explanation} onChange={onExplanationChanged}/>
@@ -149,7 +164,7 @@ export default function Upload() {
 
     function onLocationChanged(e) {
         setLocationName(e.target.value);
-        //console.log(e.target.value);
+        console.log(e.target.value);
     }
     
     function onExplanationChanged(e) {

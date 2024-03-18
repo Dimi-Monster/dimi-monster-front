@@ -86,7 +86,7 @@
     justify-content: start;
 }
 
-.upload-inner-box > .contents > .contents-right input {
+.upload-inner-box > .contents > .contents-right select {
     width: 13rem;
 }
 .upload-inner-box > .contents > .contents-right textarea {
@@ -138,7 +138,7 @@
     .upload-inner-box > .contents > .contents-left {
         margin-right: 2rem;
     }
-    .upload-inner-box > .contents > .contents-right input {
+    .upload-inner-box > .contents > .contents-right select {
         width: 11rem;
     }
     .upload-inner-box > .contents > .contents-right textarea {
@@ -182,7 +182,7 @@
     .upload-inner-box > .contents > .contents-left {
         margin-right: 0;
     }
-    .upload-inner-box > .contents > .contents-right input {
+    .upload-inner-box > .contents > .contents-right select {
         box-sizing: border-box;
         width: 47vw;
         font-size: 0.8rem;

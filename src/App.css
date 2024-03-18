@@ -36,7 +36,7 @@ html, body {
   background-color: #FFFBFD;
 }
 
-input, textarea {
+input, textarea, select {
   border: 1px solid #BEBEBE;
   border-radius: 0.7rem;
   padding: 0.65rem;
@@ -46,6 +46,8 @@ input, textarea {
   resize: none;
   font-family: 'Pretendard';
   font-size: 0.83rem;
+  box-sizing: border-box;
+  background-color: white;
 }
 
 .App {
