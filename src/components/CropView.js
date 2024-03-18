@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from "react";
 import Cropper from 'react-easy-crop';
+import './CropView.css';
 
 //GetCrop.js
 /**
@@ -80,7 +81,7 @@ export default function CropView(props) {
 
     return (
         <div className={props.className}>
-            <div style={{ position: 'relative', width: '50vw', height: '50vw', backgroundColor: 'white' }}>
+            <div className='crop-box'>
                 <Cropper
                     image={image}
                     crop={crop}

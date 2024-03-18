@@ -1,0 +1,29 @@
+.crop-box {
+    position: relative;
+    width: 50vw;
+    height: 50vw;
+    max-width: 80vh;
+    max-height: 80vh;
+    background-color: white;
+}
+
+@media (max-width: 865px) {
+    .crop-box {
+        width: 65vw;
+        height: 65vw;
+    }
+}
+
+@media (max-width: 520px) {
+    .crop-box {
+        width: 75vw;
+        height: 75vw;
+    }
+}
+
+@media (max-width: 340px) {
+    .crop-box {
+        width: 80vw;
+        height: 80vw;
+    }
+}
