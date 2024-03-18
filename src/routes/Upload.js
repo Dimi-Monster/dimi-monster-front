@@ -164,7 +164,6 @@ export default function Upload() {
 
     function onLocationChanged(e) {
         setLocationName(e.target.value);
-        console.log(e.target.value);
     }
     
     function onExplanationChanged(e) {
