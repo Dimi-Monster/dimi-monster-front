@@ -29,7 +29,8 @@
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, minmax(100px, auto));
 
-    gap: 1rem;
+    row-gap: 1.66rem;
+    column-gap: 1.66rem;
 }
 @media (min-width: 1650px) {
     /* .mainpage .gallery {
