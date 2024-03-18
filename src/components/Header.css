@@ -8,7 +8,13 @@ header {
     flex-direction: row;
     align-items: flex-end;
 
-    background-color: #FFFDFE;
+    /* background-color: #FFFDFE; */
+    /* From https://css.glass */
+    /* background: rgba(255, 255, 255, 0.1); */
+    background: #FFFDFEC0;
+    /* box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1); */
+    backdrop-filter: blur(29px);
+    -webkit-backdrop-filter: blur(29px);
 
     border-bottom: .8px solid #BEBEBE;
 
