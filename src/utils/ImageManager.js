@@ -27,7 +27,11 @@ class ImageManager {
 
         //this.currentIdx++;
         this.currentIdx = Math.floor(this.imageList.length / 21);
-        return true;
+
+        if(addData.length > 0)
+            return {end: false};
+        else
+            return {end: true};
     }
     async getImageTop(setImageList) {
         if(this.set.size == 0)
@@ -96,7 +100,7 @@ class ImageManager {
         this.imageList = [];
         this.set.clear();
     }
-    async like(id, setImageList) {
+    async like(id, setImageList, weeklyImage, setWeeklyImage) {
         let promise = api.like(id);
 
         for(let i=0; i<this.imageList.length; i++) {
@@ -110,6 +114,9 @@ class ImageManager {
         }
         setImageList([...this.imageList]);
 
+        if(weeklyImage.id == id)
+            setWeeklyImage({...weeklyImage, hearts: weeklyImage.hearts+1, enabled: false});
+
         await promise;
 
         for(let i=0; i<this.imageList.length; i++) {
@@ -119,11 +126,14 @@ class ImageManager {
                 continue;
 
             now.hearts = await api.getLikeCount(id);
+
+            if(weeklyImage.id == id)
+                setWeeklyImage({...now, hearts: now.hearts});
             //now.enabled = false;
         }
         setImageList([...this.imageList]);
     }
-    async unlike(id, setImageList) {
+    async unlike(id, setImageList, weeklyImage, setWeeklyImage) {
         let promise = api.unlike(id);
 
         for(let i=0; i<this.imageList.length; i++) {
@@ -137,6 +147,9 @@ class ImageManager {
         }
         setImageList([...this.imageList]);
 
+        if(weeklyImage.id == id)
+            setWeeklyImage({...weeklyImage, hearts: weeklyImage.hearts-1, enabled: true});
+
         await promise;
 
         for(let i=0; i<this.imageList.length; i++) {
@@ -146,6 +159,9 @@ class ImageManager {
                 continue;
 
             now.hearts = await api.getLikeCount(id);
+
+            if(weeklyImage.id == id)
+                setWeeklyImage({...now, hearts: now.hearts});
             //now.enabled = true;
         }
         setImageList([...this.imageList]);
