@@ -11,7 +11,7 @@
 }
 
 .upload-inner-box {
-    border: 1px solid #BEBEBE;
+    border: .9px solid #BEBEBE;
     border-radius: 1rem;
     padding: 1rem;
     box-sizing: border-box;
@@ -48,7 +48,7 @@
     margin-top: 0.5rem;
 
     border-radius: 1rem;
-    border: 1px solid #BEBEBE;
+    border: .9px solid #BEBEBE;
 }
 .upload-inner-box > .contents {
     display: flex;
