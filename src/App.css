@@ -48,6 +48,10 @@ input, textarea {
   font-size: 0.83rem;
   box-sizing: border-box;
   background-color: white;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .App {
