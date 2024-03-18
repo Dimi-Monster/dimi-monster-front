@@ -25,8 +25,8 @@ export default function ImagePreview(props) {
     }, []);
 
     return (
-        <div className='image-preview-box'>
-            <div className='image-preview'>
+        <div className='image-preview-box' onClick={onClose}>
+            <div className='image-preview' onClick={onInnerBoxClicked}>
                 <img src={imageUrl} alt='몬스터 확대 이미지'/>
                 <div className='bottom-bar' /*ref={bottomBar} style={bottomBarStyle}*/>
                     <div className='title-contents-box'>{props.content}</div>
@@ -38,6 +38,10 @@ export default function ImagePreview(props) {
             </div>
         </div>
     )
+
+    function onInnerBoxClicked(event) {
+        event.stopPropagation();
+    }
     
     function onClose() {
         props.onFinish();
