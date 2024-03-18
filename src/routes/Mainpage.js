@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from "react";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Mainpage.css";
 import TitleBox from "../components/TitleBox";
 import ImageView from "../components/ImageView";
@@ -13,7 +13,7 @@ import loadingImg_2 from '../images/Info_load.svg';
 import defaultImage from '../images/default-image.svg';
 
 export default function Mainpage() {
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const [imageList, setImageList] = useState(Array(21).fill({
         src: defaultImage,
@@ -56,7 +56,13 @@ export default function Mainpage() {
         //imageManager.getCurrentList(setImageList); // 얘 async 아님
         imageManager.clear();
 
-        imageManager.getImageTop(setImageList).then(() => {
+        imageManager.getImageTop(setImageList).then((res) => {
+            if(!res && api.getLastError() == 'Unauthorized') {
+                localStorage.removeItem('refresh-token');
+                localStorage.removeItem('access-token');
+                navigate('/login');
+            }
+            
             setLoadedState(true);
         });
 

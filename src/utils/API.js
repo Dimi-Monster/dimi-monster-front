@@ -81,7 +81,7 @@ class API {
             })
         });
         if(data.status != 200) {
-            this.lastError = 'Invalid Refresh Token';
+            this.lastError = 'Unauthorized';
             return false;
         }
 
@@ -101,7 +101,8 @@ class API {
         return true;
     }
     async getImage(pageIdx) {
-        await this.refreshIfExpired();
+        if(!await this.refreshIfExpired())
+            return false;
 
         const url = `${this.serverUrl}/image/list?page=${pageIdx}`;
 
@@ -111,6 +112,9 @@ class API {
                 'Authorization': `Bearer ${localStorage.getItem('access-token')}`
             }
         });
+
+        if(data.status == 401)
+            this.lastError = 'Unauthorized';
 
         if(data.status != 200)
             return false;
