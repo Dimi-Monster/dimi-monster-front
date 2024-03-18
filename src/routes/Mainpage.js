@@ -9,7 +9,7 @@ import ImageView from "../components/ImageView";
 import api from "../utils/API";
 import imageManager from "../utils/ImageManager";
 import { useInView } from "react-intersection-observer";
-import loadingImg from '../images/loading.webp';
+import loadingImg_2 from '../images/Info_load.svg';
 import defaultImage from '../images/default-image.svg';
 
 export default function Mainpage() {
@@ -120,7 +120,7 @@ export default function Mainpage() {
                     onUnlike={onUnlike} />)}
             </TitleBox>
             <div ref={ref} style={{marginTop: '1rem'}}>
-                {!isEnd && <img src={loadingImg} style={{width: '2rem'}} alt='로딩 이미지'/>}
+                {!isEnd && <img src={loadingImg_2} style={{height: '2.5rem'}} alt='로딩 이미지'/>}
             </div>
         </div>
     )
