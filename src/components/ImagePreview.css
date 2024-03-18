@@ -41,8 +41,9 @@
 }
 
 .image-preview > .bottom-bar {
-    height: 9%;
-    color: white;
+    height: 10%;
+    /* color: rgb(156, 154, 154); */
+    color: #333333;
 
     position: absolute;
     bottom: 6%;
@@ -55,11 +56,18 @@
 }
 .image-preview > .bottom-bar > .title-contents-box {
     flex-grow: 1;
+    margin-right: 5%;
+}
+
+.image-preview > .bottom-bar > div {
     height: 100%;
 
-    border: 1px solid blue;
-    background-color: red;
-    margin-right: 5%;
+    border: 1px solid #BEBEBE;
+    border-radius: calc(var(--width-1percent) * 2.6);
+    background-color: #FFFDFE;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .image-preview > .close {
