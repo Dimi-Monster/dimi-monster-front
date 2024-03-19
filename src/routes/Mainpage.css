@@ -5,13 +5,13 @@
     background-color: #FFFBFD;
 
     box-sizing: border-box;
-    padding: 1rem;
+    padding: 1.2rem;
 
     /* height: 100%;
     overflow-y: scroll; */
 
-    padding-left: calc((100% - 70rem) / 2);
-    padding-right: calc((100% - 70rem) / 2);
+    padding-left: calc((100% - 67.5rem) / 2);
+    padding-right: calc((100% - 67.5rem) / 2);
 
     display: flex;
     flex-direction: column;
@@ -47,8 +47,8 @@
         grid-template-columns: repeat(2, 1fr);
     }
     .mainpage {
-        padding-left: calc((100% - 45rem) / 2);
-        padding-right: calc((100% - 45rem) / 2);
+        padding-left: calc((100% - 42.5rem) / 2);
+        padding-right: calc((100% - 42.5rem) / 2);
     }
 }
 @media (max-width: 865px) {

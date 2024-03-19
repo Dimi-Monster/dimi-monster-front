@@ -3,6 +3,7 @@ import { useEffect } from "react"
 import { useSearchParams, useNavigate } from "react-router-dom";
 import api from '../utils/API';
 import waitlogo from '../images/login_wait_logo.svg';
+import waitlogo2 from '../images/clast-cloud-logo.svg';
 
 export default function GAuthRoute() {
     const [searchParams, /*setSearchParams*/] = useSearchParams();
@@ -36,13 +37,16 @@ export default function GAuthRoute() {
     }, []);
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-            <img src={waitlogo} style={
-                { 
-                    width: '50vw', 
-                    height: 'auto' 
-                }
-            } alt="기다리는 중" />
+        <><div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '94vh' }}>
+            <img src={waitlogo} style={{
+                width: '43vw',
+                height: 'auto'
+            }} alt="기다리는 중" />
         </div>
+
+        <div style={{ position: 'fixed', bottom: '4vw', left: 0, width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'flex-end', minHeight: '100vh' }}>
+            <img src={waitlogo2} style={{ width: '10vw', height: 'auto' }} alt="기다리는 중" />
+        </div></>
+
     )
 }
