@@ -1,3 +1,59 @@
+@keyframes move {
+    /* keyframe */
+    from {
+        left: 0;
+    }
+    /* keyframe */
+    to {
+        left: 100%;
+    }
+}
+/* 테스트 중 ... */
+.animated {
+    position: relative;
+    white-space: nowrap;
+    max-width: 200px;
+    overflow: hidden;
+    background: #0c0c0c;
+    display: inline-block;
+    width: fit-content;
+    position: relative;
+}
+
+.text-animated {
+    color: #fff;
+    animation: backAndForth 5s linear infinite;
+    display: inline-block;
+    position: relative;
+}
+
+@keyframes backAndForth {
+    0% {
+        transform: translateX(0);
+        left: 0;
+    }
+    10% {
+        transform: translateX(0);
+        left: 0;
+    }
+    45% {
+        transform: translateX(calc(-100%));
+        left: 100%;
+    }
+    55% {
+        transform: translateX(calc(-100%));
+        left: 100%;
+    }
+    90% {
+        transform: translateX(0);
+        left: 0;
+    }
+    100% {
+        transform: translateX(0);
+        left: 0;
+    }
+}
+
 .image-preview-box {
     display: flex;
     flex-direction: row;
@@ -53,14 +109,36 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+
+    /* word-break: keep-all; */
 }
 .image-preview > .bottom-bar > .title-contents-box {
     flex-grow: 1;
     margin-right: 5%;
 
+    width: calc(95% - var(--width-1percent) * 20);
+
     box-sizing: border-box;
     padding-left: calc(var(--width-1percent) * 2);
     padding-right: calc(var(--width-1percent) * 2);
+
+    white-space: nowrap;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+.image-preview > .bottom-bar > .title-contents-box > .content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    overflow: hidden;
+
+    width: 100%;
 }
 
 .image-preview > .bottom-bar > div {
@@ -69,12 +147,13 @@
     border: 1px solid #BEBEBE;
     border-radius: calc(var(--width-1percent) * 2.6);
     background-color: #FFFDFE;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
 
     font-family: 'Pretendard-Bold';
+}
+
+.image-preview > .bottom-bar > .like {
+    width: calc(var(--width-1percent) * 20);
+    flex-shrink: 0;
 }
 
 .image-preview > .bottom-bar > div > .title {
