@@ -57,6 +57,10 @@
 .image-preview > .bottom-bar > .title-contents-box {
     flex-grow: 1;
     margin-right: 5%;
+
+    box-sizing: border-box;
+    padding-left: calc(var(--width-1percent) * 2);
+    padding-right: calc(var(--width-1percent) * 2);
 }
 
 .image-preview > .bottom-bar > div {
@@ -66,8 +70,20 @@
     border-radius: calc(var(--width-1percent) * 2.6);
     background-color: #FFFDFE;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
     justify-content: center;
+
+    font-family: 'Pretendard-Bold';
+}
+
+.image-preview > .bottom-bar > div > .title {
+    color: #DD0D75;
+}
+
+.image-preview > .bottom-bar > div > .content {
+    flex-grow: 1;
+    margin-left: calc(var(--width-1percent) * 2);
 }
 
 .image-preview > .close {

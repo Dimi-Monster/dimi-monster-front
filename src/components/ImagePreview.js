@@ -29,7 +29,10 @@ export default function ImagePreview(props) {
             <div className='image-preview' onClick={onInnerBoxClicked}>
                 <img src={imageUrl} alt='몬스터 확대 이미지'/>
                 <div className='bottom-bar' /*ref={bottomBar} style={bottomBarStyle}*/>
-                    <div className='title-contents-box'>{props.content}</div>
+                    <div className='title-contents-box'>
+                        <div className='title'>{props.title}</div>
+                        <div className='content'>{props.content}</div>
+                    </div>
                     <div>좋아요버튼</div>
                 </div>
                 <button className='close' onClick={onClose}>
