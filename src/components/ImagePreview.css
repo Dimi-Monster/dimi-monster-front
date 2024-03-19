@@ -26,31 +26,46 @@
     display: inline-block;
     position: relative;
     /* min-width: 100%; */
+
+    /* -webkit-backface-visibility: hidden;
+    will-change: transform; */
 }
 
 @keyframes backAndForth {
     0% {
         transform: translateX(0);
+        -webkit-transform: translate3d(0, 0, 0);
         left: 0;
     }
     10% {
         transform: translateX(0);
+        -webkit-transform: translate3d(0, 0, 0);
         left: 0;
     }
-    45% {
+    49% {
         transform: translateX(calc(-100%));
-        left: 100%;
+        -webkit-transform: translate3d(calc(-100%), 0, 0);
+        /* left: 100%; */
     }
-    55% {
-        transform: translateX(calc(-100%));
-        left: 100%;
+    49.5% {
+        transform: translate(calc(-100%), calc(100%));
+    }
+    50.5% {
+        transform: translate(calc(100%), calc(100%));
+    }
+    51% {
+        transform: translateX(calc(100%));
+        -webkit-transform: translate3d(calc(100%), 0, 0);
+        /* left: 100%; */
     }
     90% {
         transform: translateX(0);
+        -webkit-transform: translate3d(0, 0, 0);
         left: 0;
     }
     100% {
         transform: translateX(0);
+        -webkit-transform: translate3d(0, 0, 0);
         left: 0;
     }
 }
