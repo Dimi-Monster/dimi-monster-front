@@ -40,7 +40,7 @@ export default function ImageView(props) {
                 <div className="margin"/>
 
                 <button className={props.enabled ? '' : 'disabled'} onClick={onLikeClicked}>
-                    {props.enabled ? '좋아요' : '좋아요 취소'}
+                    {props.enabled ? '좋아요' : '좋아해요!'}
                     </button>
             </div>
 
