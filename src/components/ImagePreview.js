@@ -14,6 +14,7 @@ export default function ImagePreview(props) {
 
     const [imageUrl, setImageUrl] = useState(props.src); // 기본값은 썸네일
     const contentRef = useRef(null);
+    const [animateState, setAnimateState] = useState(false);
     //const [scroll, setScroll] = useState(0);
 
     useEffect(() => { // 고화질 이미지 불러오기
@@ -26,19 +27,21 @@ export default function ImagePreview(props) {
         })
     }, []);
 
-    // useEffect(() => {
-    //     let k = setInterval(() => {
-    //         if(scroll >= contentRef.current.scrollWidth - contentRef.current.clientWidth + 100)
-    //             setScroll(0);
-    //         else
-    //             setScroll(scroll+1);
+    useEffect(() => {
+        // let k = setInterval(() => {
+        //     if(scroll >= contentRef.current.scrollWidth - contentRef.current.clientWidth + 100)
+        //         setScroll(0);
+        //     else
+        //         setScroll(scroll+1);
 
-    //         console.log(scroll);
-    //         contentRef.current.scrollLeft = scroll;
-    //     }, 50);
+        //     console.log(scroll);
+        //     contentRef.current.scrollLeft = scroll;
+        // }, 50);
 
-    //     return () => clearInterval(k);
-    // }, [contentRef]);
+        // return () => clearInterval(k);
+        if(contentRef.current.scrollWidth > contentRef.current.clientWidth)
+            setAnimateState(true);
+    }, [contentRef]);
 
     return (
         <div className='image-preview-box' onClick={onClose}>
@@ -47,7 +50,9 @@ export default function ImagePreview(props) {
                 <div className='bottom-bar' /*ref={bottomBar} style={bottomBarStyle}*/>
                     <div className='title-contents-box'>
                         <div className='title'>{props.title}</div>
-                        <div className='content' ref={contentRef}>{props.content}</div>
+                        <div className='content animated' ref={contentRef}>
+                            <div className={animateState ? 'text-animated' : ''}>{props.content}</div>
+                        </div>
                     </div>
                     <div className='like'>좋아요버튼</div>
                 </div>

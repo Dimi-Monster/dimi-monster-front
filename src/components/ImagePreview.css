@@ -12,19 +12,20 @@
 .animated {
     position: relative;
     white-space: nowrap;
-    max-width: 200px;
+    /* max-width: 200px; */
     overflow: hidden;
-    background: #0c0c0c;
+    /* background: #0c0c0c; */
     display: inline-block;
     width: fit-content;
     position: relative;
 }
 
 .text-animated {
-    color: #fff;
+    /* color: #fff; */
     animation: backAndForth 5s linear infinite;
     display: inline-block;
     position: relative;
+    /* min-width: 100%; */
 }
 
 @keyframes backAndForth {
@@ -132,9 +133,9 @@
 }
 
 .image-preview > .bottom-bar > .title-contents-box > .content {
-    display: flex;
+    /* display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: center; */
 
     overflow: hidden;
 
