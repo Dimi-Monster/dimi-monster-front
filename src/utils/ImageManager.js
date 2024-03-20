@@ -113,7 +113,7 @@ class ImageManager {
             now.enabled = false;
         }
         setImageList([...this.imageList]);
-
+        
         if(weeklyImage.id == id)
             setWeeklyImage({...weeklyImage, hearts: weeklyImage.hearts+1, enabled: false});
 
