@@ -11,7 +11,7 @@
     background: #FFFDFE;
 }
 
-.imageview > button > img {
+.imageview > .thumbnail > img {
     width: 7.6rem;
     height: 7.6rem;
 
@@ -45,8 +45,6 @@
     
     margin-top: .312rem;
     margin-bottom: 0.22rem;
-
-    /* bungi */
 }
 
 .imageview > div > .content {
@@ -66,7 +64,6 @@
     background-color: #DD0D75;
     padding: 0.5rem;
     border-radius: 0.5rem;
-    border-osong: 4rem;
     font-size: 0.795rem;
     border: .5px solid #BEBEBE;
     color: white;
@@ -74,7 +71,8 @@
 }
 
 .imageview > div > .disabled {
-    background-color: #8A8A8A;
+    background-color: #F9F9F9;
+    color: #333333;
     /* cursor: default; unlike도 누를수 있어야 함*/
 }
 

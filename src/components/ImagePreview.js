@@ -58,7 +58,7 @@ export default function ImagePreview(props) {
                         </div>
                     </div>
                     <button className='like' onClick={props.onLikeClicked}>
-                        <img src={props.enabled ? heartDisabled : heart} alt='좋아요'/>
+                        <img src={props.like ? heart : heartDisabled} alt='좋아요'/>
                         <div>+{props.hearts}</div>
                     </button>
                 </div>

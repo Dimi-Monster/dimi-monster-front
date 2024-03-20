@@ -19,15 +19,15 @@ export default function ImageView(props) {
     }
 
     function onLikeClicked() {
-        if(props.enabled)
-            props.onLike(props.id);
-        else
+        if(props.like)
             props.onUnlike(props.id);
+        else
+            props.onLike(props.id);
     }
 
     return (
         <div className="imageview">
-            <button onClick={onImageClicked}>
+            <button className='thumbnail' onClick={onImageClicked}>
                 <img src={props.src} alt='몬스터 이미지'/>
             </button>
             <div className="rightbox">
@@ -36,15 +36,15 @@ export default function ImageView(props) {
 
                 <div className="margin"/>
 
-                <button className={props.enabled ? '' : 'disabled'} onClick={onLikeClicked}>
-                    {props.enabled ? '좋아요' : '좋아해요!'}
+                <button className={props.like ? '' : 'disabled'} onClick={onLikeClicked}>
+                    {props.like ? '좋아해요!' : '좋아요'}
                     </button>
             </div>
 
-            <div className='floatbox'>
-                <img src={props.enabled ? heartDisabled : heart} alt='좋아요'/>
+            <button className='floatbox' onClick={onLikeClicked}>
+                <img src={props.like ? heart : heartDisabled} alt='좋아요'/>
                 <div>+{props.hearts}</div>
-            </div>
+            </button>
 
             {previewState && <ImagePreview 
                 id={props.id}
@@ -52,7 +52,7 @@ export default function ImageView(props) {
                 content={props.content}
                 onFinish={onPreviewFinished}
                 src={props.src} /* 썸네일 이미지 */
-                enabled={props.enabled}
+                like={props.like}
                 hearts={props.hearts}
                 onLikeClicked={onLikeClicked}
                 />}
