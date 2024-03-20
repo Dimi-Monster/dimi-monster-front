@@ -17,7 +17,6 @@ export default function GAuthRoute() {
                 document.location.href = `http://localhost:5173/redirect/gauth?code=${code}`;
             }
             const statusCode = await api.login(code);
-            console.log(statusCode);
             if(statusCode == 200)
                 navigate('/');
             else if (statusCode == 403) {

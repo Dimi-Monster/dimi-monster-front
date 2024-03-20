@@ -37,7 +37,7 @@ class API {
         localStorage.setItem('profile-image', objectURL);
         
 
-        return data.status;
+        return 200;
     }
     async logout(/*email, refreshToken*/) {
         let email = localStorage.getItem('email');
