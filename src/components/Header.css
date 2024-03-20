@@ -107,5 +107,6 @@ header > .header-right {
 header > .header-right > .logout {
     color: #DD0D75;
     font-size: 0.67rem;
+    margin-right: .05rem;
     margin-bottom: 0.1rem;
 }
