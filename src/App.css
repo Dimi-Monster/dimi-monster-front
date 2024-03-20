@@ -28,6 +28,12 @@ button, input[type="submit"], input[type="reset"] {
   font-weight: 400;
   font-style: normal;
 }
+@font-face {
+  font-family: 'Pretendard-Medium';
+  src: url('./fonts/Pretendard-Medium.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
 
 html, body {
   font-family: 'Pretendard-SemiBold';
