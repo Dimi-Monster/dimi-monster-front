@@ -7,7 +7,6 @@ header {
     display: flex;
     flex-direction: row;
     align-items: flex-end;
-
     /* background-color: #FFFDFE; */
     /* From https://css.glass */
     /* background: rgba(255, 255, 255, 0.1); */
