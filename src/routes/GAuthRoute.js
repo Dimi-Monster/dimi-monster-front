@@ -41,11 +41,11 @@ export default function GAuthRoute() {
             <img src={waitlogo} style={{
                 width: '43vw',
                 height: 'auto'
-            }} alt="기다리는 중" />
+            }} alt="기다리는 중.." />
         </div>
 
         <div style={{ position: 'fixed', bottom: '4vw', left: 0, width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'flex-end', minHeight: '100vh' }}>
-            <img src={waitlogo2} style={{ width: '10vw', height: 'auto' }} alt="기다리는 중" />
+            <img src={waitlogo2} style={{ width: '10vw', height: 'auto' }} alt="기다리는 중.." />
         </div></>
 
     )
