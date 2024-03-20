@@ -12,17 +12,20 @@
 }
 
 .imageview > button > img {
-    width: 8rem;
-    height: 8rem;
+    width: 7.8rem;
+    height: 7.8rem;
 
-    min-width: 7rem;
+    min-width: 6.5rem;
 
     border-radius: 0.8rem;
 
     border: .9px solid #BEBEBE;
-    margin-right: 1.2rem;
+    margin-right: 1.346rem;
+    margin-left: .31rem;
+    margin-top: .31rem;
+    margin-bottom: .31rem;
 
-    border: 1px solid #BEBEBE;
+    border: .7px solid #BEBEBE;
 
     /* 카드 크기 조절하는 곳이송 */
 }
@@ -57,6 +60,7 @@
     background-color: #DD0D75;
     padding: 0.5rem;
     border-radius: 0.5rem;
+    border-osong: 4rem;
     font-size: 0.8rem;
     border: .5px solid #BEBEBE;
     color: white;
@@ -73,20 +77,24 @@
 
     position: absolute;
 
-    bottom: 0.7rem;
-    left: 0.7rem;
+    bottom: 1.1rem;
+    left: 1.1rem;
 
     display: flex;
     flex-direction: row;
     font-size: 0.8rem;
 
-    border: .5px solid #BEBEBE;
-    border-radius: 0.7rem;
+    border: .6px solid #BEBEBE;
+    border-radius: 0.5rem;
 }
 
 .imageview > .floatbox > img {
     height: 0.75rem;
     color: #333333;
+    margin-left: .13rem;
+    margin-right: .065rem;
+}
 
-    margin-right: .16rem;
+.imageview > .floatbox > .hearts {
+    margin-right: .13rem;
 }
