@@ -45,6 +45,7 @@ export default function Upload() {
         "운동장",
         "체육관",
         "실외 공간",
+        "기타 장소",
     ];
 
     const inputFile = useRef(null);
@@ -95,7 +96,7 @@ export default function Upload() {
                             </select>
                         </TitleBox>
                         <TitleBox title='간단 설명' className='explain-box' innerStyle={{ display: 'flex', flexGrow: 1 }}>
-                            <textarea placeholder='장소 설명을 입력해주세요. (최대 25자)' className='explain' value={explanation} onChange={onExplanationChanged}/>
+                            <textarea placeholder='장소 설명을 입력해주세요. (최대 30자)' className='explain' value={explanation} onChange={onExplanationChanged}/>
                         </TitleBox>
                     </div>
                 </div>
@@ -191,7 +192,10 @@ export default function Upload() {
     }
     
     function onExplanationChanged(e) {
-        setExplanation(e.target.value);
+        if(e.target.value.length > 30)
+            alert('설명이 너무 길어요.');
+        else
+            setExplanation(e.target.value);
     }
 
     function onUpload(event) {
