@@ -46,7 +46,7 @@ export default function ImageView(props) {
 
             <div className='floatbox'>
                 <img src={heart} alt='좋아요'/>
-                <div>+{props.hearts}</div>
+                <div className='hearts'>+{props.hearts}</div>
             </div>
 
             {previewState && <ImagePreview 
