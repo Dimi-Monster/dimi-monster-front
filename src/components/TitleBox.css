@@ -24,9 +24,11 @@
 }
 
 .titlebox > .title {
-    font-size: 1.4rem;
+    font-size: 1.46rem;
     margin: 0.5rem;
+    margin-top: 2rem;
     margin-left: 0.6rem;
+    margin-bottom: 1.2rem;
     font-family: 'Pretendard-Bold';
     color: #333333;
 }

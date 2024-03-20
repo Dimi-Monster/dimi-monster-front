@@ -45,9 +45,17 @@
     
     margin-top: .312rem;
     margin-bottom: 0.22rem;
+    font-size: 1.47rem;
+    font-family: 'Pretendard-Bold';
+    
+    margin-top: .312rem;
+    margin-bottom: 0.22rem;
+
+    /* 제목 */
 }
 
 .imageview > div > .content {
+    margin-top: 0.03rem;
     margin-top: 0.03rem;
     color: #929292;
     margin-left: .1rem;
