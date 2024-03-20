@@ -157,7 +157,7 @@
     width: 100%;
 }
 
-.image-preview > .bottom-bar > div {
+.image-preview > .bottom-bar > * {
     height: 100%;
 
     border: 1px solid #BEBEBE;

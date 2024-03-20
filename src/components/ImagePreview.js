@@ -57,10 +57,10 @@ export default function ImagePreview(props) {
                             <div className={animateState ? 'text-animated' : ''}>{props.content}</div>
                         </div>
                     </div>
-                    <div className='like'>
+                    <button className='like' onClick={props.onLikeClicked}>
                         <img src={props.enabled ? heartDisabled : heart} alt='좋아요'/>
                         <div>+{props.hearts}</div>
-                    </div>
+                    </button>
                 </div>
                 <button className='close' onClick={onClose}>
                     <img src={x} alt='종료 버튼'/>
