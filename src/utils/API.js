@@ -17,8 +17,7 @@ class API {
             headers: {}
         });
         if(data.status != 200) {
-            this.lastError = new TextDecoder().decode(await data.arrayBuffer());
-            return false;
+            return data.status;
         }
 
         let json = await data.json();
@@ -38,7 +37,7 @@ class API {
         localStorage.setItem('profile-image', objectURL);
         
 
-        return true;
+        return 200;
     }
     async logout(/*email, refreshToken*/) {
         let email = localStorage.getItem('email');
@@ -81,6 +80,11 @@ class API {
             })
         });
         if(data.status != 200) {
+            if (data.status == 403) {
+                localStorage.removeItem('access-token');
+                localStorage.removeItem('refresh-token');
+                document.location.href = '/banned';
+            }
             this.lastError = 'Unauthorized';
             return false;
         }

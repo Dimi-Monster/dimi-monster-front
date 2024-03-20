@@ -16,9 +16,12 @@ export default function GAuthRoute() {
             if (state === "dev") {
                 document.location.href = `http://localhost:5173/redirect/gauth?code=${code}`;
             }
-
-            if(await api.login(code))
+            const statusCode = await api.login(code);
+            if(statusCode == 200)
                 navigate('/');
+            else if (statusCode == 403) {
+                navigate('/banned');
+            }
             else {
                 let error = api.getLastError();
 
