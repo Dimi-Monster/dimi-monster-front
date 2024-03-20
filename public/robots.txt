@@ -1,7 +1,3 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow:
-
-# NAVER
-User-agent: Yeti
-Allow:/
