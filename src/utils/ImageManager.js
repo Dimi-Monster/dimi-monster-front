@@ -7,6 +7,9 @@ class ImageManager {
     set = new Set();
     originalImages = {};
 
+    fetchID = 1;
+    latestFetchID = {};
+
     async getImageBottom(setImageList) {
         let res = await api.getImage(this.currentIdx);
 
@@ -101,6 +104,10 @@ class ImageManager {
         this.set.clear();
     }
     async like(id, setImageList, weeklyImage, setWeeklyImage) {
+        let fetchID = this.fetchID++;
+        this.latestFetchID[id] = fetchID;
+        //console.log(`like ${fetchID} called`);
+
         let promise = api.like(id);
 
         for(let i=0; i<this.imageList.length; i++) {
@@ -119,13 +126,27 @@ class ImageManager {
 
         await promise;
 
+        if(fetchID < this.latestFetchID[id]) {
+            //console.log(`like id=${fetchID} aborted`);
+            return;
+        }
+        //console.log(`like ${fetchID}`);
+
         for(let i=0; i<this.imageList.length; i++) {
             const now = this.imageList[i];
 
             if(now.id != id)
                 continue;
 
-            now.hearts = await api.getLikeCount(id);
+            //console.log(`like ${fetchID} fetch start`);
+            let hearts = await api.getLikeCount(id);
+            //console.log(`like ${fetchID} fetch end`);
+
+            if(fetchID < this.latestFetchID[id]) {
+                //console.log(`like id=${fetchID} aborted`);
+                return;
+            }
+            now.hearts = hearts;
 
             if(weeklyImage.id == id)
                 setWeeklyImage({...now, hearts: now.hearts});
@@ -134,6 +155,10 @@ class ImageManager {
         setImageList([...this.imageList]);
     }
     async unlike(id, setImageList, weeklyImage, setWeeklyImage) {
+        let fetchID = this.fetchID++;
+        this.latestFetchID[id] = fetchID;
+        //console.log(`unlike ${fetchID} called`);
+
         let promise = api.unlike(id);
 
         for(let i=0; i<this.imageList.length; i++) {
@@ -152,13 +177,27 @@ class ImageManager {
 
         await promise;
 
+        if(fetchID < this.latestFetchID[id]) {
+            //console.log(`unlike id=${fetchID} aborted`);
+            return;
+        }
+        //console.log(`unlike ${fetchID}`);
+
         for(let i=0; i<this.imageList.length; i++) {
             const now = this.imageList[i];
 
             if(now.id != id)
                 continue;
 
-            now.hearts = await api.getLikeCount(id);
+            //console.log(`unlike ${fetchID} fetch start`);
+            let hearts = await api.getLikeCount(id);
+            //console.log(`unlike ${fetchID} fetch end`);
+
+            if(fetchID < this.latestFetchID[id]) {
+                //console.log(`unlike id=${fetchID} aborted`);
+                return;
+            }
+            now.hearts = hearts;
 
             if(weeklyImage.id == id)
                 setWeeklyImage({...now, hearts: now.hearts});
