@@ -53,6 +53,7 @@ export default function ImageView(props) {
                 onFinish={onPreviewFinished}
                 src={props.src} /* 썸네일 이미지 */
                 enabled={props.enabled}
+                hearts={props.hearts}
                 />}
         </div>
     )
