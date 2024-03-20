@@ -1,8 +1,8 @@
 .imageview {
-    border: .9px solid #BEBEBE;
+    border: .8px solid #BEBEBE;
 
-    border-radius: 1rem;
-    padding: 1.35rem;
+    border-radius: 1.3rem;
+    padding: 1.23rem;
 
     display: flex;
     flex-direction: row;
@@ -12,22 +12,23 @@
 }
 
 .imageview > button > img {
-    width: 7.8rem;
-    height: 7.8rem;
+    width: 7.6rem;
+    height: 7.6rem;
 
     min-width: 6.5rem;
 
-    border-radius: 0.8rem;
+    border-radius: .6rem;
 
-    border: .9px solid #BEBEBE;
+    border: .8px solid #BEBEBE;
     margin-right: 1.346rem;
-    margin-left: .31rem;
-    margin-top: .31rem;
-    margin-bottom: .31rem;
+    margin-left: .25rem;
+    margin-top: .25rem;
+    margin-bottom: .25rem;
 
     border: .7px solid #BEBEBE;
 
-    /* 카드 크기 조절하는 곳이송 */
+
+    /* 사진크기 */
 }
 
 .imageview > .rightbox {
@@ -39,17 +40,22 @@
 
 .imageview > div > .title {
     color: #DD0D75;
-    font-size: 1.3rem;
+    font-size: 1.47rem;
+    font-family: 'Pretendard-Bold';
+    
+    margin-top: .312rem;
+    margin-bottom: 0.22rem;
 
-    margin-top: 0.2rem;
-    margin-bottom: 0.2rem;
-
-    /* oXong!! <-- ???????? */
+    /* bungi */
 }
 
 .imageview > div > .content {
+    margin-top: 0.03rem;
     color: #929292;
-    font-size: 0.8rem;
+    margin-left: .1rem;
+    margin-top: .1rem;
+    font-family: 'Pretendard-Medium';
+    font-size: 0.76rem;
 }
 
 .imageview > div > .margin {
@@ -61,9 +67,10 @@
     padding: 0.5rem;
     border-radius: 0.5rem;
     border-osong: 4rem;
-    font-size: 0.8rem;
+    font-size: 0.795rem;
     border: .5px solid #BEBEBE;
     color: white;
+    margin-bottom: .3rem;
 }
 
 .imageview > div > .disabled {
@@ -86,6 +93,8 @@
 
     border: .6px solid #BEBEBE;
     border-radius: 0.5rem;
+
+    /* 하트박스 */
 }
 
 .imageview > .floatbox > img {
