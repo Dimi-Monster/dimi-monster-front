@@ -3,6 +3,9 @@ import "./ImagePreview.css";
 import x from '../images/x.svg';
 import imageManager from "../utils/ImageManager";
 
+import heart from '../images/heart.svg';
+import heartDisabled from '../images/heart-disabled.svg';
+
 export default function ImagePreview(props) {
     // const bottomBar = useRef(null);
     // const [bottomBarStyle, setBottomBarStyle] = useState({});
@@ -54,7 +57,10 @@ export default function ImagePreview(props) {
                             <div className={animateState ? 'text-animated' : ''}>{props.content}</div>
                         </div>
                     </div>
-                    <div className='like'>좋아요버튼</div>
+                    <div className='like'>
+                        <img src={props.enabled ? heartDisabled : heart} alt='좋아요'/>
+                        <div>+{props.hearts}</div>
+                    </div>
                 </div>
                 <button className='close' onClick={onClose}>
                     <img src={x} alt='종료 버튼'/>
