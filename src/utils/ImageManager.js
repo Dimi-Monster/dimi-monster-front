@@ -110,12 +110,12 @@ class ImageManager {
                 continue;
 
             now.hearts++;
-            now.enabled = false;
+            now.like = true;
         }
         setImageList([...this.imageList]);
         
         if(weeklyImage.id == id)
-            setWeeklyImage({...weeklyImage, hearts: weeklyImage.hearts+1, enabled: false});
+            setWeeklyImage({...weeklyImage, hearts: weeklyImage.hearts+1, like: true});
 
         await promise;
 
@@ -143,12 +143,12 @@ class ImageManager {
                 continue;
 
             now.hearts--;
-            now.enabled = true;
+            now.like = false;
         }
         setImageList([...this.imageList]);
 
         if(weeklyImage.id == id)
-            setWeeklyImage({...weeklyImage, hearts: weeklyImage.hearts-1, enabled: true});
+            setWeeklyImage({...weeklyImage, hearts: weeklyImage.hearts-1, like: false});
 
         await promise;
 

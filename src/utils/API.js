@@ -129,7 +129,7 @@ class API {
                 hearts: json['like'],
                 title: json['location'],
                 content: json['description'],
-                enabled: !json['liked-by-me']
+                like: json['liked-by-me']
             }
         })
 
@@ -241,7 +241,7 @@ class API {
             hearts: json['like'],
             title: json['location'],
             content: json['description'],
-            enabled: !json['liked-by-me']
+            like: json['liked-by-me']
         }));
     }
     async getLikeCount(id) {

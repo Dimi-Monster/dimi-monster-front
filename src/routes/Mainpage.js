@@ -20,7 +20,7 @@ export default function Mainpage() {
         title: '',
         content: '',
         hearts: 0,
-        enabled: true
+        like: false
     }));
     const [isLoaded, setLoadedState] = useState(false);
     const [weeklyImage, setWeeklyImage] = useState(false);
@@ -98,7 +98,7 @@ export default function Mainpage() {
                     title={weeklyImage.title}
                     content={weeklyImage.content}
                     hearts={weeklyImage.hearts}
-                    enabled={weeklyImage.enabled}
+                    like={weeklyImage.like}
                     onLike={onLike}
                     onUnlike={onUnlike} />
                 : <ImageView 
@@ -108,20 +108,20 @@ export default function Mainpage() {
                     title={''}
                     content={''}
                     hearts={0}
-                    enabled={true}
+                    like={false}
                     onLike={onLike}
                     onUnlike={onUnlike}/>}
             </TitleBox>
 
             <TitleBox title='사진관' className='contents' innerClassName='gallery'>
-                {imageList && imageList.map(({id, src, title, content, hearts, enabled}) => <ImageView
+                {imageList && imageList.map(({id, src, title, content, hearts, like}) => <ImageView
                     key={id}
                     id={id}
                     src={src}
                     title={title}
                     content={content}
                     hearts={hearts}
-                    enabled={enabled}
+                    like={like}
                     onLike={onLike}
                     onUnlike={onUnlike} />)}
             </TitleBox>
