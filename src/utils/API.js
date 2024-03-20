@@ -17,6 +17,7 @@ class API {
             headers: {}
         });
         if(data.status != 200) {
+            this.lastError = new TextDecoder().decode(await data.arrayBuffer());
             return data.status;
         }
 
