@@ -164,7 +164,7 @@
     height: 100%;
 
     border: .9px solid #BEBEBE;
-    border-radius: calc(var(--width-1percent) * 2.6);
+    border-radius: calc(var(--width-1percent) * 2.59);
     background-color: #FFFDFE;
 
     font-family: 'Pretendard-Bold';
