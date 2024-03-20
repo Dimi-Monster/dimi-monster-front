@@ -90,7 +90,7 @@ export default function Mainpage() {
 
     return (
         <div className="mainpage" ref={mainpageRef}>
-            <TitleBox title='주간 몬스터'>
+            <TitleBox title='주간 몬스터' titleClassName='mainpage-title'>
                 {weeklyImage ? <ImageView 
                     key={weeklyImage.id}
                     id={weeklyImage.id}
@@ -113,7 +113,7 @@ export default function Mainpage() {
                     onUnlike={onUnlike}/>}
             </TitleBox>
 
-            <TitleBox title='사진관' className='contents' innerClassName='gallery'>
+            <TitleBox title='사진관' className='contents' innerClassName='gallery' titleClassName='mainpage-title'>
                 {imageList && imageList.map(({id, src, title, content, hearts, like}) => <ImageView
                     key={id}
                     id={id}
