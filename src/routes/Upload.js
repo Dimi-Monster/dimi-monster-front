@@ -71,7 +71,7 @@ export default function Upload() {
                             </select>
                         </TitleBox>
                         <TitleBox title='간단 설명' className='explain-box' innerStyle={{ display: 'flex', flexGrow: 1 }}>
-                            <textarea placeholder='장소 설명을 입력해주세요.' className='explain' value={explanation} onChange={onExplanationChanged}/>
+                            <textarea placeholder='장소 설명을 입력해주세요. (최대 25자)' className='explain' value={explanation} onChange={onExplanationChanged}/>
                         </TitleBox>
                     </div>
                 </div>
