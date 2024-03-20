@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './ImageView.css';
 import heart from '../images/heart.svg';
+import heartDisabled from '../images/heart-disabled.svg';
 import ImagePreview from './ImagePreview';
 //import api from '../utils/API';
 //import imageManager from '../utils/ImageManager';
@@ -18,10 +19,6 @@ export default function ImageView(props) {
     }
 
     function onLikeClicked() {
-        // if(props.enabled)
-        //     imageManager.like(props.id);
-        // else
-        //     imageManager.unlike(props.id);
         if(props.enabled)
             props.onLike(props.id);
         else
@@ -45,7 +42,7 @@ export default function ImageView(props) {
             </div>
 
             <div className='floatbox'>
-                <img src={heart} alt='좋아요'/>
+                <img src={props.enabled ? heartDisabled : heart} alt='좋아요'/>
                 <div>+{props.hearts}</div>
             </div>
 
@@ -55,6 +52,7 @@ export default function ImageView(props) {
                 content={props.content}
                 onFinish={onPreviewFinished}
                 src={props.src} /* 썸네일 이미지 */
+                enabled={props.enabled}
                 />}
         </div>
     )

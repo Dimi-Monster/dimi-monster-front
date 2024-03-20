@@ -235,14 +235,14 @@ class API {
 
         //console.log(await data.json());
         let json = await data.json();
-        return {
+        return json.map(json => ({
             id: json['id'],
             src: json['thumbnail'], 
             hearts: json['like'],
             title: json['location'],
             content: json['description'],
             enabled: !json['liked-by-me']
-        };
+        }));
     }
     async getLikeCount(id) {
         await this.refreshIfExpired();
