@@ -1,8 +1,8 @@
 .imageview {
-    border: .9px solid #BEBEBE;
+    border: .8px solid #BEBEBE;
 
-    border-radius: 1rem;
-    padding: 1.35rem;
+    border-radius: 1.3rem;
+    padding: 1.23rem;
 
     display: flex;
     flex-direction: row;
@@ -12,14 +12,14 @@
 }
 
 .imageview > button > img {
-    width: 7.4rem;
-    height: 7.4rem;
+    width: 7.6rem;
+    height: 7.6rem;
 
     min-width: 6.5rem;
 
-    border-radius: 0.8rem;
+    border-radius: .6rem;
 
-    border: .9px solid #BEBEBE;
+    border: .8px solid #BEBEBE;
     margin-right: 1.346rem;
     margin-left: .25rem;
     margin-top: .25rem;
@@ -27,7 +27,8 @@
 
     border: .7px solid #BEBEBE;
 
-    /* 카드 크기 조절하는 곳이송 */
+
+    /* 사진크기 */
 }
 
 .imageview > .rightbox {
@@ -41,9 +42,9 @@
     color: #DD0D75;
     font-size: 1.45rem;
     font-family: 'Pretendard-Bold';
-    margin-top: .5rem;
+    margin-top: .3rem;
     
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.22rem;
 
     /* bungi */
 }
@@ -88,6 +89,8 @@
 
     border: .6px solid #BEBEBE;
     border-radius: 0.5rem;
+
+    /* 하트박스 */
 }
 
 .imageview > .floatbox > img {
