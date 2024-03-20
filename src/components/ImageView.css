@@ -40,18 +40,22 @@
 
 .imageview > div > .title {
     color: #DD0D75;
-    font-size: 1.45rem;
+    font-size: 1.47rem;
     font-family: 'Pretendard-Bold';
-    margin-top: .3rem;
     
+    margin-top: .312rem;
     margin-bottom: 0.22rem;
 
     /* bungi */
 }
 
 .imageview > div > .content {
+    margin-top: 0.03rem;
     color: #929292;
-    font-size: 0.8rem;
+    margin-left: .1rem;
+    margin-top: .1rem;
+    font-family: 'Pretendard-Medium';
+    font-size: 0.76rem;
 }
 
 .imageview > div > .margin {
@@ -63,7 +67,7 @@
     padding: 0.5rem;
     border-radius: 0.5rem;
     border-osong: 4rem;
-    font-size: 0.8rem;
+    font-size: 0.795rem;
     border: .5px solid #BEBEBE;
     color: white;
     margin-bottom: .3rem;
