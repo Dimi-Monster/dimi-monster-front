@@ -1,5 +1,7 @@
 import React, {useEffect, useState, useRef} from "react";
 import { useNavigate } from "react-router-dom";
+//import Slider from "react-slick";
+import { useMediaQuery } from "react-responsive";
 import "./Mainpage.css";
 import TitleBox from "../components/TitleBox";
 import ImageView from "../components/ImageView";
@@ -81,11 +83,40 @@ export default function Mainpage() {
         imageManager.unlike(id, setImageList, weeklyImage, setWeeklyImage);
     }
 
+    const isMobile = useMediaQuery({query : "(max-width:668px)"}); // 한줄로 뜨는 최대 너비
+    const isTablet = useMediaQuery({query : "(max-width:1200px)"}); // 두줄로 뜨는 최대 너비
+
+    let weeklyCount = 2;
+    if(isTablet)
+        weeklyCount = 1;
+    if(isMobile)
+        weeklyCount = 3;
+
     return (
         <div className="mainpage" ref={mainpageRef}>
             <TitleBox title='주간 몬스터' innerClassName='weekly' titleClassName='mainpage-title'>
                 {
-                    weeklyImage.slice(0, 2).map(({id, src, title, content, hearts, like}) => (id ? <ImageView
+                    isMobile ? weeklyImage.slice(0, weeklyCount).map(({id, src, title, content, hearts, like}) => (id ? <ImageView
+                        big={true}
+                        key={id}
+                        id={id}
+                        src={src}
+                        title={title}
+                        content={content}
+                        hearts={hearts}
+                        like={like}
+                        onLike={onLike}
+                        onUnlike={onUnlike} /> :
+                    <ImageView 
+                        big={true}
+                        src={defaultImage} 
+                        title={''}
+                        content={''}
+                        hearts={0}
+                        like={false}
+                        onLike={onLike}
+                        onUnlike={onUnlike}/>)) :
+                    weeklyImage.slice(0, weeklyCount).map(({id, src, title, content, hearts, like}) => (id ? <ImageView
                         big={true}
                         key={id}
                         id={id}
