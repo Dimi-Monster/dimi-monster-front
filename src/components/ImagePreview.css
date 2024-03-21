@@ -104,7 +104,7 @@
     margin-bottom: calc(var(--width-1percent) * 16);
 }
 
-.image-preview > img {
+.image-preview > .main-img {
     /* width: 25rem;
     height: 25rem; */
     width: var(--width);
@@ -213,4 +213,11 @@
     color: #333333;
 
     margin-right: calc(var(--width-1percent) * 0.5);
+}
+
+.image-preview > .loading {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    width: 1rem;
 }

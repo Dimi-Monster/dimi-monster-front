@@ -1,8 +1,8 @@
-.imageview {
+.imageview-big {
     border: .8px solid #BEBEBE;
 
-    border-radius: 1.3rem;
-    padding: 1.23rem;
+    border-radius: 2rem;
+    padding: 1.8rem;
 
     display: flex;
     flex-direction: row;
@@ -11,13 +11,13 @@
     background: #FFFDFE;
 }
 
-.imageview > .thumbnail > img {
-    width: 7.6rem;
-    height: 7.6rem;
+.imageview-big > .thumbnail > img {
+    width: 9rem;
+    height: 9rem;
 
-    min-width: 6.5rem;
+    min-width: 6.5rem; /* 이거 왜있는거지? */
 
-    border-radius: .6rem;
+    border-radius: 1rem;
 
     /* border: .8px solid #BEBEBE; */
     margin-right: 1.346rem;
@@ -27,18 +27,17 @@
 
     border: .7px solid #BEBEBE;
 
-
     /* 사진크기 */
 }
 
-.imageview > .rightbox {
+.imageview-big > .rightbox {
     display: flex;
     flex-direction: column;
 
     width: 100%;
 }
 
-.imageview > div > .title {
+.imageview-big > div > .title {
     color: #DD0D75;
     font-size: 1.47rem;
     font-family: 'Pretendard-Bold';
@@ -49,7 +48,7 @@
     /* 제목 */
 }
 
-.imageview > div > .content {
+.imageview-big > div > .content {
     margin-top: 0.03rem;
     margin-top: 0.03rem;
     color: #929292;
@@ -59,11 +58,11 @@
     font-size: 0.76rem;
 }
 
-.imageview > div > .margin {
+.imageview-big > div > .margin {
     flex-grow: 1;
 }
 
-.imageview > div > button {
+.imageview-big > div > button {
     background-color: #DD0D75;
     padding: 0.5rem;
     border-radius: 0.5rem;
@@ -73,20 +72,20 @@
     margin-bottom: .3rem;
 }
 
-.imageview > div > .disabled {
+.imageview-big > div > .disabled {
     background-color: #F9F9F9;
     color: #333333;
     /* cursor: default; unlike도 누를수 있어야 함*/
 }
 
-.imageview > .floatbox {
+.imageview-big > .floatbox {
     padding: 0.5rem;
     background-color: #FFFDFE;
 
     position: absolute;
 
-    bottom: 1.1rem;
-    left: 1.1rem;
+    bottom: 1.4rem;
+    left: 1.4rem;
 
     display: flex;
     flex-direction: row;
@@ -98,13 +97,13 @@
     /* 하트박스 */
 }
 
-.imageview > .floatbox > img {
+.imageview-big > .floatbox > img {
     height: 0.75rem;
     color: #333333;
     margin-left: .13rem;
     margin-right: .065rem;
 }
 
-.imageview > .floatbox > .hearts {
+.imageview-big > .floatbox > .hearts {
     margin-right: .13rem;
 }

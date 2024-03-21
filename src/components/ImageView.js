@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './ImageView.css';
+import './ImageViewBig.css';
 import heart from '../images/heart.svg';
 import heartDisabled from '../images/heart-disabled.svg';
 import ImagePreview from './ImagePreview';
@@ -26,7 +27,7 @@ export default function ImageView(props) {
     }
 
     return (
-        <div className="imageview">
+        <div className={props.big ? 'imageview-big' : 'imageview'}>
             <button className='thumbnail' onClick={onImageClicked}>
                 <img src={props.src} alt='몬스터 이미지'/>
             </button>
