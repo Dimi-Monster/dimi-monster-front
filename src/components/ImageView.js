@@ -10,7 +10,6 @@ import ImagePreview from './ImagePreview';
 
 export default function ImageView(props) {
     const [previewState, setPreviewState] = useState(false);
-    //const [imageUrl, /*setImageUrl*/] = useState('');
 
     function onImageClicked() {
         setPreviewState(true);

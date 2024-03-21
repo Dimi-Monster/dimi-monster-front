@@ -90,7 +90,6 @@ export default function Upload() {
                     </button>
                     <div className='contents-right'>
                         <TitleBox title='장소'>
-                            {/* <input type='text' placeholder='장소를 입력해주세요.' value={locationName} onChange={onLocationChanged}/> */}
                             <select onChange={onLocationChanged}>
                                 { locationList.map(loc => <option value={loc}>{loc}</option>) }
                             </select>
@@ -103,10 +102,8 @@ export default function Upload() {
 
                 <form onSubmit={(e) => onUpload(e)}>
                     <div className="g-recaptcha" data-sitekey="6LdgSpgpAAAAAJKMC4NiXgYWrnn9ln7It_kpeIEQ" data-action="image_upload"></div>
-                    {/* <button type='submit'>사진 업로드</button> */}
                     <Button title={buttonTitle} imgSrc={dimibug} color='default' height='1.2rem' type='submit'/>
                 </form>
-                {/* <button onClick={onUpload}>사진 업로드</button> */}
 
                 {/* <ReCAPTCHA
                     ref={recaptchaRef}

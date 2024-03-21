@@ -4,8 +4,6 @@ import "./Mainpage.css";
 import TitleBox from "../components/TitleBox";
 import ImageView from "../components/ImageView";
 
-//import test from '../images/test.jpeg';
-
 import api from "../utils/API";
 import imageManager from "../utils/ImageManager";
 import { useInView } from "react-intersection-observer";
@@ -27,8 +25,6 @@ export default function Mainpage() {
     const mainpageRef = useRef(null);
     const [isEnd, setEndState] = useState(false);
 
-    //const [, forceUpdate] = useReducer(x => x + 1, 0);
-
     const [ref, /*inView*/, /*entry*/] = useInView({
         /* Optional options */
         threshold: 0,
@@ -49,11 +45,8 @@ export default function Mainpage() {
     });
 
     useEffect(() => {
-        //api.getImage(0);
-        //api.getImageBottom(imageList, setImageList);
-        //imageManager.getImageBottom(setImageList);
         const timer = setInterval(() => imageManager.getImageTop(setImageList), 25000);
-        //imageManager.getCurrentList(setImageList); // 얘 async 아님
+
         imageManager.clear();
 
         imageManager.getImageTop(setImageList).then((res) => {

@@ -24,7 +24,7 @@ export default function Banned() {
                         gap: '2em',
                     }
                 }>
-                   <button onClick={()=>{navigate('/login')}}>
+                    <button onClick={()=>{navigate('/login')}}>
                     로그인 페이지로 돌아가기 &rarr;
                     </button>
                     <button onClick={
