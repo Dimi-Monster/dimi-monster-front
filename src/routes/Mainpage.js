@@ -21,11 +21,11 @@ export default function Mainpage() {
         like: false
     }));
     const [isLoaded, setLoadedState] = useState(false);
-    const [weeklyImage, setWeeklyImage] = useState(false);
+    const [weeklyImage, setWeeklyImage] = useState([{id: 0}, {id: 0}, {id: 0}]);
     const mainpageRef = useRef(null);
     const [isEnd, setEndState] = useState(false);
 
-    const [ref, /*inView*/, /*entry*/] = useInView({
+    const [ref, /*inView*/, /*entry*/] = useInView({ // 무한 스크롤 구현
         /* Optional options */
         threshold: 0,
         onChange: (inView) => {
@@ -60,12 +60,12 @@ export default function Mainpage() {
         });
 
         api.getWeeklyImage().then((data) => {
-            setWeeklyImage(data[0]);
+            setWeeklyImage(data);
         });
 
         return () => clearInterval(timer);
     }, []);
-    useEffect(() => {
+    useEffect(() => { // 화면 크기가 한 페이지를 넘는 고해상도 환경에서 두 페이지 불러오게 하는 코드
         if(!isLoaded)
             return;
 
@@ -84,7 +84,29 @@ export default function Mainpage() {
     return (
         <div className="mainpage" ref={mainpageRef}>
             <TitleBox title='주간 몬스터' titleClassName='mainpage-title'>
-                {weeklyImage ? <ImageView 
+                {
+                    weeklyImage.slice(0, 2).map(({id, src, title, content, hearts, like}) => (id ? <ImageView
+                        big={true}
+                        key={id}
+                        id={id}
+                        src={src}
+                        title={title}
+                        content={content}
+                        hearts={hearts}
+                        like={like}
+                        onLike={onLike}
+                        onUnlike={onUnlike} /> :
+                    <ImageView 
+                        big={true}
+                        src={defaultImage} 
+                        title={''}
+                        content={''}
+                        hearts={0}
+                        like={false}
+                        onLike={onLike}
+                        onUnlike={onUnlike}/>))
+                }
+                {/* {weeklyImage ? <ImageView 
                     big={true}
                     key={weeklyImage.id}
                     id={weeklyImage.id}
@@ -105,7 +127,7 @@ export default function Mainpage() {
                     hearts={0}
                     like={false}
                     onLike={onLike}
-                    onUnlike={onUnlike}/>}
+                    onUnlike={onUnlike}/>} */}
             </TitleBox>
 
             <TitleBox title='사진관' className='contents' innerClassName='gallery' titleClassName='mainpage-title'>

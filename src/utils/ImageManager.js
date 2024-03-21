@@ -103,107 +103,69 @@ class ImageManager {
         this.imageList = [];
         this.set.clear();
     }
+
+    // imageList에서 아이디가 id인 이미지의 hearts, like를 수정한 결과를 반환한다
+    updateImageList(imageList, setImageList, id, heartsFunc, like) {
+        let res = [...imageList];
+
+        for(let i=0; i<res.length; i++) {
+            if(res[i].id != id)
+                continue;
+
+            res[i].hearts = heartsFunc(res[i].hearts);
+            res[i].like = like;
+        }
+
+        setImageList(res);
+    }
+
     async like(id, setImageList, weeklyImage, setWeeklyImage) {
         let fetchID = this.fetchID++;
         this.latestFetchID[id] = fetchID;
-        //console.log(`like ${fetchID} called`);
 
         let promise = api.like(id);
 
-        for(let i=0; i<this.imageList.length; i++) {
-            const now = this.imageList[i];
-
-            if(now.id != id)
-                continue;
-
-            now.hearts++;
-            now.like = true;
-        }
-        setImageList([...this.imageList]);
-        
-        if(weeklyImage.id == id)
-            setWeeklyImage({...weeklyImage, hearts: weeklyImage.hearts+1, like: true});
+        this.updateImageList(this.imageList, setImageList, id, hearts => hearts+1, true);
+        this.updateImageList(weeklyImage, setWeeklyImage, id, hearts => hearts+1, true);
 
         await promise;
 
         if(fetchID < this.latestFetchID[id]) {
-            //console.log(`like id=${fetchID} aborted`);
             return;
         }
-        //console.log(`like ${fetchID}`);
 
-        for(let i=0; i<this.imageList.length; i++) {
-            const now = this.imageList[i];
+        let hearts = await api.getLikeCount(id);
 
-            if(now.id != id)
-                continue;
-
-            //console.log(`like ${fetchID} fetch start`);
-            let hearts = await api.getLikeCount(id);
-            //console.log(`like ${fetchID} fetch end`);
-
-            if(fetchID < this.latestFetchID[id]) {
-                //console.log(`like id=${fetchID} aborted`);
-                return;
-            }
-            now.hearts = hearts;
-
-            if(weeklyImage.id == id)
-                setWeeklyImage({...now, hearts: now.hearts});
-            //now.enabled = false;
+        if(fetchID < this.latestFetchID[id]) {
+            return;
         }
-        setImageList([...this.imageList]);
+
+        this.updateImageList(this.imageList, setImageList, id, () => hearts, true);
+        this.updateImageList(weeklyImage, setWeeklyImage, id, () => hearts, true);
     }
     async unlike(id, setImageList, weeklyImage, setWeeklyImage) {
         let fetchID = this.fetchID++;
         this.latestFetchID[id] = fetchID;
-        //console.log(`unlike ${fetchID} called`);
 
         let promise = api.unlike(id);
-
-        for(let i=0; i<this.imageList.length; i++) {
-            const now = this.imageList[i];
-
-            if(now.id != id)
-                continue;
-
-            now.hearts--;
-            now.like = false;
-        }
-        setImageList([...this.imageList]);
-
-        if(weeklyImage.id == id)
-            setWeeklyImage({...weeklyImage, hearts: weeklyImage.hearts-1, like: false});
+        
+        this.updateImageList(this.imageList, setImageList, id, hearts => hearts-1, false);
+        this.updateImageList(weeklyImage, setWeeklyImage, id, hearts => hearts-1, false);
 
         await promise;
 
         if(fetchID < this.latestFetchID[id]) {
-            //console.log(`unlike id=${fetchID} aborted`);
             return;
         }
-        //console.log(`unlike ${fetchID}`);
 
-        for(let i=0; i<this.imageList.length; i++) {
-            const now = this.imageList[i];
+        let hearts = await api.getLikeCount(id);
 
-            if(now.id != id)
-                continue;
-
-            //console.log(`unlike ${fetchID} fetch start`);
-            let hearts = await api.getLikeCount(id);
-            //console.log(`unlike ${fetchID} fetch end`);
-
-            if(fetchID < this.latestFetchID[id]) {
-                //console.log(`unlike id=${fetchID} aborted`);
-                return;
-            }
-            now.hearts = hearts;
-
-            if(weeklyImage.id == id)
-                setWeeklyImage({...now, hearts: now.hearts});
-            //now.enabled = true;
+        if(fetchID < this.latestFetchID[id]) {
+            return;
         }
-        setImageList([...this.imageList]);
+
+        this.updateImageList(this.imageList, setImageList, id, () => hearts, false);
+        this.updateImageList(weeklyImage, setWeeklyImage, id, () => hearts, false);
     }
 }
 
