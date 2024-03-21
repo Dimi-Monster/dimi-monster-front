@@ -25,6 +25,12 @@
     padding: 1rem;
 } */
 
+.mainpage .weekly {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
 .mainpage .gallery {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
