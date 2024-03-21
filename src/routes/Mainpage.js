@@ -83,7 +83,7 @@ export default function Mainpage() {
 
     return (
         <div className="mainpage" ref={mainpageRef}>
-            <TitleBox title='주간 몬스터' titleClassName='mainpage-title'>
+            <TitleBox title='주간 몬스터' innerClassName='weekly' titleClassName='mainpage-title'>
                 {
                     weeklyImage.slice(0, 2).map(({id, src, title, content, hearts, like}) => (id ? <ImageView
                         big={true}
@@ -106,28 +106,6 @@ export default function Mainpage() {
                         onLike={onLike}
                         onUnlike={onUnlike}/>))
                 }
-                {/* {weeklyImage ? <ImageView 
-                    big={true}
-                    key={weeklyImage.id}
-                    id={weeklyImage.id}
-                    src={weeklyImage.src} 
-                    title={weeklyImage.title}
-                    content={weeklyImage.content}
-                    hearts={weeklyImage.hearts}
-                    like={weeklyImage.like}
-                    onLike={onLike}
-                    onUnlike={onUnlike} />
-                : <ImageView 
-                    big={true}
-                    // key={1}
-                    // id={1}
-                    src={defaultImage} 
-                    title={''}
-                    content={''}
-                    hearts={0}
-                    like={false}
-                    onLike={onLike}
-                    onUnlike={onUnlike}/>} */}
             </TitleBox>
 
             <TitleBox title='사진관' className='contents' innerClassName='gallery' titleClassName='mainpage-title'>
