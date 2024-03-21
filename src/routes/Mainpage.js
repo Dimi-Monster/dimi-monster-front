@@ -92,6 +92,7 @@ export default function Mainpage() {
         <div className="mainpage" ref={mainpageRef}>
             <TitleBox title='주간 몬스터' titleClassName='mainpage-title'>
                 {weeklyImage ? <ImageView 
+                    big={true}
                     key={weeklyImage.id}
                     id={weeklyImage.id}
                     src={weeklyImage.src} 
@@ -102,6 +103,7 @@ export default function Mainpage() {
                     onLike={onLike}
                     onUnlike={onUnlike} />
                 : <ImageView 
+                    big={true}
                     // key={1}
                     // id={1}
                     src={defaultImage} 
