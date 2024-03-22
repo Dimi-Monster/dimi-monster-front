@@ -8,6 +8,12 @@
     justify-content: center;
 }
 
+@media (prefers-color-scheme: dark) {
+    .about-div {
+        background-color: #333333;
+    }
+}
+
 .about-div > .logo2 {
     max-height: 30vh;
     max-width: 50vw;
@@ -36,6 +42,12 @@
 
     color: #444444;
     text-align: center;
+}
+
+@media (prefers-color-scheme: dark) {
+    .about-div > .introduce {
+        color: white;
+    }
 }
 
 @media (max-width: 1000px) {
@@ -74,4 +86,8 @@
         line-height: 1.5rem;
         margin-top: 2rem;
     }
+}
+
+a {
+    color: #DD0D75;
 }

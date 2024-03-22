@@ -43,6 +43,14 @@ html, body {
   background-color: #FFFBFD;
 }
 
+/* dark mode support */
+@media (prefers-color-scheme: dark) {
+  html, body {
+    background-color: #1A1A1A;
+    color: white;
+  }
+}
+
 input, textarea, select {
   border: .9px solid #BEBEBE;
   border-radius: 0.7rem;
@@ -61,6 +69,15 @@ input, textarea, select {
   appearance: none;
   color: black;
 }
+
+@media (prefers-color-scheme: dark) {
+  input, textarea, select {
+    background-color: #333333;
+    color: white;
+  }
+}
+
+
 
 .App {
   text-align: center;
@@ -86,6 +103,12 @@ input, textarea, select {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+@media (prefers-color-scheme: dark) {
+  .App-header {
+    background-color: #D3D3D3;
+    color: black;
+  }
 }
 
 .App-link {

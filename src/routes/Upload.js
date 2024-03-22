@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import './Upload.css';
 import logo from '../images/logo.svg';
+import logoDark from '../images/logo-dark.svg';
 import defaultImage from '../images/default-image.svg';
 import TitleBox from "../components/TitleBox";
 import CropView from "../components/CropView";
@@ -76,12 +77,22 @@ export default function Upload() {
     
         document.body.appendChild(script);
     }, []);
+    let [isDarkMode, setIsDarkMode] = useState(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    // update isDarkMode when the system changes the theme
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        console.log(e.matches);
+        if (e.matches) {
+            setIsDarkMode(true);
+        } else {
+            setIsDarkMode(false);
+        }
+    });
 
     return (
         <div className='upload-outer-box'>
             <div className='upload-inner-box'>
                 <div className='title'>
-                    <img src={logo} className='logo' alt='디미몬스터 로고'/>
+                    <img src={isDarkMode ? logoDark : logo} className='logo' alt='디미몬스터 로고'/>
                     <div>업로드</div>
                 </div>
 
