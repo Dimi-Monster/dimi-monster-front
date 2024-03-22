@@ -34,7 +34,7 @@
 @media (prefers-color-scheme: dark) {
     .upload-inner-box {
         background-color: #333333;
-        border: .9px solid #BEBEBE;
+        border: .9px solid #555555;
     }
 }
 
@@ -69,7 +69,7 @@
 }
 @media (prefers-color-scheme: dark) {
     .upload-inner-box .image {
-        border: .9px solid #FFFDFE;
+        border: .9px solid #555555;
     }
 }
 

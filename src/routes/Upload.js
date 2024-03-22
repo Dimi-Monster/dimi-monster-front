@@ -53,7 +53,7 @@ export default function Upload() {
     const inputFile = useRef(null);
     const image = useRef(null);
 
-    const [croppedImageSrc, setCroppedImageSrc] = useState();
+    
     const [imageSrc, setImageSrc] = useState(defaultImage);
     const [imageBlob, setImageBlob] = useState(new Blob());
 
@@ -79,7 +79,7 @@ export default function Upload() {
         document.body.appendChild(script);
     }, []);
     let [isDarkMode, setIsDarkMode] = useState(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    setCroppedImageSrc(isDarkMode ? defaultImageDark : defaultImage);
+    const [croppedImageSrc, setCroppedImageSrc] = useState(isDarkMode ? defaultImageDark : defaultImage);
     // update isDarkMode when the system changes the theme
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
         if (e.matches) {
