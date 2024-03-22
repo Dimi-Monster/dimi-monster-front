@@ -55,6 +55,8 @@ export default function Upload() {
     const [imageSrc, setImageSrc] = useState(defaultImage);
     const [imageBlob, setImageBlob] = useState(new Blob());
 
+    const [imageSelected, setImageSelected] = useState(false);
+
     const [cropState, setCropState] = useState(false);
 
     const [locationName, setLocationName] = useState(locationList[0]);
@@ -145,6 +147,7 @@ export default function Upload() {
             setCroppedImageSrc(fileUrl); // 테스트
 
             setCropState(true);
+            setImageSelected(true);
         }
         f();
     }
@@ -200,6 +203,11 @@ export default function Upload() {
 
         if(uploadingState)
             return;
+
+        if(!imageSelected) {
+            alert('업로드할 이미지를 선택해주세요.');
+            return;
+        }
         
         let token = event.target[0].value;
         console.log(token);
