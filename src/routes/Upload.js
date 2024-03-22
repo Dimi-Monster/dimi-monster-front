@@ -3,6 +3,7 @@ import './Upload.css';
 import logo from '../images/logo.svg';
 import logoDark from '../images/logo-dark.svg';
 import defaultImage from '../images/default-image.svg';
+import defaultImageDark from '../images/default-image-dark.svg';
 import TitleBox from "../components/TitleBox";
 import CropView from "../components/CropView";
 import imageCompression from "browser-image-compression";
@@ -52,7 +53,7 @@ export default function Upload() {
     const inputFile = useRef(null);
     const image = useRef(null);
 
-    const [croppedImageSrc, setCroppedImageSrc] = useState(defaultImage);
+    const [croppedImageSrc, setCroppedImageSrc] = useState();
     const [imageSrc, setImageSrc] = useState(defaultImage);
     const [imageBlob, setImageBlob] = useState(new Blob());
 
@@ -78,13 +79,19 @@ export default function Upload() {
         document.body.appendChild(script);
     }, []);
     let [isDarkMode, setIsDarkMode] = useState(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    setCroppedImageSrc(isDarkMode ? defaultImageDark : defaultImage);
     // update isDarkMode when the system changes the theme
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-        console.log(e.matches);
         if (e.matches) {
             setIsDarkMode(true);
+            if (croppedImageSrc === defaultImage){
+                setCroppedImageSrc(defaultImageDark);
+            }
         } else {
             setIsDarkMode(false);
+            if (croppedImageSrc === defaultImageDark){
+                setCroppedImageSrc(defaultImage);
+            }
         }
     });
 

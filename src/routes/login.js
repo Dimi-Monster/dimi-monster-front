@@ -9,7 +9,6 @@ export default function Login() {
     let [isDarkMode, setIsDarkMode] = useState(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
     // update isDarkMode when the system changes the theme
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-        console.log(e.matches);
         if (e.matches) {
             setIsDarkMode(true);
         } else {
