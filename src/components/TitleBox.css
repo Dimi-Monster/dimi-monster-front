@@ -41,3 +41,12 @@
     font-family: 'Pretendard-Bold';
     color: #333333;
 }
+
+@media (prefers-color-scheme: dark) {
+    .titlebox > .title {
+        color: #FFFDFE;
+    }
+    .titlebox > .mainpage-title {
+        color: #FFFDFE;
+    }
+}
