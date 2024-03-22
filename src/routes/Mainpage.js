@@ -12,6 +12,7 @@ import api from "../utils/API";
 import imageManager from "../utils/ImageManager";
 import { useInView } from "react-intersection-observer";
 import loadingImg_2 from '../images/Info_load.svg';
+import loadingImg_2Dark from '../images/Info_load-dark.svg';
 import defaultImage from '../images/default-image.svg';
 import defaultImageDark from '../images/default-image-dark.svg';
 import MobileImageView from "../components/MobileImageView";
@@ -158,7 +159,7 @@ export default function Mainpage() {
                     onUnlike={onUnlike} />)}
             </TitleBox>
             <div ref={ref} style={{marginTop: '1rem'}}>
-                {!isEnd && <img src={loadingImg_2} style={{height: '2.5rem'}} alt='로딩 이미지'/>}
+                {!isEnd && <img src={isDarkMode ? loadingImg_2Dark : loadingImg_2} style={{height: '2.5rem'}} alt='로딩 이미지'/>}
             </div>
         </div>
         </>

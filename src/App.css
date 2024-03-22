@@ -72,7 +72,7 @@ input, textarea, select {
 
 @media (prefers-color-scheme: dark) {
   input, textarea, select {
-    background-color: #333333;
+    background-color: #383838;
     color: white;
   }
 }
