@@ -1,6 +1,8 @@
 import React, {useEffect, useState, useRef} from "react";
 import { useNavigate } from "react-router-dom";
-//import Slider from "react-slick";
+import Slider from "react-slick";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import { useMediaQuery } from "react-responsive";
 import "./Mainpage.css";
 import TitleBox from "../components/TitleBox";
@@ -11,6 +13,7 @@ import imageManager from "../utils/ImageManager";
 import { useInView } from "react-intersection-observer";
 import loadingImg_2 from '../images/Info_load.svg';
 import defaultImage from '../images/default-image.svg';
+import MobileImageView from "../components/MobileImageView";
 
 export default function Mainpage() {
     const navigate = useNavigate();
@@ -83,7 +86,7 @@ export default function Mainpage() {
         imageManager.unlike(id, setImageList, weeklyImage, setWeeklyImage);
     }
 
-    const isMobile = useMediaQuery({query : "(max-width:668px)"}); // 한줄로 뜨는 최대 너비
+    const isMobile = useMediaQuery({query : "(max-width:520px)"}); // 한줄로 뜨는 최대 너비
     const isTablet = useMediaQuery({query : "(max-width:1200px)"}); // 두줄로 뜨는 최대 너비
 
     let weeklyCount = 2;
@@ -92,53 +95,45 @@ export default function Mainpage() {
     if(isMobile)
         weeklyCount = 3;
 
-    return (
-        <div className="mainpage" ref={mainpageRef}>
-            <TitleBox title='주간 몬스터' innerClassName='weekly' titleClassName='mainpage-title'>
-                {
-                    isMobile ? weeklyImage.slice(0, weeklyCount).map(({id, src, title, content, hearts, like}) => (id ? <ImageView
-                        big={true}
-                        key={id}
-                        id={id}
-                        src={src}
-                        title={title}
-                        content={content}
-                        hearts={hearts}
-                        like={like}
-                        onLike={onLike}
-                        onUnlike={onUnlike} /> :
-                    <ImageView 
-                        big={true}
-                        src={defaultImage} 
-                        title={''}
-                        content={''}
-                        hearts={0}
-                        like={false}
-                        onLike={onLike}
-                        onUnlike={onUnlike}/>)) :
-                    weeklyImage.slice(0, weeklyCount).map(({id, src, title, content, hearts, like}) => (id ? <ImageView
-                        big={true}
-                        key={id}
-                        id={id}
-                        src={src}
-                        title={title}
-                        content={content}
-                        hearts={hearts}
-                        like={like}
-                        onLike={onLike}
-                        onUnlike={onUnlike} /> :
-                    <ImageView 
-                        big={true}
-                        src={defaultImage} 
-                        title={''}
-                        content={''}
-                        hearts={0}
-                        like={false}
-                        onLike={onLike}
-                        onUnlike={onUnlike}/>))
-                }
-            </TitleBox>
+    const NowImageView = isMobile ? MobileImageView : ImageView; // 아니 이게 되네? 
 
+    let weekly = weeklyImage.slice(0, weeklyCount).map(({id, src, title, content, hearts, like}) => (id ? <NowImageView
+        big={true}
+        key={id}
+        id={id}
+        src={src}
+        title={title}
+        content={content}
+        hearts={hearts}
+        like={like}
+        onLike={onLike}
+        onUnlike={onUnlike} /> :
+    <NowImageView 
+        big={true}
+        src={defaultImage} 
+        title={''}
+        content={''}
+        hearts={0}
+        like={false}
+        onLike={onLike}
+        onUnlike={onUnlike} />));
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+    };
+
+    return (
+        <>
+        {
+            isMobile && <Slider {...settings} className='weekly'>{weekly}</Slider>
+        }
+        <div className="mainpage" ref={mainpageRef}>
+            {!isMobile && <TitleBox title='주간 몬스터' innerClassName='weekly' titleClassName='mainpage-title'>{weekly}</TitleBox>}
             <TitleBox title='사진관' className='contents' innerClassName='gallery' titleClassName='mainpage-title'>
                 {imageList && imageList.map(({id, src, title, content, hearts, like}) => <ImageView
                     key={id}
@@ -155,5 +150,6 @@ export default function Mainpage() {
                 {!isEnd && <img src={loadingImg_2} style={{height: '2.5rem'}} alt='로딩 이미지'/>}
             </div>
         </div>
+        </>
     )
 }
