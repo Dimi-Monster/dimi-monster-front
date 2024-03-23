@@ -12,14 +12,25 @@ import api from "../utils/API";
 import imageManager from "../utils/ImageManager";
 import { useInView } from "react-intersection-observer";
 import loadingImg_2 from '../images/Info_load.svg';
+import loadingImg_2Dark from '../images/Info_load-dark.svg';
 import defaultImage from '../images/default-image.svg';
+import defaultImageDark from '../images/default-image-dark.svg';
 import MobileImageView from "../components/MobileImageView";
 
 export default function Mainpage() {
+    let [isDarkMode, setIsDarkMode] = useState(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    // update isDarkMode when the system changes the theme
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (e.matches) {
+            setIsDarkMode(true);
+        } else {
+            setIsDarkMode(false);
+        }
+    });
     const navigate = useNavigate();
 
     const [imageList, setImageList] = useState(Array(21).fill({
-        src: defaultImage,
+        src: isDarkMode ? defaultImageDark : defaultImage,
         title: '',
         content: '',
         hearts: 0,
@@ -110,7 +121,7 @@ export default function Mainpage() {
         onUnlike={onUnlike} /> :
     <NowImageView 
         big={true}
-        src={defaultImage} 
+        src={isDarkMode ? defaultImageDark : defaultImage} 
         title={''}
         content={''}
         hearts={0}
@@ -147,7 +158,7 @@ export default function Mainpage() {
                     onUnlike={onUnlike} />)}
             </TitleBox>
             <div ref={ref} style={{marginTop: '1rem'}}>
-                {!isEnd && <img src={loadingImg_2} style={{height: '2.5rem'}} alt='로딩 이미지'/>}
+                {!isEnd && <img src={isDarkMode ? loadingImg_2Dark : loadingImg_2} style={{height: '2.5rem'}} alt='로딩 이미지'/>}
             </div>
         </div>
         </>

@@ -29,11 +29,26 @@ header {
     font-family: 'Pretendard-Bold';
     font-size: 1.035rem;
 }
+@media (prefers-color-scheme: dark) {
+    header {
+        background: #2A2A2AC0;
+        backdrop-filter: blur(29px);
+        -webkit-backdrop-filter: blur(29px);
+
+        border-bottom: .8px solid #444444;
+    }
+}
 
 header > * {
     margin-left: 1.5rem;
 
     color: #333333;
+}
+@media (prefers-color-scheme: dark) {
+    header > * {
+        color: white;
+    }
+
 }
 header .logo {
     height: 2rem;
@@ -44,6 +59,9 @@ header > .margin {
 header > .navlink {
     text-decoration: none;
     color: black;
+}
+header > .navlink:hover {
+    color: white;
 }
 
 header > :nth-child(1) {

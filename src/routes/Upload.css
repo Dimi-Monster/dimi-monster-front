@@ -9,6 +9,11 @@
     align-items: center;
     justify-content: center;
 }
+@media (prefers-color-scheme: dark) {
+    .upload-outer-box {
+        background-color: #333333;
+    }
+}
 
 .upload-inner-box {
     border: .9px solid #BEBEBE;
@@ -26,6 +31,12 @@
     align-items: center;
     justify-content: center;
 }
+@media (prefers-color-scheme: dark) {
+    .upload-inner-box {
+        background-color: #333333;
+        border: .9px solid #555555;
+    }
+}
 
 .upload-inner-box > .title {
     font-size: 2.3rem;
@@ -37,6 +48,12 @@
 
     margin-bottom: 3rem;
 }
+@media (prefers-color-scheme: dark) {
+    .upload-inner-box > .title {
+        color: white;
+    }
+}
+
 .upload-inner-box > .title > img {
     height: 4rem;
     margin-right: 0.56rem;
@@ -50,6 +67,12 @@
     border-radius: .9rem;
     border: .9px solid #BEBEBE;
 }
+@media (prefers-color-scheme: dark) {
+    .upload-inner-box .image {
+        border: .9px solid #555555;
+    }
+}
+
 .upload-inner-box > .contents {
     display: flex;
     flex-direction: row;
@@ -113,6 +136,11 @@
     /* box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1); */
     backdrop-filter: blur(3.5px);
     -webkit-backdrop-filter: blur(3.5px);
+}
+@media (prefers-color-scheme: dark) {
+    .upload-outer-box > .cropview {
+        background: #33333377;
+    }
 }
 
 .upload-inner-box > form {

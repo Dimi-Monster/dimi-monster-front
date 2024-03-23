@@ -11,6 +11,12 @@
     background-color: #FFFBFD;
 }
 
+@media (prefers-color-scheme: dark) {
+    .login-div {
+        background-color: #383838;
+    }
+}
+
 .login-div > .logo { 
     width: 55vw;
 

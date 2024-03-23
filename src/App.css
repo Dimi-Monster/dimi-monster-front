@@ -11,26 +11,27 @@ button, input[type="submit"], input[type="reset"] {
 }
 
 @font-face {
-  font-family: 'Pretendard';
-  src: url('./fonts/PretendardVariable.woff2') format('woff2');
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff2');
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: 'Pretendard-SemiBold';
-  src: url('./fonts/Pretendard-SemiBold.woff') format('woff');
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff') format('woff2');
   font-weight: 400;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'Pretendard-Bold';
-  src: url('./fonts/Pretendard-Bold.woff') format('woff');
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: 'Pretendard-Medium';
-  src: url('./fonts/Pretendard-Medium.woff') format('woff');
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Medium.woff') format('woff');
   font-weight: 400;
   font-style: normal;
 }
@@ -42,6 +43,14 @@ html, body {
   background-color: #FFFBFD;
 }
 
+/* dark mode support */
+@media (prefers-color-scheme: dark) {
+  html, body {
+    background-color: #1A1A1A;
+    color: white;
+  }
+}
+
 input, textarea, select {
   border: .9px solid #BEBEBE;
   border-radius: 0.7rem;
@@ -50,7 +59,7 @@ input, textarea, select {
   padding-right: 0.8rem;
   outline: none;
   resize: none;
-  font-family: 'Pretendard';
+  font-family: 'Pretendard-Regular';
   font-size: 0.83rem;
   box-sizing: border-box;
   background-color: white;
@@ -60,6 +69,15 @@ input, textarea, select {
   appearance: none;
   color: black;
 }
+
+@media (prefers-color-scheme: dark) {
+  input, textarea, select {
+    background-color: #383838;
+    color: white;
+  }
+}
+
+
 
 .App {
   text-align: center;
@@ -85,6 +103,12 @@ input, textarea, select {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+@media (prefers-color-scheme: dark) {
+  .App-header {
+    background-color: #D3D3D3;
+    color: black;
+  }
 }
 
 .App-link {

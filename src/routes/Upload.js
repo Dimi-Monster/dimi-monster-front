@@ -1,7 +1,9 @@
 import React, { useRef, useState, useEffect } from "react";
 import './Upload.css';
 import logo from '../images/logo.svg';
+import logoDark from '../images/logo-dark.svg';
 import defaultImage from '../images/default-image.svg';
+import defaultImageDark from '../images/default-image-dark.svg';
 import TitleBox from "../components/TitleBox";
 import CropView from "../components/CropView";
 import imageCompression from "browser-image-compression";
@@ -51,9 +53,11 @@ export default function Upload() {
     const inputFile = useRef(null);
     const image = useRef(null);
 
-    const [croppedImageSrc, setCroppedImageSrc] = useState(defaultImage);
+    
     const [imageSrc, setImageSrc] = useState(defaultImage);
     const [imageBlob, setImageBlob] = useState(new Blob());
+
+    const [imageSelected, setImageSelected] = useState(false);
 
     const [cropState, setCropState] = useState(false);
 
@@ -74,12 +78,28 @@ export default function Upload() {
     
         document.body.appendChild(script);
     }, []);
+    let [isDarkMode, setIsDarkMode] = useState(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const [croppedImageSrc, setCroppedImageSrc] = useState(isDarkMode ? defaultImageDark : defaultImage);
+    // update isDarkMode when the system changes the theme
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (e.matches) {
+            setIsDarkMode(true);
+            if (croppedImageSrc === defaultImage){
+                setCroppedImageSrc(defaultImageDark);
+            }
+        } else {
+            setIsDarkMode(false);
+            if (croppedImageSrc === defaultImageDark){
+                setCroppedImageSrc(defaultImage);
+            }
+        }
+    });
 
     return (
         <div className='upload-outer-box'>
             <div className='upload-inner-box'>
                 <div className='title'>
-                    <img src={logo} className='logo' alt='디미몬스터 로고'/>
+                    <img src={isDarkMode ? logoDark : logo} className='logo' alt='디미몬스터 로고'/>
                     <div>업로드</div>
                 </div>
 
@@ -145,6 +165,7 @@ export default function Upload() {
             setCroppedImageSrc(fileUrl); // 테스트
 
             setCropState(true);
+            setImageSelected(true);
         }
         f();
     }
@@ -200,6 +221,11 @@ export default function Upload() {
 
         if(uploadingState)
             return;
+
+        if(!imageSelected) {
+            alert('업로드할 이미지를 선택해주세요.');
+            return;
+        }
         
         let token = event.target[0].value;
         console.log(token);

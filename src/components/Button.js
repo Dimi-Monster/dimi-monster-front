@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import './Button.css';
 
 export default function Button(props) {
@@ -7,21 +7,45 @@ export default function Button(props) {
     if(!color)
         color = 'default';
 
-    const backgroundColorPalette = {
-        default: 'white',
-        enabled: '#DD0D75',
-        disabled: '#8A8A8A'
-    };
-    const colorPalette = {
-        default: '#333333',
-        enabled: 'white',
-        disabled: 'white'
-    };
+    let [isDarkMode, setIsDarkMode] = useState(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    // update isDarkMode when the system changes the theme
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (e.matches) {
+            setIsDarkMode(true);
+        } else {
+            setIsDarkMode(false);
+        }
+    });
+
+    const backgroundColorPalette = [
+        {
+            default: 'white',
+            enabled: '#DD0D75',
+            disabled: '#8A8A8A'
+        },
+        {
+            default: '#333333',
+            enabled: 'white',
+            disabled: 'white'
+        }
+    ];
+    const colorPalette = [
+        {
+            default: '#333333',
+            enabled: 'white',
+            disabled: 'white'
+        },
+        {
+            default: '#FFFDFE',
+            enabled: '#DD0D75',
+            disabled: '#8A8A8A'
+        }
+    ];
 
     return (
         <button className='pretty-button' type={props.type} onClick={props.onClick} style={{
-            backgroundColor: backgroundColorPalette[color],
-            color: colorPalette[color]
+            backgroundColor: backgroundColorPalette[isDarkMode ? 1 : 0][color],
+            color: colorPalette[isDarkMode ? 1 : 0][color]
             }}>
             {props.imgSrc && <img src={props.imgSrc} style={{height: props.height}} alt={props.title + '버튼'}/>}
             <div>{props.title}</div>

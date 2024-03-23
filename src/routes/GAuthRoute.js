@@ -1,13 +1,24 @@
 import React from "react";
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useSearchParams, useNavigate } from "react-router-dom";
 import api from '../utils/API';
-import waitlogo from '../images/login_wait_logo.svg';
-import waitlogo2 from '../images/clast-cloud-logo.svg';
+import loginWaitLogo from '../images/login_wait_logo.svg';
+import loginWaitLogoDark from '../images/login_wait_logo-dark.svg';
+import sponsorLogo from '../images/clast-cloud-logo.svg';
+import sponsorLogoDark from '../images/clast-cloud-logo-dark.svg';
 
 export default function GAuthRoute() {
     const [searchParams, /*setSearchParams*/] = useSearchParams();
     const navigate = useNavigate();
+    let [isDarkMode, setIsDarkMode] = useState(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    // update isDarkMode when the system changes the theme
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (e.matches) {
+            setIsDarkMode(true);
+        } else {
+            setIsDarkMode(false);
+        }
+    });
 
     useEffect(() => {
         async function login() {
@@ -41,14 +52,14 @@ export default function GAuthRoute() {
 
     return (
         <><div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '94vh' }}>
-            <img src={waitlogo} style={{
+            <img src={isDarkMode ? loginWaitLogoDark: loginWaitLogo} style={{
                 width: '43vw',
                 height: 'auto'
             }} alt="기다리는 중.." />
         </div>
 
         <div style={{ position: 'fixed', bottom: '4vw', left: 0, width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'flex-end', minHeight: '100vh' }}>
-            <img src={waitlogo2} style={{ width: '10vw', height: 'auto' }} alt="기다리는 중.." />
+            <img src={isDarkMode ? sponsorLogoDark : sponsorLogo} style={{ width: '20vw', height: 'auto' }} alt="기다리는 중.." />
         </div></>
 
     )

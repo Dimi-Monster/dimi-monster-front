@@ -19,6 +19,12 @@
     align-items: center;
 }
 
+@media (prefers-color-scheme: dark) {
+    .mainpage {
+        background-color: #333333;
+    }
+}
+
 /* .mainpage > .contents {
     box-sizing: border-box;
 

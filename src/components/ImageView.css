@@ -10,6 +10,12 @@
     position: relative;
     background: #FFFDFE;
 }
+@media (prefers-color-scheme: dark) {
+    .imageview {
+        background: #2c2c2c;
+        border: .8px solid #444444;
+    }
+}
 
 .imageview > .thumbnail > img {
     width: 7.6rem;
@@ -29,6 +35,11 @@
 
 
     /* 사진크기 */
+}
+@media (prefers-color-scheme: dark) {
+    .imageview > .thumbnail > img {
+        border: .7px solid #444444;
+    }
 }
 
 .imageview > .rightbox {
@@ -58,6 +69,11 @@
     font-family: 'Pretendard-Medium';
     font-size: 0.76rem;
 }
+@media (prefers-color-scheme: dark) {
+    .imageview > div > .content {
+        color: #BEBEBE;
+    }
+}
 
 .imageview > div > .margin {
     flex-grow: 1;
@@ -72,11 +88,22 @@
     color: white;
     margin-bottom: .3rem;
 }
+@media (prefers-color-scheme: dark) {
+    .imageview > div > button {
+        border: .5px solid #444444;
+    }
+}
 
 .imageview > div > .disabled {
     background-color: #F9F9F9;
     color: #333333;
     /* cursor: default; unlike도 누를수 있어야 함*/
+}
+@media (prefers-color-scheme: dark) {
+    .imageview > div > .disabled {
+        background-color: #333333;
+        color: #BEBEBE;
+    }
 }
 
 .imageview > .floatbox {
@@ -96,6 +123,12 @@
     border-radius: 0.5rem;
 
     /* 하트박스 */
+}
+@media (prefers-color-scheme: dark) {
+    .imageview > .floatbox {
+        background-color: #333333;
+        border: .6px solid #444444;
+    }
 }
 
 .imageview > .floatbox > img {

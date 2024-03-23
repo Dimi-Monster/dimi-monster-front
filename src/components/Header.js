@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './Header.css';
 
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 
 import logo from '../images/logo.svg';
+import logoDark from '../images/logo-dark.svg';
 import logoMobile from '../images/logo-mobile.svg';
 
 import api from '../utils/API';
@@ -19,16 +20,26 @@ export default function Header() {
             navigate('/login');
     }, []);
 
+    let [isDarkMode, setIsDarkMode] = useState(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    // update isDarkMode when the system changes the theme
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (e.matches) {
+            setIsDarkMode(true);
+        } else {
+            setIsDarkMode(false);
+        }
+    });
+
     return (
         <header>
             <Link to='/' className='logo'>
-                {!isMobile && <img src={logo} className='logo' alt='디미몬스터'/>}
+                {!isMobile && <img src={isDarkMode ? logoDark :logo} className='logo' alt='디미몬스터'/>}
                 {isMobile && <img src={logoMobile} className='logo' alt='디미몬스터'/>}
             </Link>
 
-            <NavLink to='/' className="navlink" style={({isActive}) => ({color:isActive ? '#DD0D75' : 'black'})}>메인</NavLink>
-            <NavLink to='/about' className="navlink" style={({isActive}) => ({color:isActive ? '#DD0D75' : 'black'})}>소개</NavLink>
-            <NavLink to='/upload' className="navlink" style={({isActive}) => ({color:isActive ? '#DD0D75' : 'black'})}>업로드</NavLink>
+            <NavLink to='/' className="navlink" style={({isActive}) => ({color:isActive ? '#DD0D75' : isDarkMode ? 'white': 'black'})}>메인</NavLink>
+            <NavLink to='/about' className="navlink" style={({isActive}) => ({color:isActive ? '#DD0D75' : isDarkMode ? 'white': 'black'})}>소개</NavLink>
+            <NavLink to='/upload' className="navlink" style={({isActive}) => ({color:isActive ? '#DD0D75' : isDarkMode ? 'white': 'black'})}>업로드</NavLink>
 
             <div className="margin"></div>
 
