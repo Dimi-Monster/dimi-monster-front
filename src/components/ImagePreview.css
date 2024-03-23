@@ -91,6 +91,12 @@
     z-index: 20000;
 }
 
+@media (prefers-color-scheme: dark) {
+    .image-preview-box {
+        background: #33333330;
+    }
+}
+
 .image-preview {
     --width: min(80vw, 70vh);
     --width-1percent: calc(var(--width) / 100);
