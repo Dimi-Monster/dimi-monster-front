@@ -84,3 +84,12 @@
 @media (max-width: 368px) {
     
 }
+
+@media (prefers-color-scheme: dark) {
+    .slick-dots li button:before {
+        color: #EEEEEE;
+    }
+    .slick-dots li.slick-active button:before {
+        color: #FFFDFE;
+    }
+}
