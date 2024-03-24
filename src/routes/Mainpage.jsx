@@ -146,7 +146,7 @@ export default function Mainpage() {
         <div className="mainpage" ref={mainpageRef}>
             {!isMobile && <TitleBox title='주간 몬스터' innerClassName='weekly' titleClassName='mainpage-title'>{weekly}</TitleBox>}
             <TitleBox title='사진관' className='contents' innerClassName='gallery' titleClassName='mainpage-title'>
-                {imageList && imageList.map(({id, src, title, content, hearts, like}) => <ImageView
+                {imageList && imageList.map(({id, src, title, content, hearts, like}, idx) => <ImageView
                     key={id}
                     id={id}
                     src={src}
@@ -155,9 +155,10 @@ export default function Mainpage() {
                     hearts={hearts}
                     like={like}
                     onLike={onLike}
-                    onUnlike={onUnlike} />)}
+                    onUnlike={onUnlike} 
+                    ref={idx == imageList.length-6 ? ref : undefined} />)}
             </TitleBox>
-            <div ref={ref} style={{marginTop: '1rem'}}>
+            <div /*ref={ref}*/ style={{marginTop: '1rem'}}>
                 {!isEnd && <img src={isDarkMode ? loadingImg_2Dark : loadingImg_2} style={{height: '2.5rem'}} alt='로딩 이미지'/>}
             </div>
         </div>

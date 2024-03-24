@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import './ImageView.css';
 import './ImageViewBig.css';
 import heart from '../images/heart.svg';
@@ -8,7 +8,7 @@ import ImagePreview from './ImagePreview';
 //import imageManager from '../utils/ImageManager';
 //import defaultImage from '../images/default-image.svg';
 
-export default function ImageView(props) {
+const ImageView = forwardRef(function (props, forwardedRef) {
     const [previewState, setPreviewState] = useState(false);
 
     function onImageClicked() {
@@ -26,7 +26,7 @@ export default function ImageView(props) {
     }
 
     return (
-        <div className={props.big ? 'imageview-big' : 'imageview'}>
+        <div className={props.big ? 'imageview-big' : 'imageview'} ref={forwardedRef}>
             <button className='thumbnail' onClick={onImageClicked}>
                 <img src={props.src} alt='몬스터 이미지'/>
             </button>
@@ -58,4 +58,5 @@ export default function ImageView(props) {
                 />}
         </div>
     )
-}
+});
+export default ImageView;
