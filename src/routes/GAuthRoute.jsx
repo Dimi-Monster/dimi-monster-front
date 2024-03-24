@@ -29,9 +29,9 @@ export default function GAuthRoute() {
             }
             const statusCode = await api.login(code);
             if(statusCode == 200)
-                navigate('/');
+                navigate('/', {replace: true});
             else if (statusCode == 403) {
-                navigate('/banned');
+                navigate('/banned', {replace: true});
             }
             else {
                 let error = api.getLastError();
@@ -43,7 +43,7 @@ export default function GAuthRoute() {
                 } else {
                     alert('오류가 발생했습니다. 관리자에게 문의해주세요.\n\n에러 타입: '+error);
                 }
-                navigate('/login');
+                navigate('/login', {replace: true});
             }
         }
         

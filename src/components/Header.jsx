@@ -17,7 +17,7 @@ export default function Header() {
 
     useEffect(() => {
         if(localStorage.getItem('refresh-token') === null)
-            navigate('/login');
+            navigate('/login', {replace: true});
     }, []);
 
     let [isDarkMode, setIsDarkMode] = useState(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
@@ -52,6 +52,6 @@ export default function Header() {
 
     function logout() {
         if(confirm('로그아웃하시겠습니까?'))
-            api.logout().then(() => navigate('/login'));
+            api.logout().then(() => navigate('/login', {replace: true}));
     }
 }
