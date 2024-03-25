@@ -98,10 +98,9 @@
 }
 
 .image-preview {
+    /* 이거 width 수정할 때는 BottomBar.css랑 같이 바꿔야 함 */
     --width: min(80vw, 70vh);
     --width-1percent: calc(var(--width) / 100);
-
-    font-size: calc(var(--width-1percent) * 4);
 
     /* overflow: hidden; */
 

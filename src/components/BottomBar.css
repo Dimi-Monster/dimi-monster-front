@@ -1,4 +1,9 @@
 .bottom-bar {
+    --width: min(80vw, 70vh);
+    --width-1percent: calc(var(--width) / 100);
+
+    font-size: calc(var(--width-1percent) * 4);
+
     height: 12%;
     /* color: rgb(156, 154, 154); */
     color: #333333;

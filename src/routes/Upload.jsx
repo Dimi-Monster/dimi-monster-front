@@ -68,6 +68,8 @@ export default function Upload() {
 
     const [uploadingState, setUplodingState] = useState(false);
 
+    const [filename, setFilename] = useState('');
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -143,7 +145,7 @@ export default function Upload() {
                 /> */}
             </div>
 
-            {cropState ? <CropView image={imageSrc} ratio={1} onFinished={onCropFinished} className="cropview" /> : <div />}
+            {cropState ? <CropView image={imageSrc} ratio={1} onFinished={onCropFinished} className="cropview" filename={filename}/> : <div />}
             <input type="file" id="file" ref={inputFile} style={{ display: "none" }} accept="image/*" onChange={onFileChanged} />
         </div>
     )
@@ -154,6 +156,9 @@ export default function Upload() {
     function onFileChanged(event) {
         async function f() {
             let fileObj = event.target.files[0];
+            let filename = fileObj.name;
+            setFilename(filename);
+
             let compressedFile = await imageCompression(fileObj, {
                 // maxSizeMB: 1,
                 maxWidthOrHeight: 2048,
