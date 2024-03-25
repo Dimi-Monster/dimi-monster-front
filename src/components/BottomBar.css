@@ -1,4 +1,4 @@
-.bottom-bar {
+.bottom-bar-component {
     --width: min(80vw, 70vh);
     --width-1percent: calc(var(--width) / 100);
 
@@ -24,12 +24,12 @@
     /* word-break: keep-all; */
 }
 @media (prefers-color-scheme: dark) {
-    .bottom-bar {
+    .bottom-bar-component {
         color: white;
         background-color: #333333;
     }
 }
-.bottom-bar > .title-contents-box {
+.bottom-bar-component > .title-contents-box {
     flex-grow: 1;
     margin-right: 5%;
 
@@ -48,7 +48,7 @@
     overflow: hidden;
 }
 
-.bottom-bar > .title-contents-box > .content {
+.bottom-bar-component > .title-contents-box > .content {
     /* display: flex;
     flex-direction: row;
     align-items: center; */
@@ -58,11 +58,11 @@
     width: 100%;
 }
 
-.bottom-bar > .content {
+.bottom-bar-component > .content {
     height: 100%;
     font-family: 'Pretendard-Bold';
 }
-.bottom-bar > .like {
+.bottom-bar-component > .like {
     border: .9px solid #BEBEBE;
     border-radius: calc(var(--width-1percent) * 2.59);
     background-color: #FFFDFE;
@@ -70,26 +70,26 @@
     font-family: 'Pretendard-Bold';
 }
 @media (prefers-color-scheme: dark) {
-    .bottom-bar {
+    .bottom-bar-component {
         border: .9px solid #444444;
         background-color: #333333;
     }
-    .bottom-bar > .like {
+    .bottom-bar-component > .like {
         border: .9px solid #444444;
         background-color: #333333;
     }
 }
 
-.bottom-bar > div > .title {
+.bottom-bar-component > div > .title {
     color: #DD0D75;
 }
 
-.bottom-bar > div > .content {
+.bottom-bar-component > div > .content {
     flex-grow: 1;
     margin-left: calc(var(--width-1percent) * 2);
 }
 
-.bottom-bar > .like {
+.bottom-bar-component > .like {
     height: calc(100% - var(--width-1percent) * 4.6);
     width: calc(var(--width-1percent) * 16);
     flex-shrink: 0;
@@ -108,12 +108,12 @@
     justify-content: center;
 }
 @media (prefers-color-scheme: dark) {
-    .bottom-bar > .like {
+    .bottom-bar-component > .like {
         background-color: #333333;
     }
 }
 
-.bottom-bar > .like > img {
+.bottom-bar-component > .like > img {
     height: calc(var(--width-1percent) * 4);
     color: #333333;
 
@@ -121,7 +121,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-    .bottom-bar > .like > img {
+    .bottom-bar-component > .like > img {
         color: white;
     }
 }   

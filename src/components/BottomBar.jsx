@@ -11,7 +11,7 @@ export default function BottomBar(props) {
     }, [contentRef]);
 
     return (
-        <div className='bottom-bar'>
+        <div className='bottom-bar-component'>
             <div className='title-contents-box'>
                 <div className='title'>{props.title}</div>
                 <div className='content animated' ref={contentRef}>
