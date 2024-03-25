@@ -95,6 +95,8 @@ export default function Upload() {
         }
     });
 
+    //console.log(process.env.REACT_APP_RECAPTCHA_SITEKEY);
+
     return (
         <div className='upload-outer-box'>
             <div className='upload-inner-box'>
@@ -121,7 +123,8 @@ export default function Upload() {
                 </div>
 
                 <form onSubmit={(e) => onUpload(e)}>
-                    <div className="g-recaptcha" data-sitekey="6LdgSpgpAAAAAJKMC4NiXgYWrnn9ln7It_kpeIEQ" data-action="image_upload"></div>
+                    <div className="g-recaptcha" data-sitekey={process.env.REACT_APP_RECAPTCHA_SITEKEY} data-action="image_upload" 
+                        data-theme={isDarkMode ? 'dark' : undefined}></div>
                     <Button title={buttonTitle} imgSrc={dimibug} color='default' height='1.2rem' type='submit'/>
                 </form>
 
