@@ -21,6 +21,8 @@
     border-radius: calc(var(--width-1percent) * 4);
     background-color: #FFFDFE;
 
+    font-family: 'Pretendard-SemiBold';
+
     /* word-break: keep-all; */
 }
 @media (prefers-color-scheme: dark) {
