@@ -1,5 +1,5 @@
 .imageview {
-    border: .8px solid #BEBEBE;
+    border: .9px solid #BEBEBE;
 
     border-radius: 1.3rem;
     padding: 1.23rem;
@@ -13,7 +13,7 @@
 @media (prefers-color-scheme: dark) {
     .imageview {
         background: #2c2c2c;
-        border: .8px solid #444444;
+        border: .9px solid #444444;
     }
 }
 
@@ -25,7 +25,7 @@
 
     border-radius: .6rem;
 
-    /* border: .8px solid #BEBEBE; */
+    /* border: .9px solid #BEBEBE; */
     margin-right: 1.346rem;
     margin-left: .25rem;
     margin-top: .25rem;

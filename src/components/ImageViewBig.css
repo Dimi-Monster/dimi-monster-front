@@ -1,7 +1,7 @@
 .imageview-big {
-    border: .8px solid #BEBEBE;
+    border: .9px solid #BEBEBE;
 
-    border-radius: 2rem;
+    border-radius: 1.6rem;
     padding: 1.8rem;
 
     display: flex;
@@ -12,24 +12,24 @@
 }
 @media (prefers-color-scheme: dark) {
     .imageview-big {
-        border: .8px solid #444444;
+        border: .9px solid #444444;
         background: #2c2c2c;
     }
 }
 
 .imageview-big > .thumbnail > img {
-    width: 9rem;
-    height: 9rem;
+    width: 10rem;
+    height: 10rem;
 
     min-width: 6.5rem; /* 이거 왜있는거지? */
 
-    border-radius: 1rem;
+    border-radius: .7rem;
 
-    /* border: .8px solid #BEBEBE; */
-    margin-right: 1.346rem;
-    margin-left: .25rem;
-    margin-top: .25rem;
-    margin-bottom: .25rem;
+    /* border: .9px solid #BEBEBE; */
+    margin-right: 1.38rem;
+    margin-left: .05rem;
+    margin-top: .05rem;
+    margin-bottom: .05rem;
 
     border: .7px solid #BEBEBE;
 
@@ -37,7 +37,7 @@
 }
 @media (prefers-color-scheme: dark) {
     .imageview-big > .thumbnail > img {
-        border: .7px solid #4444;
+        border: .8px solid #444444;
     }
 }
 
