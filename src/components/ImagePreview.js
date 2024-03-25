@@ -6,7 +6,7 @@ import imageManager from "../utils/ImageManager";
 import heart from '../images/heart.svg';
 import heartDisabled from '../images/heart-disabled.svg';
 
-import loadingCircle from '../images/loading-circle.svg';
+import loadingCircle from '../images/loading-png.png';
 
 export default function ImagePreview(props) {
 
