@@ -1,4 +1,5 @@
 import api from './API';
+import thumbnailCacher from './ThumbnailCacher';
 
 class ImageManager {
     currentIdx = 0;
@@ -6,12 +7,14 @@ class ImageManager {
     
     set = new Set();
     originalImages = {};
+    thumbnails = {};
+    thumbnailsCount = 0;
 
     fetchID = 1;
     latestFetchID = {};
 
     async getImageBottom(setImageList) {
-        let res = await api.getImage(this.currentIdx);
+        let res = await thumbnailCacher.getImage(this.currentIdx);
 
         if(!res)
             return false;
@@ -53,7 +56,8 @@ class ImageManager {
         let isEnd = false;
 
         while(!isEnd) {
-            let res = await api.getImage(pageIdx);
+            // 이게 실행되는 타이밍에는 무조건 새로운 이미지가 있기 때문에 썸네일을 캐싱하지 않는게 이득이다
+            let res = await thumbnailCacher.getImage(pageIdx, true);
 
             if(!res)
                 return false;

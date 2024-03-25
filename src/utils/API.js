@@ -105,11 +105,11 @@ class API {
         }
         return true;
     }
-    async getImage(pageIdx) {
+    async getImage(pageIdx, thumbnail = true) {
         if(!await this.refreshIfExpired())
             return false;
 
-        const url = `${this.serverUrl}/image/list?page=${pageIdx}`;
+        const url = `${this.serverUrl}/image/list?page=${pageIdx}&thumbnail=${thumbnail}`;
 
         let data = await fetch(url, {
             method: 'GET',
