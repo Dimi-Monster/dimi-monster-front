@@ -1,6 +1,7 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
 import Cropper from 'react-easy-crop';
 import './CropView.css';
+import heart from '../images/heart.svg';
 
 //GetCrop.js
 /**
@@ -67,6 +68,9 @@ export default function CropView(props) {
 
     const [croppedArea, setCroppedArea] = useState({ x: 0, y: 0, width: 0, height: 0 });
 
+    const contentRef = useRef(null);
+    const [animateState, setAnimateState] = useState(false);
+
     const onCropComplete = useCallback((croppedArea, croppedAreaPixel) => {
         setCroppedArea(croppedAreaPixel);
     }, []);
@@ -79,8 +83,13 @@ export default function CropView(props) {
         f();
     }
 
+    useEffect(() => {
+        if(contentRef.current.scrollWidth > contentRef.current.clientWidth)
+            setAnimateState(true);
+    }, [contentRef]);
+
     return (
-        <div className={props.className}>
+        <div className={`cropview ${props.className}`}>
             <div className='crop-box'>
                 <Cropper
                     image={image}
@@ -96,8 +105,21 @@ export default function CropView(props) {
                         cropAreaStyle: {borderRadius: '1rem'}
                     }}
                 />
+
+                <div className='bottom-bar'>
+                    <div className='title-contents-box'>
+                        <div className='title'>{props.title}</div>
+                        <div className='content animated' ref={contentRef}>
+                            <div className={animateState ? 'text-animated' : ''}>{props.content}</div>
+                        </div>
+                    </div>
+                    <button className='finish' onClick={finish}>
+                        <img src={heart} alt='완료'/>
+                        <div>완료</div>
+                    </button>
+                </div>
             </div>
-            <button onClick={finish}>완료</button>
+            {/* <button onClick={finish}>완료</button> */}
         </div>
     );
 }
