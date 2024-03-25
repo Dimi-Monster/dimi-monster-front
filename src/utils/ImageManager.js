@@ -6,12 +6,19 @@ class ImageManager {
     
     set = new Set();
     originalImages = {};
+    thumbnails = {};
+    thumbnailsCount = 0;
 
     fetchID = 1;
     latestFetchID = {};
 
     async getImageBottom(setImageList) {
-        let res = await api.getImage(this.currentIdx);
+        let loadThumbnail = true;
+        if(this.currentIdx * 21 + 21 <= this.thumbnailsCount)
+            loadThumbnail = false;
+        console.log(loadThumbnail);
+
+        let res = await api.getImage(this.currentIdx, loadThumbnail);
 
         if(!res)
             return false;
@@ -23,6 +30,12 @@ class ImageManager {
 
             addData.push(k);
             this.set.add(k.id);
+            if(k.src) {
+                this.thumbnails[k.id] = k.src;
+                this.thumbnailsCount++;
+            }
+            else
+                k.src = this.thumbnails[k.id];
         }
 
         this.imageList = [...this.imageList, ...addData];
@@ -66,6 +79,12 @@ class ImageManager {
 
                 addData.push(k);
                 this.set.add(k.id);
+                if(k.src) {
+                    this.thumbnails[k.id] = k.src;
+                    this.thumbnailsCount++;
+                }
+                else
+                    k.src = this.thumbnails[k.id];
             }
             pageIdx++;
         }
