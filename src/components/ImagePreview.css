@@ -107,7 +107,7 @@
 
     position: relative;
 
-    margin-bottom: calc(var(--width-1percent) * 16);
+    margin-bottom: calc(var(--width-1percent) * 18);
 }
 
 .image-preview > .main-img {
@@ -127,24 +127,29 @@
 }
 
 .image-preview > .bottom-bar {
-    height: 10%;
+    height: 12%;
     /* color: rgb(156, 154, 154); */
     color: #333333;
 
     position: absolute;
-    bottom: -13%; /* 10% + 6% */
-    left: 6%;
-    right: 6%;
+    bottom: -15%; /* 13% + 6% */
+    left: 0;
+    right: 0;
 
     display: flex;
     flex-direction: row;
     align-items: center;
+
+    border: .9px solid #BEBEBE;
+    border-radius: calc(var(--width-1percent) * 4);
+    background-color: #FFFDFE;
 
     /* word-break: keep-all; */
 }
 @media (prefers-color-scheme: dark) {
     .image-preview > .bottom-bar {
         color: white;
+        background-color: #333333;
     }
 }
 .image-preview > .bottom-bar > .title-contents-box {
@@ -176,9 +181,11 @@
     width: 100%;
 }
 
-.image-preview > .bottom-bar > * {
+.image-preview > .bottom-bar > .content {
     height: 100%;
-
+    font-family: 'Pretendard-Bold';
+}
+.image-preview > .bottom-bar > .like {
     border: .9px solid #BEBEBE;
     border-radius: calc(var(--width-1percent) * 2.59);
     background-color: #FFFDFE;
@@ -186,15 +193,14 @@
     font-family: 'Pretendard-Bold';
 }
 @media (prefers-color-scheme: dark) {
-    .image-preview > .bottom-bar > * {
+    .image-preview > .bottom-bar {
         border: .9px solid #444444;
         background-color: #333333;
     }
-}
-
-.image-preview > .bottom-bar > .like {
-    width: calc(var(--width-1percent) * 20);
-    flex-shrink: 0;
+    .image-preview > .bottom-bar > .like {
+        border: .9px solid #444444;
+        background-color: #333333;
+    }
 }
 
 .image-preview > .bottom-bar > div > .title {
@@ -224,6 +230,11 @@
 }
 
 .image-preview > .bottom-bar > .like {
+    height: calc(100% - var(--width-1percent) * 4.6);
+    width: calc(var(--width-1percent) * 16);
+    flex-shrink: 0;
+    margin-right: calc(var(--width-1percent) * 3);
+
     box-sizing: border-box;
 
     padding: calc(var(--width-1percent) * 2);
