@@ -6,6 +6,8 @@ class ThumbnailCacher {
     thumbnailsCount = 0;
     lastPage = -1;
 
+    localStorageLoaded = false;
+
     // loadThumbnail 값이 지정되면 그 값에 따라 작동하고, 지정되지 않으면 자동으로 지정한다
     async getImage(pageIdx, loadThumbnail) {
         console.log(`pageIdx: ${pageIdx}, thumbnailCount: ${this.thumbnailsCount}`);
@@ -71,9 +73,41 @@ class ThumbnailCacher {
 
     async store(id, src) {
         this.thumbnails[id] = src;
+
+        //this.storeToStorage(); // 이거 await 안해도 되지 않을까? 안하는게 더 빠를거같은데
     }
     async load(id) {
+        // if(!this.localStorageLoaded) {
+        //     await this.loadFromStorage();
+        //     this.localStorageLoaded = true;
+        // }
+
         return this.thumbnails[id];
+    }
+
+    async loadFromStorage() {
+        let data = JSON.parse(localStorage.getItem('thumbnails'));
+
+        if(!data)
+            data = [];
+
+        for(const k of data) {
+            this.thumbnails[k[0]] = k[1];
+        }
+        this.thumbnailsCount = localStorage.getItem('thumbnails-count');
+    }
+    async storeToStorage() {
+        if(!this.localStorageLoaded)
+            return;
+
+        let data = [];
+
+        for(const id in this.thumbnails) {
+            data.push([id, this.thumbnails[id]]);
+        }
+        
+        localStorage.setItem('thumbnails', JSON.stringify(data));
+        localStorage.setItem('thumbnails-count', this.thumbnailsCount);
     }
 }
 
