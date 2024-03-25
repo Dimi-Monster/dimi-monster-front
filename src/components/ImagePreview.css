@@ -98,10 +98,9 @@
 }
 
 .image-preview {
+    /* 이거 width 수정할 때는 BottomBar.css랑 같이 바꿔야 함 */
     --width: min(80vw, 70vh);
     --width-1percent: calc(var(--width) / 100);
-
-    font-size: calc(var(--width-1percent) * 4);
 
     /* overflow: hidden; */
 
@@ -126,13 +125,12 @@
     }
 }
 
-.image-preview > .bottom-bar {
+/* .image-preview > .bottom-bar {
     height: 12%;
-    /* color: rgb(156, 154, 154); */
     color: #333333;
 
     position: absolute;
-    bottom: -15%; /* 13% + 6% */
+    bottom: -15%;
     left: 0;
     right: 0;
 
@@ -143,8 +141,6 @@
     border: .9px solid #BEBEBE;
     border-radius: calc(var(--width-1percent) * 4);
     background-color: #FFFDFE;
-
-    /* word-break: keep-all; */
 }
 @media (prefers-color-scheme: dark) {
     .image-preview > .bottom-bar {
@@ -172,10 +168,6 @@
 }
 
 .image-preview > .bottom-bar > .title-contents-box > .content {
-    /* display: flex;
-    flex-direction: row;
-    align-items: center; */
-
     overflow: hidden;
 
     width: 100%;
@@ -210,7 +202,7 @@
 .image-preview > .bottom-bar > div > .content {
     flex-grow: 1;
     margin-left: calc(var(--width-1percent) * 2);
-}
+} */
 
 .image-preview > .close {
     position: absolute;
@@ -229,7 +221,7 @@
     width: calc(var(--width-1percent) * 5);
 }
 
-.image-preview > .bottom-bar > .like {
+/* .image-preview > .bottom-bar > .like {
     height: calc(100% - var(--width-1percent) * 4.6);
     width: calc(var(--width-1percent) * 16);
     flex-shrink: 0;
@@ -242,7 +234,6 @@
 
     display: flex;
     flex-direction: row;
-    /* font-size: 0.8rem; */
 
     align-items: center;
     justify-content: center;
@@ -264,7 +255,7 @@
     .image-preview > .bottom-bar > .like > img {
         color: white;
     }
-}   
+} */
 
 .image-preview > .loading {
     position: absolute;

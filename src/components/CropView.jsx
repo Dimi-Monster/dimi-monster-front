@@ -1,6 +1,8 @@
 import React, { useState, useCallback } from "react";
 import Cropper from 'react-easy-crop';
 import './CropView.css';
+import heart from '../images/heart.svg';
+import BottomBar from "./BottomBar";
 
 //GetCrop.js
 /**
@@ -80,7 +82,7 @@ export default function CropView(props) {
     }
 
     return (
-        <div className={props.className}>
+        <div className={`cropview ${props.className}`}>
             <div className='crop-box'>
                 <Cropper
                     image={image}
@@ -96,8 +98,15 @@ export default function CropView(props) {
                         cropAreaStyle: {borderRadius: '1rem'}
                     }}
                 />
+
+                <BottomBar
+                    title="파일명"
+                    content={props.filename}
+                    src={heart}
+                    buttonTitle='확인'
+                    onClick={finish} />
             </div>
-            <button onClick={finish}>완료</button>
+            {/* <button onClick={finish}>완료</button> */}
         </div>
     );
 }
