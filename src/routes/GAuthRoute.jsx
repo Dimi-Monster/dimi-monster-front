@@ -53,13 +53,13 @@ export default function GAuthRoute() {
     return (
         <><div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '94vh' }}>
             <img src={isDarkMode ? loginWaitLogoDark: loginWaitLogo} style={{
-                width: '43vw',
+                width: '40vw',
                 height: 'auto'
             }} alt="기다리는 중.." />
         </div>
 
         <div style={{ position: 'fixed', bottom: '4vw', left: 0, width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'flex-end', minHeight: '100vh' }}>
-            <img src={isDarkMode ? sponsorLogoDark : sponsorLogo} style={{ width: '20vw', height: 'auto' }} alt="기다리는 중.." />
+            <img src={isDarkMode ? sponsorLogoDark : sponsorLogo} style={{ width: '12vw', height: 'auto' }} alt="기다리는 중.." />
         </div></>
 
     )
