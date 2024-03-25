@@ -52,7 +52,8 @@ class ThumbnailCacher {
 
         // 캐시 데이터에서 썸네일을 가져온다
         for(const k of res) {
-            k.src = this.thumbnails[k.id];
+            //k.src = this.thumbnails[k.id];
+            k.src = await this.load(k.id);
         }
 
         return res;
@@ -63,8 +64,16 @@ class ThumbnailCacher {
             if(!(k.id in this.thumbnails))
                 this.thumbnailsCount++;
 
-            this.thumbnails[k.id] = k.src;
+            //this.thumbnails[k.id] = k.src;
+            this.store(k.id, k.src);
         }
+    }
+
+    async store(id, src) {
+        this.thumbnails[id] = src;
+    }
+    async load(id) {
+        return this.thumbnails[id];
     }
 }
 
