@@ -114,7 +114,7 @@ export default function Mainpage() {
         id={id}
         src={src}
         title={title}
-        content={content == '' ? '(무제)' : content}
+        content={content == '' ? '무제' : content}
         hearts={hearts}
         like={like}
         onLike={onLike}
@@ -151,7 +151,7 @@ export default function Mainpage() {
                     id={id}
                     src={src}
                     title={title}
-                    content={typeof id == 'string' && content == '' ? '(무제)' : content}
+                    content={typeof id == 'string' && content == '' ? '무제' : content}
                     hearts={hearts}
                     like={like}
                     onLike={onLike}
