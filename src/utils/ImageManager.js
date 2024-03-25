@@ -1,4 +1,5 @@
 import api from './API';
+import thumbnailCacher from './ThumbnailCacher';
 
 class ImageManager {
     currentIdx = 0;
@@ -13,12 +14,7 @@ class ImageManager {
     latestFetchID = {};
 
     async getImageBottom(setImageList) {
-        let loadThumbnail = true;
-        if(this.currentIdx * 21 + 21 <= this.thumbnailsCount)
-            loadThumbnail = false;
-        console.log(loadThumbnail);
-
-        let res = await api.getImage(this.currentIdx, loadThumbnail);
+        let res = await thumbnailCacher.getImage(this.currentIdx);
 
         if(!res)
             return false;
@@ -30,12 +26,6 @@ class ImageManager {
 
             addData.push(k);
             this.set.add(k.id);
-            if(k.src) {
-                this.thumbnails[k.id] = k.src;
-                this.thumbnailsCount++;
-            }
-            else
-                k.src = this.thumbnails[k.id];
         }
 
         this.imageList = [...this.imageList, ...addData];
@@ -66,7 +56,8 @@ class ImageManager {
         let isEnd = false;
 
         while(!isEnd) {
-            let res = await api.getImage(pageIdx);
+            // 이게 실행되는 타이밍에는 무조건 새로운 이미지가 있기 때문에 썸네일을 캐싱하지 않는게 이득이다
+            let res = await thumbnailCacher.getImage(pageIdx, true);
 
             if(!res)
                 return false;
@@ -79,12 +70,6 @@ class ImageManager {
 
                 addData.push(k);
                 this.set.add(k.id);
-                if(k.src) {
-                    this.thumbnails[k.id] = k.src;
-                    this.thumbnailsCount++;
-                }
-                else
-                    k.src = this.thumbnails[k.id];
             }
             pageIdx++;
         }
