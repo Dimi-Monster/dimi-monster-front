@@ -4,9 +4,6 @@ import './ImageViewBig.css';
 import heart from '../images/heart.svg';
 import heartDisabled from '../images/heart-disabled.svg';
 import ImagePreview from './ImagePreview';
-//import api from '../utils/API';
-//import imageManager from '../utils/ImageManager';
-//import defaultImage from '../images/default-image.svg';
 
 const ImageView = forwardRef(function (props, forwardedRef) {
     const [previewState, setPreviewState] = useState(false);

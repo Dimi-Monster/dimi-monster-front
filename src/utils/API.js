@@ -40,7 +40,7 @@ class API {
 
         return 200;
     }
-    async logout(/*email, refreshToken*/) {
+    async logout() {
         let email = localStorage.getItem('email');
         let refreshToken = localStorage.getItem('refresh-token');
 
@@ -64,7 +64,7 @@ class API {
 
         return true;
     }
-    async refresh(/*email, refreshToken*/) {
+    async refresh() {
         let email = localStorage.getItem('email');
         let refreshToken = localStorage.getItem('refresh-token');
 
@@ -168,7 +168,6 @@ class API {
         await this.refreshIfExpired();
         console.log(img);
 
-        //const blob = new Blob([img], { type: 'image/jpeg' });
         const blob = img;
 
         const url = `${this.serverUrl}/image/upload`;
@@ -238,7 +237,6 @@ class API {
         if(data.status != 200)
             return false;
 
-        //console.log(await data.json());
         let json = await data.json();
         return json.map(json => ({
             id: json['id'],

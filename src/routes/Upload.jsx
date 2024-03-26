@@ -134,20 +134,6 @@ export default function Upload() {
                         data-theme={isDarkMode ? 'dark' : undefined}></div>
                     <Button title={buttonTitle} imgSrc={dimibug} color='default' height='1.2rem' type='submit'/>
                 </form>
-
-                {/* <ReCAPTCHA
-                    ref={recaptchaRef}
-                    className="mx-auto"
-                    sitekey={process.env.REACT_APP_RECAPTCHA_SITEKEY}
-                    onChange={async (value) => {
-                        if (value === null) {
-                            setCaptcha('');
-                            return;
-                        }
-                        setCaptcha(value);
-                        console.log(value);
-                    }}
-                /> */}
             </div>
 
             {cropState ? <CropView image={imageSrc} ratio={1} onFinished={onCropFinished} className="cropview" filename={filename}/> : <div />}
@@ -172,8 +158,6 @@ export default function Upload() {
 
             let fileUrl = window.URL.createObjectURL(compressedFile);
 
-            //console.log(fileUrl);
-
             setImageSrc(fileUrl);
             setCroppedImageSrc(fileUrl); // 테스트
 
@@ -194,7 +178,6 @@ export default function Upload() {
 
     function onCropFinished(imgUrl) {
         async function f() {
-            //console.log(imgUrl);
             let file = await convertURLtoFile(imgUrl);
             let compressedFile = await imageCompression(file, {
                 maxSizeMB: 1,

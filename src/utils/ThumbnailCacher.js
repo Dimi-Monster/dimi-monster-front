@@ -8,7 +8,7 @@ class ThumbnailCacher {
 
     // loadThumbnail 값이 지정되면 그 값에 따라 작동하고, 지정되지 않으면 자동으로 지정한다
     async getImage(pageIdx, loadThumbnail) {
-        console.log(`pageIdx: ${pageIdx}, thumbnailCount: ${this.thumbnailsCount}`);
+        //console.log(`pageIdx: ${pageIdx}, thumbnailCount: ${this.thumbnailsCount}`);
 
         if(loadThumbnail === undefined) {
             if(pageIdx == 0) // 0페이지의 경우 썸네일을 못 불러올 가능성이 더 높다

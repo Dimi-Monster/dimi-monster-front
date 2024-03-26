@@ -106,7 +106,6 @@ export default function CropView(props) {
                     buttonTitle='확인'
                     onClick={finish} />
             </div>
-            {/* <button onClick={finish}>완료</button> */}
         </div>
     );
 }
