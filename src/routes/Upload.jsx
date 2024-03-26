@@ -14,8 +14,9 @@ import { useNavigate } from "react-router-dom";
 
 export default function Upload() {
     const locationList = [
+        "--- 본관 ---",
+
         // 본관
-        "본관 교무실",
         "본관 교무실",
         "1-1 교실",
         "1-2 교실",
@@ -30,6 +31,8 @@ export default function Upload() {
         "2-5 교실",
         "2-6 교실",
         "법인사무실",
+
+        "--- 신관 ---",
     
         // 신관
         "신관 교무실",
@@ -42,6 +45,8 @@ export default function Upload() {
         "3-4 교실",
         "3-5 교실",
         "3-6 교실",
+
+        "--- 기타 장소 ---",
     
         // 기타
         "운동장",
@@ -114,8 +119,8 @@ export default function Upload() {
                     </button>
                     <div className='contents-right'>
                         <TitleBox title='장소'>
-                            <select onChange={onLocationChanged}>
-                                { locationList.map(loc => <option value={loc}>{loc}</option>) }
+                            <select onChange={onLocationChanged} defaultValue={locationList[1]}>
+                                { locationList.map(loc => <option value={loc} disabled={loc.startsWith('-')}>{loc}</option>) }
                             </select>
                         </TitleBox>
                         <TitleBox title='간단 설명' className='explain-box' innerStyle={{ display: 'flex', flexGrow: 1 }}>
