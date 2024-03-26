@@ -6,16 +6,18 @@ class ThumbnailCacher {
     thumbnailsCount = 0;
     lastPage = -1;
 
-    localStorageLoaded = false;
+    getThumbnailsCount() {
+        return this.thumbnailsCount + parseInt(localStorage.getItem('thumbnails-count'));
+    }
 
     // loadThumbnail 값이 지정되면 그 값에 따라 작동하고, 지정되지 않으면 자동으로 지정한다
     async getImage(pageIdx, loadThumbnail) {
-        console.log(`pageIdx: ${pageIdx}, thumbnailCount: ${this.thumbnailsCount}`);
+        console.log(`pageIdx: ${pageIdx}, thumbnailCount: ${this.getThumbnailsCount()}`);
 
         if(loadThumbnail === undefined) {
             if(pageIdx == 0) // 0페이지의 경우 썸네일을 못 불러올 가능성이 더 높다
                 loadThumbnail = true;
-            else if(pageIdx * 21 + 21 <= this.thumbnailsCount)
+            else if(pageIdx * 21 + 21 <= this.getThumbnailsCount())
                 loadThumbnail = false;
             else if(pageIdx == this.lastPage)
                 loadThumbnail = false;
@@ -42,7 +44,7 @@ class ThumbnailCacher {
         let isValid = true;
 
         for(const k of res) {
-            if(!k.src && !(k.id in this.thumbnails)) {
+            if(!k.src && !this.exists(k.id)/*!(k.id in this.thumbnails)*/) {
                 isValid = false;
                 break;
             }
@@ -63,8 +65,8 @@ class ThumbnailCacher {
 
     async cacheThumbnails(data) {
         for(const k of data) {
-            if(!(k.id in this.thumbnails))
-                this.thumbnailsCount++;
+            // if(!(k.id in this.thumbnails))
+            //     this.thumbnailsCount++;
 
             //this.thumbnails[k.id] = k.src;
             this.store(k.id, k.src);
@@ -72,42 +74,49 @@ class ThumbnailCacher {
     }
 
     async store(id, src) {
-        this.thumbnails[id] = src;
+        if(await this.storeToStorage(id, src))
+            return;
 
-        //this.storeToStorage(); // 이거 await 안해도 되지 않을까? 안하는게 더 빠를거같은데
+        if(id in this.thumbnails)
+            return;
+
+        this.thumbnails[id] = src;
+        this.thumbnailsCount++;
     }
     async load(id) {
-        // if(!this.localStorageLoaded) {
-        //     await this.loadFromStorage();
-        //     this.localStorageLoaded = true;
-        // }
+        let res = await this.loadFromStorage(id);
+
+        if(res)
+            return res;
 
         return this.thumbnails[id];
     }
+    exists(id) {
+        if(`thumbnail-${id}` in localStorage)
+            return true;
+        if(id in this.thumbnails)
+            return true;
 
-    async loadFromStorage() {
-        let data = JSON.parse(localStorage.getItem('thumbnails'));
-
-        if(!data)
-            data = [];
-
-        for(const k of data) {
-            this.thumbnails[k[0]] = k[1];
-        }
-        this.thumbnailsCount = localStorage.getItem('thumbnails-count');
+        return false;
     }
-    async storeToStorage() {
-        if(!this.localStorageLoaded)
-            return;
 
-        let data = [];
+    async storeToStorage(id, src) {
+        let imageCached = localStorage.getItem(`thumbnail-${id}`);
+        if(typeof imageCached == 'string' && imageCached.length > 0)
+            return true;
 
-        for(const id in this.thumbnails) {
-            data.push([id, this.thumbnails[id]]);
-        }
+        localStorage.setItem(`thumbnail-${id}`, src);
         
-        localStorage.setItem('thumbnails', JSON.stringify(data));
-        localStorage.setItem('thumbnails-count', this.thumbnailsCount);
+        let cnt = parseInt(localStorage.getItem('thumbnails-count'));
+        localStorage.setItem('thumbnails-count', cnt+1);
+        return true;
+    }
+    async loadFromStorage(id) {
+        let data = localStorage.getItem(`thumbnail-${id}`);
+        if(typeof data !== 'string' || data.length == 0)
+            return false;
+
+        return data;
     }
 }
 
