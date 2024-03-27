@@ -29,13 +29,15 @@ export default function Mainpage() {
     });
     const navigate = useNavigate();
 
-    const [imageList, setImageList] = useState(Array(21).fill({
+    const defaultImageList = Array(21).fill({
         src: isDarkMode ? defaultImageDark : defaultImage,
         title: '',
         content: '',
         hearts: 0,
         like: false
-    }));
+    });
+
+    const [imageList, setImageList] = useState(defaultImageList);
     const [isLoaded, setLoadedState] = useState(false);
     const [weeklyImage, setWeeklyImage] = useState([{id: 0}, {id: 0}, {id: 0}]);
     const mainpageRef = useRef(null);
@@ -97,6 +99,23 @@ export default function Mainpage() {
         imageManager.unlike(id, setImageList, weeklyImage, setWeeklyImage);
     }
 
+    // refresh 처리 테스트
+    function refresh() {
+        setLoadedState(false);
+        imageManager.clear();
+        setImageList(defaultImageList);
+
+        imageManager.getImageTop(setImageList).then((res) => {
+            if(!res && api.getLastError() == 'Unauthorized') {
+                localStorage.removeItem('refresh-token');
+                localStorage.removeItem('access-token');
+                navigate('/login');
+            }
+            
+            setLoadedState(true);
+        });
+    }
+
     const isMobile = useMediaQuery({query : "(max-width:520px)"}); // 한줄로 뜨는 최대 너비
     const isTablet = useMediaQuery({query : "(max-width:1200px)"}); // 두줄로 뜨는 최대 너비
 
@@ -144,6 +163,7 @@ export default function Mainpage() {
             isMobile && <Slider {...settings} className='weekly'>{weekly}</Slider>
         }
         <div className="mainpage" ref={mainpageRef}>
+            <button onClick={refresh}>새로고침</button>
             {!isMobile && <TitleBox title='주간 몬스터' innerClassName='weekly' titleClassName='mainpage-title'>{weekly}</TitleBox>}
             <TitleBox title='사진관' className='contents' innerClassName='gallery' titleClassName='mainpage-title'>
                 {imageList && imageList.map(({id, src, title, content, hearts, like}, idx) => <ImageView
