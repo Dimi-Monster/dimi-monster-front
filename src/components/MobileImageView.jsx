@@ -26,6 +26,9 @@ export default function MobileImageView(props) {
             setLoadedState(true);
         })
     }, [props]);
+    useEffect(() => { // 새로고침 처리
+        setImageUrl(props.src);
+    }, [props.src]);
 
     useEffect(() => {
         if(contentRef.current.scrollWidth > contentRef.current.clientWidth)
