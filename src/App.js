@@ -18,8 +18,14 @@ function App() {
     setRefresh(refresh + 1);
   }
 
-  return (
+  const mainpage = (
     <PullToRefresh onRefresh={async () => triggerRefresh()}>
+      <Mainpage refresh={refresh}/>
+    </PullToRefresh>
+  )
+
+  return (
+    // <PullToRefresh onRefresh={async () => triggerRefresh()}>
       <BrowserRouter>
         <Routes>
           <Route path='/login' element={<Login/>} />
@@ -28,7 +34,7 @@ function App() {
           <Route path='/redirect/gauth' element={<GAuthRoute/>} />
 
           <Route element={<Layout onRefresh={triggerRefresh}/>}>
-            <Route path='/' element={<Mainpage refresh={refresh}/>} />
+            <Route path='/' element={mainpage} />
             <Route path='/about' element={<About/>} />
             <Route path='/upload' element={<Upload/>} />
           </Route>
@@ -36,7 +42,7 @@ function App() {
           <Route path='/*' element={<NotFound/>} />
         </Routes>
       </BrowserRouter>
-    </PullToRefresh>
+    // </PullToRefresh>
   );
 }
 
