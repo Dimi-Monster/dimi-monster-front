@@ -39,7 +39,7 @@ export default function Header() {
 
     return (
         <header>
-            <Link to='/' className='logo'>
+            <Link to='/' className='logo' onClick={onRootclicked}>
                 {!isMobile && <img src={isDarkMode ? logoDark :logo} className='logo' alt='디미몬스터'/>}
                 {isMobile && <img src={logoMobile} className='logo' alt='디미몬스터'/>}
             </Link>
