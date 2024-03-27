@@ -14,8 +14,12 @@ import PullToRefresh from 'react-simple-pull-to-refresh';
 function App() {
   const [refresh, setRefresh] = useState(0);
 
+  function triggerRefresh() {
+    setRefresh(refresh + 1);
+  }
+
   return (
-    <PullToRefresh onRefresh={async () => setRefresh(refresh + 1)}>
+    <PullToRefresh onRefresh={async () => triggerRefresh()}>
       <BrowserRouter>
         <Routes>
           <Route path='/login' element={<Login/>} />
@@ -23,7 +27,7 @@ function App() {
 
           <Route path='/redirect/gauth' element={<GAuthRoute/>} />
 
-          <Route element={<Layout/>}>
+          <Route element={<Layout onRefresh={triggerRefresh}/>}>
             <Route path='/' element={<Mainpage refresh={refresh}/>} />
             <Route path='/about' element={<About/>} />
             <Route path='/upload' element={<Upload/>} />

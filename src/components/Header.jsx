@@ -11,7 +11,7 @@ import api from '../utils/API';
 
 import { useMediaQuery } from 'react-responsive';
 
-export default function Header() {
+export default function Header(/*{onRefresh}*/) {
     const navigate = useNavigate();
     const isMobile = useMediaQuery({query : "(max-width:520px)"});
 
