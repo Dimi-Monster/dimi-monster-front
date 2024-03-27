@@ -17,7 +17,7 @@ import defaultImage from '../images/default-image.svg';
 import defaultImageDark from '../images/default-image-dark.svg';
 import MobileImageView from "../components/MobileImageView";
 
-export default function Mainpage() {
+export default function Mainpage(props) {
     let [isDarkMode, setIsDarkMode] = useState(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
     // update isDarkMode when the system changes the theme
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
@@ -29,15 +29,18 @@ export default function Mainpage() {
     });
     const navigate = useNavigate();
 
-    const [imageList, setImageList] = useState(Array(21).fill({
+    const defaultImageList = Array(21).fill({
         src: isDarkMode ? defaultImageDark : defaultImage,
         title: '',
         content: '',
         hearts: 0,
         like: false
-    }));
+    });
+    const defaultWeeklyImageList = [{id: false}, {id: false}, {id: false}];
+
+    const [imageList, setImageList] = useState(defaultImageList);
     const [isLoaded, setLoadedState] = useState(false);
-    const [weeklyImage, setWeeklyImage] = useState([{id: 0}, {id: 0}, {id: 0}]);
+    const [weeklyImage, setWeeklyImage] = useState(defaultWeeklyImageList);
     const mainpageRef = useRef(null);
     const [isEnd, setEndState] = useState(false);
 
@@ -97,6 +100,35 @@ export default function Mainpage() {
         imageManager.unlike(id, setImageList, weeklyImage, setWeeklyImage);
     }
 
+    // refresh 처리 테스트
+    function refresh() {
+        setLoadedState(false);
+        imageManager.clear();
+        setImageList(defaultImageList);
+        setWeeklyImage(defaultWeeklyImageList);
+
+        api.getWeeklyImage().then((data) => {
+            setWeeklyImage(data);
+        });
+
+        imageManager.getImageTop(setImageList).then((res) => {
+            if(!res && api.getLastError() == 'Unauthorized') {
+                localStorage.removeItem('refresh-token');
+                localStorage.removeItem('access-token');
+                navigate('/login');
+            }
+            
+            setLoadedState(true);
+        });
+    }
+
+    useEffect(() => {
+        if(props.refresh == 0)
+            return;
+
+        refresh();
+    }, [props.refresh]);
+
     const isMobile = useMediaQuery({query : "(max-width:520px)"}); // 한줄로 뜨는 최대 너비
     const isTablet = useMediaQuery({query : "(max-width:1200px)"}); // 두줄로 뜨는 최대 너비
 
@@ -144,6 +176,7 @@ export default function Mainpage() {
             isMobile && <Slider {...settings} className='weekly'>{weekly}</Slider>
         }
         <div className="mainpage" ref={mainpageRef}>
+            {/* <button onClick={refresh}>새로고침</button> */}
             {!isMobile && <TitleBox title='주간 몬스터' innerClassName='weekly' titleClassName='mainpage-title'>{weekly}</TitleBox>}
             <TitleBox title='사진관' className='contents' innerClassName='gallery' titleClassName='mainpage-title'>
                 {imageList && imageList.map(({id, src, title, content, hearts, like}, idx) => <ImageView
