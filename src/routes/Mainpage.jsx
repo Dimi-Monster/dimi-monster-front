@@ -176,7 +176,7 @@ export default function Mainpage(props) {
             isMobile && <Slider {...settings} className='weekly'>{weekly}</Slider>
         }
         <div className="mainpage" ref={mainpageRef}>
-            <button onClick={refresh}>새로고침</button>
+            {/* <button onClick={refresh}>새로고침</button> */}
             {!isMobile && <TitleBox title='주간 몬스터' innerClassName='weekly' titleClassName='mainpage-title'>{weekly}</TitleBox>}
             <TitleBox title='사진관' className='contents' innerClassName='gallery' titleClassName='mainpage-title'>
                 {imageList && imageList.map(({id, src, title, content, hearts, like}, idx) => <ImageView
