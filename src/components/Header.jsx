@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './Header.css';
 
-import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { NavLink, Link, useNavigate, useLocation } from 'react-router-dom';
 
 import logo from '../images/logo.svg';
 import logoDark from '../images/logo-dark.svg';
@@ -14,6 +14,7 @@ import { useMediaQuery } from 'react-responsive';
 export default function Header() {
     const navigate = useNavigate();
     const isMobile = useMediaQuery({query : "(max-width:520px)"});
+    const location = useLocation();
 
     useEffect(() => {
         if(localStorage.getItem('refresh-token') === null)
@@ -30,6 +31,12 @@ export default function Header() {
         }
     });
 
+    function onRootClicked() {
+        if(location.pathname == '/') {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    }
+
     return (
         <header>
             <Link to='/' className='logo'>
@@ -37,7 +44,8 @@ export default function Header() {
                 {isMobile && <img src={logoMobile} className='logo' alt='디미몬스터'/>}
             </Link>
 
-            <NavLink to='/' className="navlink" style={({isActive}) => ({color:isActive ? '#DD0D75' : isDarkMode ? 'white': 'black'})}>메인</NavLink>
+            <NavLink to='/' className="navlink" style={({isActive}) => ({color:isActive ? '#DD0D75' : isDarkMode ? 'white': 'black'})}
+                onClick={onRootClicked}>메인</NavLink>
             <NavLink to='/about' className="navlink" style={({isActive}) => ({color:isActive ? '#DD0D75' : isDarkMode ? 'white': 'black'})}>소개</NavLink>
             <NavLink to='/upload' className="navlink" style={({isActive}) => ({color:isActive ? '#DD0D75' : isDarkMode ? 'white': 'black'})}>업로드</NavLink>
 
