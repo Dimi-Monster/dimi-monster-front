@@ -10,9 +10,11 @@ const ImageView = forwardRef(function (props, forwardedRef) {
 
     function onImageClicked() {
         setPreviewState(true);
+        props.setHeaderVisibility(false);
     }
     function onPreviewFinished() {
         setPreviewState(false);
+        props.setHeaderVisibility(true);
     }
 
     function onLikeClicked() {

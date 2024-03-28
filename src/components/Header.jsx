@@ -11,7 +11,7 @@ import api from '../utils/API';
 
 import { useMediaQuery } from 'react-responsive';
 
-export default function Header({onRefresh}) {
+export default function Header({onRefresh, isVisible}) {
     const navigate = useNavigate();
     const isMobile = useMediaQuery({query : "(max-width:520px)"});
     const location = useLocation();
@@ -40,6 +40,9 @@ export default function Header({onRefresh}) {
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
     }
+
+    if(!isVisible)
+        return <></>;
 
     return (
         <header>
