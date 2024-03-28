@@ -14,13 +14,15 @@ import PullToRefresh from 'react-simple-pull-to-refresh';
 function App() {
   const [refresh, setRefresh] = useState(0);
 
+  const [headerVisibility, setHeaderVisibility] = useState(true);
+
   function triggerRefresh() {
     setRefresh(refresh + 1);
   }
 
   const mainpage = (
     <PullToRefresh onRefresh={async () => triggerRefresh()}>
-      <Mainpage refresh={refresh}/>
+      <Mainpage refresh={refresh} setHeaderVisibility={setHeaderVisibility}/>
     </PullToRefresh>
   )
 
@@ -33,7 +35,7 @@ function App() {
 
           <Route path='/redirect/gauth' element={<GAuthRoute/>} />
 
-          <Route element={<Layout onRefresh={triggerRefresh}/>}>
+          <Route element={<Layout onRefresh={triggerRefresh} isVisible={headerVisibility}/>}>
             <Route path='/' element={mainpage} />
             <Route path='/about' element={<About/>} />
             <Route path='/upload' element={<Upload/>} />

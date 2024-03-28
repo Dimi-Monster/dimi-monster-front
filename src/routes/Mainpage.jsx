@@ -150,7 +150,8 @@ export default function Mainpage(props) {
         hearts={hearts}
         like={like}
         onLike={onLike}
-        onUnlike={onUnlike} /> :
+        onUnlike={onUnlike}
+        setHeaderVisibility={props.setHeaderVisibility} /> :
     <NowImageView 
         big={true}
         src={isDarkMode ? defaultImageDark : defaultImage} 
@@ -159,7 +160,8 @@ export default function Mainpage(props) {
         hearts={0}
         like={false}
         onLike={onLike}
-        onUnlike={onUnlike} />));
+        onUnlike={onUnlike}
+        setHeaderVisibility={props.setHeaderVisibility} />));
 
     const settings = {
         dots: true,
@@ -189,7 +191,8 @@ export default function Mainpage(props) {
                     like={like}
                     onLike={onLike}
                     onUnlike={onUnlike} 
-                    ref={idx == imageList.length-6 ? ref : undefined} />)}
+                    ref={idx == imageList.length-6 ? ref : undefined}
+                    setHeaderVisibility={props.setHeaderVisibility} />)}
             </TitleBox>
             <div /*ref={ref}*/ style={{marginTop: '1rem'}}>
                 {!isEnd && <img src={isDarkMode ? loadingImg_2Dark : loadingImg_2} style={{height: '2.5rem'}} alt='로딩 이미지'/>}
