@@ -21,7 +21,7 @@ function App() {
   }
 
   const mainpage = (
-    <PullToRefresh onRefresh={async () => triggerRefresh()} pullingContent=''>
+    <PullToRefresh onRefresh={async () => triggerRefresh()} pullingContent='' resistance={5}>
       <Mainpage refresh={refresh} setHeaderVisibility={setHeaderVisibility}/>
     </PullToRefresh>
   )
