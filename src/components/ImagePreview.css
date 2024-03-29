@@ -1,75 +1,3 @@
-@keyframes move {
-    /* keyframe */
-    from {
-        left: 0;
-    }
-    /* keyframe */
-    to {
-        left: 100%;
-    }
-}
-/* 테스트 중 ... */
-.animated {
-    position: relative;
-    white-space: nowrap;
-    /* max-width: 200px; */
-    overflow: hidden;
-    /* background: #0c0c0c; */
-    display: inline-block;
-    width: fit-content;
-    position: relative;
-}
-
-.text-animated {
-    /* color: #fff; */
-    animation: backAndForth 5s linear infinite;
-    display: inline-block;
-    position: relative;
-    /* min-width: 100%; */
-
-    /* -webkit-backface-visibility: hidden;
-    will-change: transform; */
-}
-
-@keyframes backAndForth {
-    0% {
-        transform: translateX(0);
-        -webkit-transform: translate3d(0, 0, 0);
-        left: 0;
-    }
-    10% {
-        transform: translateX(0);
-        -webkit-transform: translate3d(0, 0, 0);
-        left: 0;
-    }
-    49% {
-        transform: translateX(calc(-100%));
-        -webkit-transform: translate3d(calc(-100%), 0, 0);
-        /* left: 100%; */
-    }
-    49.5% {
-        transform: translate(calc(-100%), calc(100%));
-    }
-    50.5% {
-        transform: translate(calc(100%), calc(100%));
-    }
-    51% {
-        transform: translateX(calc(100%));
-        -webkit-transform: translate3d(calc(100%), 0, 0);
-        /* left: 100%; */
-    }
-    90% {
-        transform: translateX(0);
-        -webkit-transform: translate3d(0, 0, 0);
-        left: 0;
-    }
-    100% {
-        transform: translateX(0);
-        -webkit-transform: translate3d(0, 0, 0);
-        left: 0;
-    }
-}
-
 .image-preview-box {
     display: flex;
     flex-direction: row;
@@ -261,5 +189,5 @@
     position: absolute;
     top: calc(var(--width-1percent) * 6);
     left: calc(var(--width-1percent) * 6);
-    width: calc(var(--width-1percent) * 3);
+    width: calc(var(--width-1percent) * 2);
 }

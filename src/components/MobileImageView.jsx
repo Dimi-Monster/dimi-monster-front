@@ -2,6 +2,7 @@
 
 import React, {useState, useEffect, useRef} from "react";
 import "./MobileImageView.css";
+import "./animation.css";
 import imageManager from "../utils/ImageManager";
 
 import heart from '../images/heart.svg';

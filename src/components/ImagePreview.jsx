@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import "./ImagePreview.css";
+import "./animation.css";
 import x from '../images/x.svg';
 import imageManager from "../utils/ImageManager";
 
