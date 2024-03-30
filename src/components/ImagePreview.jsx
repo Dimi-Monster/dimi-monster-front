@@ -4,11 +4,13 @@ import "./animation.css";
 import x from '../images/x.svg';
 import imageManager from "../utils/ImageManager";
 
-import heart from '../images/heart.svg';
-import heartDisabled from '../images/heart-disabled.svg';
+//import heart from '../images/heart.svg';
+//import heartDisabled from '../images/heart-disabled.svg';
 
 import loadingCircle from '../images/loading-png.png';
 import BottomBar from "./BottomBar";
+
+import dimibug from '../images/dimibug.svg';
 
 export default function ImagePreview(props) {
 
@@ -50,9 +52,9 @@ export default function ImagePreview(props) {
                 <BottomBar 
                     title={props.title}
                     content={props.content}
-                    src={props.like ? heart : heartDisabled}
-                    buttonTitle={`+${props.hearts}`}
-                    onClick={props.onLikeClicked} />
+                    src={dimibug}
+                    buttonTitle={`신고`}
+                    onClick={props.onClick} />
 
                 <button className='close' onClick={onClose}>
                     <img src={x} alt='종료 버튼'/>

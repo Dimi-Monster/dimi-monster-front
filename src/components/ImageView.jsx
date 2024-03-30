@@ -24,6 +24,10 @@ const ImageView = forwardRef(function (props, forwardedRef) {
             props.onLike(props.id);
     }
 
+    function onReportClicked() {
+        alert('신고 버튼이 클릭되었습니다.')
+    }
+
     return (
         <div className={props.big ? 'imageview-big' : 'imageview'} ref={forwardedRef}>
             <button className='thumbnail' onClick={onImageClicked}>
@@ -53,7 +57,7 @@ const ImageView = forwardRef(function (props, forwardedRef) {
                 src={props.src} /* 썸네일 이미지 */
                 like={props.like}
                 hearts={props.hearts}
-                onLikeClicked={onLikeClicked}
+                onClick={onReportClicked}
                 />}
         </div>
     )
