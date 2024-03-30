@@ -56,6 +56,11 @@ export default function Header({onRefresh, isVisible}) {
             <NavLink to='/about' className="navlink" style={({isActive}) => ({color:isActive ? '#DD0D75' : isDarkMode ? 'white': 'black'})}>소개</NavLink>
             <NavLink to='/upload' className="navlink" style={({isActive}) => ({color:isActive ? '#DD0D75' : isDarkMode ? 'white': 'black'})}>업로드</NavLink>
 
+            {location.pathname == '/report' && <NavLink 
+                to='/report' className="navlink" style={({isActive}) => ({color:isActive ? '#DD0D75' : isDarkMode ? 'white': 'black'})}>
+                신고
+            </NavLink>}
+
             <div className="margin"></div>
 
             <button className='header-right' onClick={logout}>
