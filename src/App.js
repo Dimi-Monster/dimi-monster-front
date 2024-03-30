@@ -9,6 +9,7 @@ import About from './routes/About';
 import GAuthRoute from './routes/GAuthRoute';
 import Upload from './routes/Upload';
 import Banned from './routes/Banned';
+import Introduce from './routes/Introduce';
 import PullToRefresh from 'react-simple-pull-to-refresh';
 
 function App() {
@@ -40,6 +41,8 @@ function App() {
             <Route path='/about' element={<About/>} />
             <Route path='/upload' element={<Upload/>} />
           </Route>
+
+          <Route path='/introduce' element={<Introduce/>} />
 
           <Route path='/*' element={<NotFound/>} />
         </Routes>
