@@ -1,3 +1,103 @@
-.introduce {
+.introduce-box {
+    --dimi-magenta: #DD0D75;
+    --dark-gray: #333333;
+    --light-dimi-magenta: #E0BFD0;
+    --lighter-dimi-magenta: #F3D8E5;
+    --semi-light-dimi-magenta: #D9A2BE;
+
     background-color: #121212;
+
+    color: white;
+
+    --margin: calc((100% - 70rem) / 2);
+    --inner-margin: calc((100% - 65rem) / 2);
+}
+
+.introduce-box .logo {
+    height: 2rem;
+}
+
+.placeholder {
+    flex-grow: 1;
+}
+
+.introduce-box button, a {
+    border: 1px solid var(--dark-gray);
+    background-color: var(--dimi-magenta);
+    border-radius: 0.6rem;
+
+    box-sizing: border-box;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+
+    text-decoration: none;
+    color: white;
+    font-size: 0.8rem;
+}
+.introduce-box h1 {
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text; /* for chrome */
+    background-image: linear-gradient(180deg,white,var(--lighter-dimi-magenta));
+
+    font-size: 4.5rem;
+    font-family: 'Pretendard-ExtraBold';
+
+    position: relative;
+    z-index: 1;
+}
+.introduce-box h3 {
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text; /* for chrome */
+    background-image: linear-gradient(180deg,var(--light-dimi-magenta),var(--semi-light-dimi-magenta));
+
+    font-size: 1rem;
+    font-family: 'Pretendard-SemiBold';
+    line-height: 1.2rem;
+}
+
+.introduce-box > .introduce-header {
+    display: flex;
+    flex-direction: row;
+    
+    margin-left: var(--margin);
+    margin-right: var(--margin);
+
+    align-items: center;
+
+    box-sizing: border-box;
+    height: 4rem;
+    padding-top: 1rem;
+}
+
+.introduce-box > .content-1 {
+    box-sizing: border-box;
+    height: calc(100vh - 4rem);
+
+    padding-top: 23vh;
+    padding-left: var(--inner-margin);
+    padding-right: var(--inner-margin);
+}
+
+.introduce-box .subject-box {
+    position: relative;
+}
+
+.introduce-box .underline {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+
+    position: absolute;
+    bottom: 0;
+    left: 12.5rem;
+}
+.introduce-box .underline > div {
+    width: 17rem;
+    height: 1rem;
+    background-color: var(--dimi-magenta);
+    transform: rotate(-1deg); /* 361도 */
 }
