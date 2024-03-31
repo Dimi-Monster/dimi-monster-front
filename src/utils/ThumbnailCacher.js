@@ -69,11 +69,16 @@ class ThumbnailCacher {
         }
     }
 
+    // 추후 스펙 변경에 대비하기 위해 async로 처리
     async store(id, src) {
         this.thumbnails[id] = src;
     }
     async load(id) {
         return this.thumbnails[id];
+    }
+
+    async exists(id) {
+        return id in this.thumbnails;
     }
 }
 

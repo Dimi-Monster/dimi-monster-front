@@ -1,19 +1,16 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import './Report.css';
 import logo from '../images/logo.svg';
 import logoDark from '../images/logo-dark.svg';
 import defaultImage from '../images/default-image.svg';
 import defaultImageDark from '../images/default-image-dark.svg';
 import TitleBox from "../components/TitleBox";
-import CropView from "../components/CropView";
-import imageCompression from "browser-image-compression";
-import api from "../utils/API";
+//import api from "../utils/API";
 import Button from "../components/Button";
 import dimibug from '../images/dimibug.svg';
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 
 export default function Report() {
-    const [imageSrc, setImageSrc] = useState(defaultImage);
     const [reason, setReason] = useState('');
     const [explanation, setExplanation] = useState('');
 
@@ -21,7 +18,7 @@ export default function Report() {
 
     const [uploadingState, setUplodingState] = useState(false);
 
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
 
     useEffect(() => {
         const script = document.createElement("script");
@@ -32,19 +29,19 @@ export default function Report() {
         document.body.appendChild(script);
     }, []);
     let [isDarkMode, setIsDarkMode] = useState(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    const [croppedImageSrc, setCroppedImageSrc] = useState(isDarkMode ? defaultImageDark : defaultImage);
+    const [croppedImageSrc, /*setCroppedImageSrc*/] = useState(isDarkMode ? defaultImageDark : defaultImage);
     // update isDarkMode when the system changes the theme
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
         if (e.matches) {
             setIsDarkMode(true);
-            if (croppedImageSrc === defaultImage){
-                setCroppedImageSrc(defaultImageDark);
-            }
+            // if (croppedImageSrc === defaultImage){
+            //     setCroppedImageSrc(defaultImageDark);
+            // }
         } else {
             setIsDarkMode(false);
-            if (croppedImageSrc === defaultImageDark){
-                setCroppedImageSrc(defaultImage);
-            }
+            // if (croppedImageSrc === defaultImageDark){
+            //     setCroppedImageSrc(defaultImage);
+            // }
         }
     });
 
@@ -57,8 +54,8 @@ export default function Report() {
                 </div>
 
                 <div className='contents'>
-                    <button className='contents-left' onClick={selectFile}>
-                        <img src={croppedImageSrc} ref={image} className='image' alt='신고할 몬스터 사진'/>
+                    <button className='contents-left'>
+                        <img src={croppedImageSrc} className='image' alt='신고할 몬스터 사진'/>
                         {/* <div>이미지 선택하기</div> */}
                     </button>
                     <div className='contents-right'>
@@ -71,7 +68,7 @@ export default function Report() {
                     </div>
                 </div>
 
-                <form onSubmit={(e) => onUpload(e)}>
+                <form onSubmit={onReport}>
                     <div className="g-recaptcha" data-sitekey={process.env.REACT_APP_RECAPTCHA_SITEKEY} data-action="image_upload" 
                         data-theme={isDarkMode ? 'dark' : undefined}></div>
                     <Button title={buttonTitle} imgSrc={dimibug} color='default' height='1.2rem' type='submit'/>
@@ -91,16 +88,11 @@ export default function Report() {
             setExplanation(e.target.value);
     }
 
-    function onUpload(event) {
+    function onReport(event) {
         event.preventDefault();
 
         if(uploadingState)
             return;
-
-        if(!imageSelected) {
-            alert('업로드할 이미지를 선택해주세요.');
-            return;
-        }
         
         let token = event.target[0].value;
         console.log(token);
@@ -113,23 +105,23 @@ export default function Report() {
         setUplodingState(true);
         setButtonTitle('신고 중...');
 
-        api.uploadImage({
-            img: imageBlob,
-            location: locationName,
-            description: explanation,
-            token: token
-        })
-        .then(isSuccess => {
-            setUplodingState(false);
-            setButtonTitle('신고하기');
+        // api.uploadImage({
+        //     img: imageBlob,
+        //     location: locationName,
+        //     description: explanation,
+        //     token: token
+        // })
+        // .then(isSuccess => {
+        //     setUplodingState(false);
+        //     setButtonTitle('신고하기');
 
-            if(!isSuccess) {
-                alert('업로드에 실패했습니다.');
-            }
-            else
-                alert('업로드에 성공했습니다.');
+        //     if(!isSuccess) {
+        //         alert('업로드에 실패했습니다.');
+        //     }
+        //     else
+        //         alert('업로드에 성공했습니다.');
 
-            navigate('/');
-        })
+        //     navigate('/');
+        // })
     }
 }
