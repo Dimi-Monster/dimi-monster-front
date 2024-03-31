@@ -8,7 +8,9 @@ import TitleBox from "../components/TitleBox";
 //import api from "../utils/API";
 import Button from "../components/Button";
 import dimibug from '../images/dimibug.svg';
-//import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+
+import thumbnailCacher from "../utils/ThumbnailCacher";
 
 export default function Report() {
     const [reason, setReason] = useState('');
@@ -18,9 +20,32 @@ export default function Report() {
 
     const [uploadingState, setUplodingState] = useState(false);
 
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
+
+    const [searchParams, /*setSearchParams*/] = useSearchParams();
+
+    let [isDarkMode, setIsDarkMode] = useState(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const [imageSrc, setImageSrc] = useState(isDarkMode ? defaultImageDark : defaultImage);
 
     useEffect(() => {
+        const id = searchParams.get('id');
+
+        if(id === null) {
+            navigate('/');
+            return;
+        }
+
+        thumbnailCacher.exists(id).then(exists => {
+            if(!exists) {
+                navigate('/');
+                return;
+            }
+
+            return thumbnailCacher.load(id);
+        }).then(img => {
+            setImageSrc(img);
+        })
+        
         const script = document.createElement("script");
 
         script.src = "https://www.google.com/recaptcha/enterprise.js";
@@ -28,8 +53,6 @@ export default function Report() {
     
         document.body.appendChild(script);
     }, []);
-    let [isDarkMode, setIsDarkMode] = useState(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    const [croppedImageSrc, /*setCroppedImageSrc*/] = useState(isDarkMode ? defaultImageDark : defaultImage);
     // update isDarkMode when the system changes the theme
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
         if (e.matches) {
@@ -55,7 +78,7 @@ export default function Report() {
 
                 <div className='contents'>
                     <button className='contents-left'>
-                        <img src={croppedImageSrc} className='image' alt='신고할 몬스터 사진'/>
+                        <img src={imageSrc} className='image' alt='신고할 몬스터 사진'/>
                         {/* <div>이미지 선택하기</div> */}
                     </button>
                     <div className='contents-right'>
@@ -93,6 +116,8 @@ export default function Report() {
 
         if(uploadingState)
             return;
+
+        alert(searchParams.get('id'));
         
         let token = event.target[0].value;
         console.log(token);
