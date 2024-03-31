@@ -13,67 +13,13 @@ import dimibug from '../images/dimibug.svg';
 import { useNavigate } from "react-router-dom";
 
 export default function Report() {
-    const locationList = [
-        "--- 본관 ---",
-
-        // 본관
-        "본관 교무실",
-        "1-1 교실",
-        "1-2 교실",
-        "1-3 교실",
-        "1-4 교실",
-        "1-5 교실",
-        "1-6 교실",
-        "2-1 교실",
-        "2-2 교실",
-        "2-3 교실",
-        "2-4 교실",
-        "2-5 교실",
-        "2-6 교실",
-        "법인사무실",
-
-        "--- 신관 ---",
-    
-        // 신관
-        "신관 교무실",
-        "디미카페",
-        "다목적 학습실",
-        "열람실",
-        "3-1 교실",
-        "3-2 교실",
-        "3-3 교실",
-        "3-4 교실",
-        "3-5 교실",
-        "3-6 교실",
-
-        "--- 기타 장소 ---",
-    
-        // 기타
-        "운동장",
-        "체육관",
-        "실외 공간",
-        "기타 장소",
-    ];
-
-    const inputFile = useRef(null);
-    const image = useRef(null);
-
-    
     const [imageSrc, setImageSrc] = useState(defaultImage);
-    const [imageBlob, setImageBlob] = useState(new Blob());
-
-    const [imageSelected, setImageSelected] = useState(false);
-
-    const [cropState, setCropState] = useState(false);
-
-    const [locationName, /*setLocationName*/] = useState(locationList[0]);
+    const [reason, setReason] = useState('');
     const [explanation, setExplanation] = useState('');
 
-    const [buttonTitle, setButtonTitle] = useState('사진 업로드');
+    const [buttonTitle, setButtonTitle] = useState('신고하기');
 
     const [uploadingState, setUplodingState] = useState(false);
-
-    const [filename, setFilename] = useState('');
 
     const navigate = useNavigate();
 
@@ -102,8 +48,6 @@ export default function Report() {
         }
     });
 
-    //console.log(process.env.REACT_APP_RECAPTCHA_SITEKEY);
-
     return (
         <div className='report-outer-box'>
             <div className='report-inner-box'>
@@ -119,10 +63,7 @@ export default function Report() {
                     </button>
                     <div className='contents-right'>
                         <TitleBox title='신고 사유'>
-                            {/* <select onChange={onLocationChanged} defaultValue={locationList[1]}>
-                                { locationList.map(loc => <option value={loc} disabled={loc.startsWith('-')}>{loc}</option>) }
-                            </select> */}
-                            <input type='text' placeholder="신고 사유를 입력해주세요."/>
+                            <input type='text' placeholder="신고 사유를 입력해주세요." value={reason} onChange={onReasonChanged}/>
                         </TitleBox>
                         <TitleBox title='자세한 설명' className='explain-box' innerStyle={{ display: 'flex', flexGrow: 1 }}>
                             <textarea placeholder='자세한 설명을 입력해주세요.' className='explain' value={explanation} onChange={onExplanationChanged}/>
@@ -136,78 +77,15 @@ export default function Report() {
                     <Button title={buttonTitle} imgSrc={dimibug} color='default' height='1.2rem' type='submit'/>
                 </form>
             </div>
-
-            {cropState ? <CropView image={imageSrc} ratio={1} onFinished={onCropFinished} className="cropview" filename={filename}/> : <div />}
-            <input type="file" id="file" ref={inputFile} style={{ display: "none" }} accept="image/*" onChange={onFileChanged} />
         </div>
     )
 
-    function selectFile() {
-        inputFile.current.click();
+    function onReasonChanged(e) {
+        setReason(e.target.value);
     }
-    function onFileChanged(event) {
-        async function f() {
-            let fileObj = event.target.files[0];
-            let filename = fileObj.name;
-            setFilename(filename);
-
-            let compressedFile = await imageCompression(fileObj, {
-                // maxSizeMB: 1,
-                maxWidthOrHeight: 2048,
-                fileType: 'image/jpeg'
-            });
-
-            let fileUrl = window.URL.createObjectURL(compressedFile);
-
-            setImageSrc(fileUrl);
-            setCroppedImageSrc(fileUrl); // 테스트
-
-            setCropState(true);
-            setImageSelected(true);
-        }
-        f();
-    }
-
-    async function convertURLtoFile(url) {
-        const response = await fetch(url);
-        const data = await response.blob();
-        const ext = url.split(".").pop(); // url 구조에 맞게 수정할 것
-        const filename = url.split("/").pop(); // url 구조에 맞게 수정할 것
-        const metadata = { type: `image/${ext}` };
-        return new File([data], filename, metadata);
-    }
-
-    function onCropFinished(imgUrl) {
-        async function f() {
-            let file = await convertURLtoFile(imgUrl);
-            let compressedFile = await imageCompression(file, {
-                maxSizeMB: 1,
-                maxWidthOrHeight: 1024,
-                fileType: 'image/jpeg'
-            });
-
-
-            // Blob으로 이미지 파일 생성
-            const blob = new Blob([compressedFile], { type: 'image/jpeg' });
-
-            // Blob을 URL로 변환
-            const compressedUrl = URL.createObjectURL(blob);
-            //console.log(compressedUrl);
-
-            setCroppedImageSrc(compressedUrl);
-            setImageBlob(blob);
-
-            setCropState(false);
-        }
-        f();
-    }
-
-    // function onLocationChanged(e) {
-    //     setLocationName(e.target.value);
-    // }
     
     function onExplanationChanged(e) {
-        if(e.target.value.length > 30)
+        if(e.target.value.length > 200)
             alert('설명이 너무 길어요.');
         else
             setExplanation(e.target.value);
@@ -233,7 +111,7 @@ export default function Report() {
         }
 
         setUplodingState(true);
-        setButtonTitle('업로드 중...');
+        setButtonTitle('신고 중...');
 
         api.uploadImage({
             img: imageBlob,
@@ -243,7 +121,7 @@ export default function Report() {
         })
         .then(isSuccess => {
             setUplodingState(false);
-            setButtonTitle('사진 업로드');
+            setButtonTitle('신고하기');
 
             if(!isSuccess) {
                 alert('업로드에 실패했습니다.');
