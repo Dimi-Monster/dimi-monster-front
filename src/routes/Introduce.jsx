@@ -8,6 +8,7 @@ import { useMediaQuery } from 'react-responsive';
 import { Link } from "react-router-dom";
 
 import dimibug from '../images/dimibug.svg';
+import downArrow from '../images/down-arrow.svg';
 
 export default function Introduce() {
     const isMobile = useMediaQuery({query : "(max-width:520px)"});
@@ -49,6 +50,9 @@ export default function Introduce() {
                     디미몬스터와 함께라면<br/>평범했던 일상을 361도 휙.
                 </h3>
 
+                <div style={{flexGrow: 1}}/>
+
+                <img src={downArrow} style={{height: '0.5rem'}} className='down-arrow'/>
             </div>
         </div>
     )

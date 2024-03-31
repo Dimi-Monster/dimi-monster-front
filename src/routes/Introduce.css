@@ -44,6 +44,7 @@
 
     font-size: 4.5rem;
     font-family: 'Pretendard-ExtraBold';
+    line-height: 5rem;
 
     position: relative;
     z-index: 1;
@@ -80,6 +81,9 @@
     padding-top: 23vh;
     padding-left: var(--inner-margin);
     padding-right: var(--inner-margin);
+
+    display: flex;
+    flex-direction: column;
 }
 
 .introduce-box .subject-box {
@@ -100,4 +104,8 @@
     height: 1rem;
     background-color: var(--dimi-magenta);
     transform: rotate(-1deg); /* 361도 */
+}
+
+.introduce-box .down-arrow {
+    margin-bottom: 1rem;
 }
