@@ -4,6 +4,7 @@
     --light-dimi-magenta: #E0BFD0;
     --lighter-dimi-magenta: #F3D8E5;
     --semi-light-dimi-magenta: #D9A2BE;
+    --gray: #86868B;
 
     background-color: #121212;
 
@@ -11,6 +12,8 @@
 
     --margin: calc((100% - 70rem) / 2);
     --inner-margin: calc((100% - 65rem) / 2);
+
+    overflow: hidden;
 }
 
 .introduce-box .logo {
@@ -48,6 +51,19 @@
 
     position: relative;
     z-index: 1;
+}
+.introduce-box h2 {
+    font-size: 2rem;
+    font-family: 'Pretendard-ExtraBold';
+    line-height: 2.4rem;
+
+    color: var(--gray);
+}
+.introduce-box em {
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text; /* for chrome */
+    background-image: linear-gradient(180deg,white,var(--lighter-dimi-magenta));
 }
 .introduce-box h3 {
     color: transparent;
@@ -108,4 +124,49 @@
 
 .introduce-box .down-arrow {
     margin-bottom: 1rem;
+}
+
+
+
+
+
+
+
+.introduce-box > .content-2 {
+    box-sizing: border-box;
+    height: calc(100vh);
+
+    padding-top: 15vh;
+    /* padding-left: var(--margin);
+    padding-right: var(--margin); */
+
+    display: flex;
+    flex-direction: column;
+
+    overflow-y: hidden;
+}
+.introduce-box > .content-2 > h2 {
+    padding-left: var(--margin);
+    margin-bottom: 2rem;
+}
+
+.introduce-box > .content-2 > .monsters-image {
+    width: 120vw;
+}
+
+.introduce-box > .content-3 {
+    box-sizing: border-box;
+    height: calc(100vh);
+
+    display: flex;
+    flex-direction: column;
+
+    padding-top: 10vh;
+}
+
+.introduce-box > .content-3 > .yourturn {
+    text-align: center;
+    font-size: 3rem;
+    font-family: 'Pretendard-Bold';
+    line-height: 3.6rem;
 }

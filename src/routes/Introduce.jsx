@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 
 import dimibug from '../images/dimibug.svg';
 import downArrow from '../images/down-arrow.svg';
+import monsters from '../images/monsters.png';
 
 export default function Introduce() {
     const isMobile = useMediaQuery({query : "(max-width:520px)"});
@@ -53,6 +54,25 @@ export default function Introduce() {
                 <div style={{flexGrow: 1}}/>
 
                 <img src={downArrow} style={{height: '0.5rem'}} className='down-arrow'/>
+            </div>
+
+            <div style={{height: '4rem'}}/>
+
+            <div className='content-2'>
+                <h2>
+                    평범한 삶에<br/><em>디미몬스터 한 방울.</em>
+                </h2>
+
+                <img class='monsters-image' src={monsters}/>
+            </div>
+
+            <div style={{height: '4rem'}}/>
+
+            <div className='content-3'>
+                <div className='yourturn'>
+                    <img src={logoDark} style={{height: '2rem'}}/> <br/>
+                    <em>이젠, 당신의 차례.</em>
+                </div>
             </div>
         </div>
     )
