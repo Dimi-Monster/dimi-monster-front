@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import './Upload.css';
+import './Report.css';
 import logo from '../images/logo.svg';
 import logoDark from '../images/logo-dark.svg';
 import defaultImage from '../images/default-image.svg';
@@ -66,7 +66,7 @@ export default function Report() {
 
     const [cropState, setCropState] = useState(false);
 
-    const [locationName, setLocationName] = useState(locationList[0]);
+    const [locationName, /*setLocationName*/] = useState(locationList[0]);
     const [explanation, setExplanation] = useState('');
 
     const [buttonTitle, setButtonTitle] = useState('사진 업로드');
@@ -105,8 +105,8 @@ export default function Report() {
     //console.log(process.env.REACT_APP_RECAPTCHA_SITEKEY);
 
     return (
-        <div className='upload-outer-box'>
-            <div className='upload-inner-box'>
+        <div className='report-outer-box'>
+            <div className='report-inner-box'>
                 <div className='title'>
                     <img src={isDarkMode ? logoDark : logo} className='logo' alt='디미몬스터 로고'/>
                     <div>신고</div>
@@ -119,12 +119,13 @@ export default function Report() {
                     </button>
                     <div className='contents-right'>
                         <TitleBox title='신고 사유'>
-                            <select onChange={onLocationChanged} defaultValue={locationList[1]}>
+                            {/* <select onChange={onLocationChanged} defaultValue={locationList[1]}>
                                 { locationList.map(loc => <option value={loc} disabled={loc.startsWith('-')}>{loc}</option>) }
-                            </select>
+                            </select> */}
+                            <input type='text' placeholder="신고 사유를 입력해주세요."/>
                         </TitleBox>
                         <TitleBox title='자세한 설명' className='explain-box' innerStyle={{ display: 'flex', flexGrow: 1 }}>
-                            <textarea placeholder='신고 사유를 입력해주세요.' className='explain' value={explanation} onChange={onExplanationChanged}/>
+                            <textarea placeholder='자세한 설명을 입력해주세요.' className='explain' value={explanation} onChange={onExplanationChanged}/>
                         </TitleBox>
                     </div>
                 </div>
@@ -201,9 +202,9 @@ export default function Report() {
         f();
     }
 
-    function onLocationChanged(e) {
-        setLocationName(e.target.value);
-    }
+    // function onLocationChanged(e) {
+    //     setLocationName(e.target.value);
+    // }
     
     function onExplanationChanged(e) {
         if(e.target.value.length > 30)

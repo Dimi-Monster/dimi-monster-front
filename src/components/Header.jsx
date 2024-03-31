@@ -57,7 +57,7 @@ export default function Header({onRefresh, isVisible}) {
             <NavLink to='/upload' className="navlink" style={({isActive}) => ({color:isActive ? '#DD0D75' : isDarkMode ? 'white': 'black'})}>업로드</NavLink>
 
             {location.pathname == '/report' && <NavLink 
-                to='/report' className="navlink" style={({isActive}) => ({color:isActive ? '#DD0D75' : isDarkMode ? 'white': 'black'})}>
+                to={`/report${location.search}`} className="navlink" style={({isActive}) => ({color:isActive ? '#DD0D75' : isDarkMode ? 'white': 'black'})}>
                 신고
             </NavLink>}
 

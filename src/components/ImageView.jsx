@@ -1,4 +1,5 @@
 import React, { forwardRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './ImageView.css';
 import './ImageViewBig.css';
 import heart from '../images/heart.svg';
@@ -7,6 +8,7 @@ import ImagePreview from './ImagePreview';
 
 const ImageView = forwardRef(function (props, forwardedRef) {
     const [previewState, setPreviewState] = useState(false);
+    const navigate = useNavigate();
 
     function onImageClicked() {
         setPreviewState(true);
@@ -25,7 +27,10 @@ const ImageView = forwardRef(function (props, forwardedRef) {
     }
 
     function onReportClicked() {
-        alert('신고 버튼이 클릭되었습니다.')
+        // 이거 안 하면 헤더 없어짐
+        props.setHeaderVisibility(true);
+
+        navigate(`/report?id=${props.id}`);
     }
 
     return (
