@@ -114,17 +114,17 @@ export default function Report() {
 
                 <div className='contents'>
                     <button className='contents-left' onClick={selectFile}>
-                        <img src={croppedImageSrc} ref={image} className='image' alt='업로드할 몬스터 사진'/>
-                        <div>이미지 선택하기</div>
+                        <img src={croppedImageSrc} ref={image} className='image' alt='신고할 몬스터 사진'/>
+                        {/* <div>이미지 선택하기</div> */}
                     </button>
                     <div className='contents-right'>
-                        <TitleBox title='장소'>
+                        <TitleBox title='신고 사유'>
                             <select onChange={onLocationChanged} defaultValue={locationList[1]}>
                                 { locationList.map(loc => <option value={loc} disabled={loc.startsWith('-')}>{loc}</option>) }
                             </select>
                         </TitleBox>
-                        <TitleBox title='간단 설명' className='explain-box' innerStyle={{ display: 'flex', flexGrow: 1 }}>
-                            <textarea placeholder='장소 설명을 입력해주세요. (최대 30자)' className='explain' value={explanation} onChange={onExplanationChanged}/>
+                        <TitleBox title='자세한 설명' className='explain-box' innerStyle={{ display: 'flex', flexGrow: 1 }}>
+                            <textarea placeholder='신고 사유를 입력해주세요.' className='explain' value={explanation} onChange={onExplanationChanged}/>
                         </TitleBox>
                     </div>
                 </div>
