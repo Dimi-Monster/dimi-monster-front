@@ -34,6 +34,12 @@
         --inner-margin: calc((100% - 30rem) / 2);
     }
 }
+@media (max-width: 580px) {
+    .introduce-box {
+        --margin: 1rem;
+        --inner-margin: 2rem;
+    }
+}
 
 .introduce-box .logo {
     height: 2rem;
@@ -140,6 +146,9 @@
     background-color: var(--dimi-magenta);
     transform: rotate(-1deg); /* 361도 */
 }
+.introduce-box .underline > .dimibug {
+    height: 1.9rem;
+}
 
 .introduce-box .down-arrow {
     margin-bottom: 1rem;
@@ -148,12 +157,64 @@
 @media (max-width: 730px) {
     .introduce-box h1 {
         font-size: 4rem;
+        line-height: 4.5rem;
     }
     .introduce-box .underline {
         left: 11.3rem;
     }
     .introduce-box .underline > div {
         width: 15rem;
+    }
+    .introduce-box .underline > .dimibug {
+        height: 1.8rem;
+    }
+}
+@media (max-width: 600px) {
+    .introduce-box h1 {
+        font-size: 3.5rem;
+        line-height: 4rem;
+    }
+    .introduce-box .underline {
+        left: 9.7rem;
+    }
+    .introduce-box .underline > div {
+        width: 13.3rem;
+        height: 0.8rem;
+    }
+    .introduce-box .underline > .dimibug {
+        height: 1.6rem;
+    }
+}
+@media (max-width: 470px) {
+    .introduce-box h1 {
+        font-size: 3rem;
+        line-height: 3.5rem;
+    }
+    .introduce-box .underline {
+        left: 8.3rem;
+    }
+    .introduce-box .underline > div {
+        width: 11.6rem;
+        height: 0.7rem;
+    }
+    .introduce-box .underline > .dimibug {
+        height: 1.4rem;
+    }
+}
+@media (max-width: 400px) {
+    .introduce-box h1 {
+        font-size: 2.3rem;
+        line-height: 2.7rem;
+    }
+    .introduce-box .underline {
+        left: 6.4rem;
+    }
+    .introduce-box .underline > div {
+        width: 8.6rem;
+        height: 0.6rem;
+    }
+    .introduce-box .underline > .dimibug {
+        height: 1.2rem;
     }
 }
 

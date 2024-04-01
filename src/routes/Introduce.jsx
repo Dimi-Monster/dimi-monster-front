@@ -43,7 +43,7 @@ export default function Introduce() {
                     </h1>
                     <div className='underline'>
                         <div></div>
-                        <img src={dimibug} style={{height: '2rem'}}/>
+                        <img className='dimibug' src={dimibug}/>
                     </div>
                 </div>
                 <div style={{height: '4rem'}}/>
