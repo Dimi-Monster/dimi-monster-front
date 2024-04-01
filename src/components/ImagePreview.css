@@ -196,7 +196,10 @@
 
 .image-preview > .loading {
     position: absolute;
-    top: 2.5rem;
+    /* top: 2.5rem;
     left: 2.5rem;
-    width: .9rem;
+    width: .9rem; */
+    top: calc(var(--width-1percent) * 7);
+    left: calc(var(--width-1percent) * 7);
+    width: calc(var(--width-1percent) * 2.3);
 }
