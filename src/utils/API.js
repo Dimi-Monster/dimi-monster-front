@@ -264,6 +264,33 @@ class API {
         let json = await data.json();
         return json.like;
     }
+
+
+    async report({id, reason, token}) {
+        await this.refreshIfExpired();
+        const url = `${this.serverUrl}/report`;
+
+        let data = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('access-token')}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                'target-id': id,
+                'reason': reason,
+                'token': token
+            })
+        });
+
+        if(data.status != 200)
+            return false;
+
+        //let json = await data.json();
+        //return json.like;
+        //alert(JSON.stringify(json));
+        return true;
+    }
 }
 
 let api = new API();

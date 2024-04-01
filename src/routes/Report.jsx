@@ -5,7 +5,7 @@ import logoDark from '../images/logo-dark.svg';
 import defaultImage from '../images/default-image.svg';
 import defaultImageDark from '../images/default-image-dark.svg';
 import TitleBox from "../components/TitleBox";
-//import api from "../utils/API";
+import api from "../utils/API";
 import Button from "../components/Button";
 import dimibug from '../images/dimibug.svg';
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -92,7 +92,7 @@ export default function Report() {
                 </div>
 
                 <form onSubmit={onReport}>
-                    <div className="g-recaptcha" data-sitekey={process.env.REACT_APP_RECAPTCHA_SITEKEY} data-action="image_upload" 
+                    <div className="g-recaptcha" data-sitekey={process.env.REACT_APP_RECAPTCHA_SITEKEY} data-action="image_report" 
                         data-theme={isDarkMode ? 'dark' : undefined}></div>
                     <Button title={buttonTitle} imgSrc={dimibug} color='default' height='1.2rem' type='submit'/>
                 </form>
@@ -117,9 +117,10 @@ export default function Report() {
         if(uploadingState)
             return;
 
-        alert(searchParams.get('id'));
+        //alert(searchParams.get('id'));
         //alert(reason);
         //alert(explanation);
+        const id = searchParams.get('id');
         
         let token = event.target[0].value;
         console.log(token);
@@ -132,23 +133,21 @@ export default function Report() {
         setUplodingState(true);
         setButtonTitle('신고 중...');
 
-        // api.uploadImage({
-        //     img: imageBlob,
-        //     location: locationName,
-        //     description: explanation,
-        //     token: token
-        // })
-        // .then(isSuccess => {
-        //     setUplodingState(false);
-        //     setButtonTitle('신고하기');
+        api.report({
+            id: id,
+            reason: explanation,
+            token: token
+        })
+        .then(isSuccess => {
+            setUplodingState(false);
+            setButtonTitle('신고하기');
 
-        //     if(!isSuccess) {
-        //         alert('업로드에 실패했습니다.');
-        //     }
-        //     else
-        //         alert('업로드에 성공했습니다.');
+            if(!isSuccess)
+                alert('신고에 실패했습니다.');
+            else
+                alert('신고에 성공했습니다.');
 
-        //     navigate('/');
-        // })
+            navigate('/');
+        });
     }
 }
