@@ -32,7 +32,7 @@ export default function ImagePreview(props) {
         if(!searchParams.has('id'))
             setSearchParams({...searchParams, 'id': props.id});
 
-        return () => setSearchParams({});
+        //return () => setSearchParams({}); // 이렇게 하면 계속 뭔가 잘 안된다 ㅠㅠ
     }, []);
 
     // useEffect(() => {

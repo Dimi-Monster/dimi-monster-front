@@ -1,5 +1,5 @@
 import React, { forwardRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import './ImageView.css';
 import './ImageViewBig.css';
 import heart from '../images/heart.svg';
@@ -8,6 +8,7 @@ import ImagePreview from './ImagePreview';
 
 const ImageView = forwardRef(function (props, forwardedRef) {
     const [previewState, setPreviewState] = useState(false);
+    const [searchParams, setSearchParams] = useSearchParams();
     const navigate = useNavigate();
 
     function onImageClicked() {
@@ -17,6 +18,9 @@ const ImageView = forwardRef(function (props, forwardedRef) {
     function onPreviewFinished() {
         setPreviewState(false);
         props.setHeaderVisibility(true);
+
+        searchParams.delete('id');
+        setSearchParams(searchParams);
     }
 
     function onLikeClicked() {
