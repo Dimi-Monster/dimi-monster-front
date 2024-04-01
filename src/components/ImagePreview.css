@@ -53,7 +53,7 @@
     }
 }
 
-/* .image-preview > .bottom-bar {
+/*.image-preview > .bottom-bar {
     height: 12%;
     color: #333333;
 
@@ -67,7 +67,7 @@
     align-items: center;
 
     border: .9px solid #BEBEBE;
-    border-radius: calc(var(--width-1percent) * 4);
+    border-radius: calc(var(--width-1percent) * 3.6);
     background-color: #FFFDFE;
 }
 @media (prefers-color-scheme: dark) {
@@ -80,7 +80,7 @@
     flex-grow: 1;
     margin-right: 5%;
 
-    width: calc(95% - var(--width-1percent) * 20);
+    width: calc(100% - var(--width-1percent) * 20);
 
     box-sizing: border-box;
     padding-left: calc(var(--width-1percent) * 2);
@@ -95,7 +95,13 @@
     overflow: hidden;
 }
 
+.image-preview > .bottom-bar > .title-contents-box > .title {
+    margin-left: 3%;
+    font-size: 97.5%;
+}
+
 .image-preview > .bottom-bar > .title-contents-box > .content {
+
     overflow: hidden;
 
     width: 100%;
@@ -110,7 +116,7 @@
     border-radius: calc(var(--width-1percent) * 2.59);
     background-color: #FFFDFE;
 
-    font-family: 'Pretendard-Bold';
+    font-family: 'Pretendard-SemiBold';
 }
 @media (prefers-color-scheme: dark) {
     .image-preview > .bottom-bar {
@@ -149,14 +155,17 @@
     width: calc(var(--width-1percent) * 5);
 }
 
-/* .image-preview > .bottom-bar > .like {
+/*.image-preview > .bottom-bar > .like {
     height: calc(100% - var(--width-1percent) * 4.6);
     width: calc(var(--width-1percent) * 16);
     flex-shrink: 0;
     margin-right: calc(var(--width-1percent) * 3);
 
+
+    font-size:calc(var(--width-1percent) * 3.6);
     box-sizing: border-box;
 
+    border-radius:  calc(var(--width-1percent) * 2);
     padding: calc(var(--width-1percent) * 2);
     background-color: #FFFDFE;
 
@@ -173,7 +182,7 @@
 }
 
 .image-preview > .bottom-bar > .like > img {
-    height: calc(var(--width-1percent) * 4);
+    height: calc(var(--width-1percent) * 3.6);
     color: #333333;
 
     margin-right: calc(var(--width-1percent) * 0.5);
@@ -187,7 +196,7 @@
 
 .image-preview > .loading {
     position: absolute;
-    top: calc(var(--width-1percent) * 6);
-    left: calc(var(--width-1percent) * 6);
-    width: calc(var(--width-1percent) * 2);
+    top: 2.5rem;
+    left: 2.5rem;
+    width: .9rem;
 }

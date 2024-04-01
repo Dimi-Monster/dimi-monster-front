@@ -26,8 +26,8 @@ export default function About() {
             {isMobile && <div className='introduce'>한국디지털미디어고등학교<br/>익명 사진공유 서비스</div>}
 
             <div className='privacy'>
-                <a href='https://privacy.dimi.monster/'>개인정보처리방침 &gt;</a>
-                <a href='https://term.dimi.monster/'>이용약관 &gt;</a>
+                <a href='https://privacy.dimi.monster/' target='_blank'>개인정보처리방침 &gt;</a>
+                <a href='https://term.dimi.monster/' target='_blank'>이용약관 &gt;</a>
             </div>
         </div>
     )

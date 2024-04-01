@@ -28,6 +28,10 @@ header {
 
     font-family: 'Pretendard-Bold';
     font-size: 1.035rem;
+
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 @media (prefers-color-scheme: dark) {
     header {
@@ -73,6 +77,12 @@ header > .header-right {
     align-items: flex-end;
     margin-right: calc((100% - 70rem) / 2);
 }
+header > .header-right > div {
+    max-width: 6.5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 
 @media (max-width: 1200px) {
     header > * {
@@ -94,6 +104,9 @@ header > .header-right {
     }
     header > .header-right {
         margin-right: 2rem;
+    }
+    header > .header-right > div {
+        max-width: 6rem;
     }
 }
 @media (max-width: 520px) {
@@ -119,6 +132,9 @@ header > .header-right {
     }
     header > .header-right {
         margin-right: 0.6rem;
+    }
+    header > .header-right > div {
+        max-width: 5.5rem;
     }
 }
 
