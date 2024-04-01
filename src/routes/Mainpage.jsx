@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -16,8 +16,12 @@ import loadingImg_2Dark from '../images/Info_load-dark.svg';
 import defaultImage from '../images/default-image.svg';
 import defaultImageDark from '../images/default-image-dark.svg';
 import MobileImageView from "../components/MobileImageView";
+import ImagePreview from "../components/ImagePreview";
 
 export default function Mainpage(props) {
+    const [searchParams, /*setSearchParams*/] = useSearchParams();
+    const [initialPopup, setInitialPopup] = useState('');
+
     let [isDarkMode, setIsDarkMode] = useState(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
     // update isDarkMode when the system changes the theme
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
@@ -92,6 +96,13 @@ export default function Mainpage(props) {
         if(window.innerHeight > mainpageRef.current.clientHeight)
             imageManager.getImageBottom(setImageList);
     }, [isLoaded]);
+    useEffect(() => {
+        if(searchParams.has('id')) {
+            setInitialPopup(searchParams.get('id'));
+        }
+
+
+    }, []);
 
     function onLike(id) {
         imageManager.like(id, setImageList, weeklyImage, setWeeklyImage);
@@ -198,6 +209,17 @@ export default function Mainpage(props) {
                 {!isEnd && <img src={isDarkMode ? loadingImg_2Dark : loadingImg_2} style={{height: '2.5rem'}} alt='로딩 이미지'/>}
             </div>
         </div>
+
+        {initialPopup !== '' && <ImagePreview 
+            id={initialPopup}
+            title={'제목'}
+            content={'내용'}
+            onFinish={() => setInitialPopup('')}
+            src={defaultImage} /* 썸네일 이미지 */
+            like={0}
+            hearts={0}
+            onClick={() => 1}
+            />}
         </>
     )
 }

@@ -3,6 +3,7 @@ import "./ImagePreview.css";
 import "./animation.css";
 import x from '../images/x.svg';
 import imageManager from "../utils/ImageManager";
+import { useSearchParams } from 'react-router-dom';
 
 //import heart from '../images/heart.svg';
 //import heartDisabled from '../images/heart-disabled.svg';
@@ -13,6 +14,7 @@ import BottomBar from "./BottomBar";
 import dimibug from '../images/dimibug.svg';
 
 export default function ImagePreview(props) {
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const [imageUrl, setImageUrl] = useState(props.src); // 기본값은 썸네일
     //const contentRef = useRef(null);
@@ -25,6 +27,12 @@ export default function ImagePreview(props) {
             setImageUrl(img);
             setLoadedState(true);
         })
+
+
+        if(!searchParams.has('id'))
+            setSearchParams({...searchParams, 'id': props.id});
+
+        return () => setSearchParams({});
     }, []);
 
     // useEffect(() => {
