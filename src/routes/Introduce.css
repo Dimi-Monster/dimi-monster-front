@@ -1,0 +1,296 @@
+.introduce-box {
+    --dimi-magenta: #DD0D75;
+    --dark-gray: #333333;
+    --light-dimi-magenta: #E0BFD0;
+    --lighter-dimi-magenta: #F3D8E5;
+    --semi-light-dimi-magenta: #D9A2BE;
+    --gray: #86868B;
+
+    background-color: #121212;
+
+    color: white;
+
+    --margin: calc((100% - 70rem) / 2);
+    --inner-margin: calc((100% - 65rem) / 2);
+
+    overflow: hidden;
+}
+
+@media (max-width: 1200px) {
+    .introduce-box {
+        --margin: calc((100% - 57rem) / 2);
+        --inner-margin: calc((100% - 53rem) / 2);
+    }
+}
+@media (max-width: 950px) {
+    .introduce-box {
+        --margin: calc((100% - 43rem) / 2);
+        --inner-margin: calc((100% - 40rem) / 2);
+    }
+}
+@media (max-width: 730px) {
+    .introduce-box {
+        --margin: calc((100% - 33rem) / 2);
+        --inner-margin: calc((100% - 30rem) / 2);
+    }
+}
+@media (max-width: 580px) {
+    .introduce-box {
+        --margin: 1rem;
+        --inner-margin: 2rem;
+    }
+}
+
+.introduce-box .logo {
+    height: 2rem;
+}
+
+.placeholder {
+    flex-grow: 1;
+}
+
+.introduce-box button, .introduce-box a {
+    border: 1px solid var(--dark-gray);
+    background-color: var(--dimi-magenta);
+    border-radius: 0.6rem;
+
+    box-sizing: border-box;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+
+    text-decoration: none;
+    color: white;
+    font-size: 0.8rem;
+}
+.introduce-box h1 {
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text; /* for chrome */
+    background-image: linear-gradient(180deg,white,var(--lighter-dimi-magenta));
+
+    font-size: 4.5rem;
+    font-family: 'Pretendard-ExtraBold';
+    line-height: 5rem;
+
+    position: relative;
+    z-index: 1;
+}
+.introduce-box h2 {
+    font-size: 2rem;
+    font-family: 'Pretendard-ExtraBold';
+    line-height: 2.4rem;
+
+    color: var(--gray);
+}
+.introduce-box em {
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text; /* for chrome */
+    background-image: linear-gradient(180deg,white,var(--lighter-dimi-magenta));
+}
+.introduce-box h3 {
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text; /* for chrome */
+    background-image: linear-gradient(180deg,var(--light-dimi-magenta),var(--semi-light-dimi-magenta));
+
+    font-size: 1rem;
+    font-family: 'Pretendard-SemiBold';
+    line-height: 1.2rem;
+}
+
+.introduce-box > .introduce-header {
+    display: flex;
+    flex-direction: row;
+    
+    margin-left: var(--margin);
+    margin-right: var(--margin);
+
+    align-items: center;
+
+    box-sizing: border-box;
+    height: 4rem;
+    padding-top: 1rem;
+}
+
+.introduce-box > .content-1 {
+    box-sizing: border-box;
+    height: calc(100vh - 4rem);
+
+    padding-top: 23vh;
+    padding-left: var(--inner-margin);
+    padding-right: var(--inner-margin);
+
+    display: flex;
+    flex-direction: column;
+}
+
+.introduce-box .subject-box {
+    position: relative;
+}
+
+.introduce-box .underline {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+
+    position: absolute;
+    bottom: 0;
+    left: 12.5rem;
+}
+.introduce-box .underline > div {
+    width: 17rem;
+    height: 1rem;
+    background-color: var(--dimi-magenta);
+    transform: rotate(-1deg); /* 361도 */
+}
+.introduce-box .underline > .dimibug {
+    height: 1.9rem;
+}
+
+.introduce-box .down-arrow {
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 730px) {
+    .introduce-box h1 {
+        font-size: 4rem;
+        line-height: 4.5rem;
+    }
+    .introduce-box .underline {
+        left: 11.3rem;
+    }
+    .introduce-box .underline > div {
+        width: 15rem;
+    }
+    .introduce-box .underline > .dimibug {
+        height: 1.8rem;
+    }
+}
+@media (max-width: 600px) {
+    .introduce-box h1 {
+        font-size: 3.5rem;
+        line-height: 4rem;
+    }
+    .introduce-box .underline {
+        left: 9.7rem;
+    }
+    .introduce-box .underline > div {
+        width: 13.3rem;
+        height: 0.8rem;
+    }
+    .introduce-box .underline > .dimibug {
+        height: 1.6rem;
+    }
+}
+@media (max-width: 470px) {
+    .introduce-box h1 {
+        font-size: 3rem;
+        line-height: 3.5rem;
+    }
+    .introduce-box .underline {
+        left: 8.3rem;
+    }
+    .introduce-box .underline > div {
+        width: 11.6rem;
+        height: 0.7rem;
+    }
+    .introduce-box .underline > .dimibug {
+        height: 1.4rem;
+    }
+}
+@media (max-width: 400px) {
+    .introduce-box h1 {
+        font-size: 2.3rem;
+        line-height: 2.7rem;
+    }
+    .introduce-box .underline {
+        left: 6.4rem;
+    }
+    .introduce-box .underline > div {
+        width: 8.6rem;
+        height: 0.6rem;
+    }
+    .introduce-box .underline > .dimibug {
+        height: 1.2rem;
+    }
+}
+
+
+
+.introduce-box > .content-2 {
+    box-sizing: border-box;
+    height: calc(100vh);
+
+    padding-top: 15vh;
+    /* padding-left: var(--margin);
+    padding-right: var(--margin); */
+
+    display: flex;
+    flex-direction: column;
+
+    overflow-y: hidden;
+}
+.introduce-box > .content-2 > h2 {
+    padding-left: var(--margin);
+    margin-bottom: 2rem;
+}
+
+.introduce-box > .content-2 > .monsters-image {
+    width: 120vw;
+}
+
+
+
+
+
+
+.introduce-box > .content-3 {
+    box-sizing: border-box;
+    height: calc(100vh);
+
+    display: flex;
+    flex-direction: column;
+
+    padding-top: 10vh;
+}
+
+.introduce-box > .content-3 > .yourturn {
+    text-align: center;
+    font-size: 3rem;
+    font-family: 'Pretendard-Bold';
+    line-height: 3.6rem;
+}
+
+.introduce-box > .content-3 > .life-sharing {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+
+    margin-left: var(--inner-margin);
+    margin-right: var(--inner-margin);
+    
+    align-items: center;
+
+    margin-top: 20vh;
+    margin-bottom: 23vh;
+}
+
+.introduce-box > .content-3 > .life-sharing > :nth-child(1) {
+    text-align: left;
+
+    font-size: 1.5rem;
+}
+.introduce-box > .content-3 > .life-sharing > :nth-child(2) {
+    text-align: center;
+}
+.introduce-box > .content-3 > .life-sharing > :nth-child(3) {
+    text-align: right;
+}
+
+.introduce-box > .content-3 .start {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
