@@ -33,7 +33,7 @@ export default function Header({onRefresh, isVisible}) {
 
     function onRootClicked() {
         if(location.pathname == '/') {
-            if(window.scrollY == 0) {
+            if(window.scrollY < 40) {
                 onRefresh();
             }
 
