@@ -155,7 +155,7 @@
     width: calc(var(--width-1percent) * 5);
 }
 
-.image-preview > .bottom-bar > .like {
+/*.image-preview > .bottom-bar > .like {
     height: calc(100% - var(--width-1percent) * 4.6);
     width: calc(var(--width-1percent) * 16);
     flex-shrink: 0;
