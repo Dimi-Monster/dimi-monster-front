@@ -146,6 +146,9 @@ export default function Upload() {
     }
     function onFileChanged(event) {
         async function f() {
+            if(fileObj === undefined)
+                return;
+
             let fileObj = event.target.files[0];
             let filename = fileObj.name;
             setFilename(filename);
