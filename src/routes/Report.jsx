@@ -105,7 +105,7 @@ export default function Report() {
     }
     
     function onExplanationChanged(e) {
-        if(e.target.value.length > 200)
+        if(e.target.value.length > 300)
             alert('설명이 너무 길어요.');
         else
             setExplanation(e.target.value);
@@ -118,6 +118,8 @@ export default function Report() {
             return;
 
         alert(searchParams.get('id'));
+        //alert(reason);
+        //alert(explanation);
         
         let token = event.target[0].value;
         console.log(token);
