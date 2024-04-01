@@ -127,12 +127,12 @@
 }
 
 .image-preview > .bottom-bar {
-    height: 12%;
+    height: 12.9%;
     /* color: rgb(156, 154, 154); */
     color: #333333;
 
     position: absolute;
-    bottom: -15%; /* 13% + 6% */
+    bottom: -16.45%; /* 13% + 6% */
     left: 0;
     right: 0;
 
@@ -141,7 +141,7 @@
     align-items: center;
 
     border: .9px solid #BEBEBE;
-    border-radius: calc(var(--width-1percent) * 4);
+    border-radius: calc(var(--width-1percent) * 3.6);
     background-color: #FFFDFE;
 
     /* word-break: keep-all; */
@@ -156,7 +156,7 @@
     flex-grow: 1;
     margin-right: 5%;
 
-    width: calc(95% - var(--width-1percent) * 20);
+    width: calc(100% - var(--width-1percent) * 20);
 
     box-sizing: border-box;
     padding-left: calc(var(--width-1percent) * 2);
@@ -171,10 +171,16 @@
     overflow: hidden;
 }
 
+.image-preview > .bottom-bar > .title-contents-box > .title {
+    margin-left: 3%;
+    font-size: 97.5%;
+}
+
 .image-preview > .bottom-bar > .title-contents-box > .content {
     /* display: flex;
     flex-direction: row;
     align-items: center; */
+    font-size: 97.5%;
 
     overflow: hidden;
 
@@ -190,7 +196,7 @@
     border-radius: calc(var(--width-1percent) * 2.59);
     background-color: #FFFDFE;
 
-    font-family: 'Pretendard-Bold';
+    font-family: 'Pretendard-SemiBold';
 }
 @media (prefers-color-scheme: dark) {
     .image-preview > .bottom-bar {
@@ -230,13 +236,16 @@
 }
 
 .image-preview > .bottom-bar > .like {
-    height: calc(100% - var(--width-1percent) * 4.6);
+    height: calc(100% - var(--width-1percent) * 5.7);
     width: calc(var(--width-1percent) * 16);
     flex-shrink: 0;
     margin-right: calc(var(--width-1percent) * 3);
 
+
+    font-size:calc(var(--width-1percent) * 3.6);
     box-sizing: border-box;
 
+    border-radius:  calc(var(--width-1percent) * 2);
     padding: calc(var(--width-1percent) * 2);
     background-color: #FFFDFE;
 
@@ -254,7 +263,7 @@
 }
 
 .image-preview > .bottom-bar > .like > img {
-    height: calc(var(--width-1percent) * 4);
+    height: calc(var(--width-1percent) * 3.6);
     color: #333333;
 
     margin-right: calc(var(--width-1percent) * 0.5);
@@ -268,7 +277,7 @@
 
 .image-preview > .loading {
     position: absolute;
-    top: 2rem;
-    left: 2rem;
-    width: 1rem;
+    top: 2.66rem;
+    left: 2.66rem;
+    width: .89rem;
 }
