@@ -73,6 +73,19 @@ export default function Introduce() {
                     <img src={logoDark} style={{height: '2rem'}}/> <br/>
                     <em>이젠, 당신의 차례.</em>
                 </div>
+
+                <div className='life-sharing'>
+                    <em>일상을<br/>공유하는</em>
+                    <h1>김승억</h1>
+                    <div>
+                        <img src={dimibug} style={{height: '2.8rem'}}/>
+                        <img src={dimibug} style={{height: '2.8rem'}}/>
+                    </div>
+                </div>
+
+                <div className='start'>
+                    <Link to='/login'>시작하기</Link>
+                </div>
             </div>
         </div>
     )

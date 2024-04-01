@@ -24,7 +24,7 @@
     flex-grow: 1;
 }
 
-.introduce-box button, a {
+.introduce-box button, .introduce-box a {
     border: 1px solid var(--dark-gray);
     background-color: var(--dimi-magenta);
     border-radius: 0.6rem;
@@ -130,8 +130,6 @@
 
 
 
-
-
 .introduce-box > .content-2 {
     box-sizing: border-box;
     height: calc(100vh);
@@ -154,6 +152,11 @@
     width: 120vw;
 }
 
+
+
+
+
+
 .introduce-box > .content-3 {
     box-sizing: border-box;
     height: calc(100vh);
@@ -169,4 +172,35 @@
     font-size: 3rem;
     font-family: 'Pretendard-Bold';
     line-height: 3.6rem;
+}
+
+.introduce-box > .content-3 > .life-sharing {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+
+    margin-left: 13vw;
+    margin-right: 13vw;
+    
+    align-items: center;
+
+    margin-top: 20vh;
+    margin-bottom: 23vh;
+}
+
+.introduce-box > .content-3 > .life-sharing > :nth-child(1) {
+    text-align: left;
+
+    font-size: 1.5rem;
+}
+.introduce-box > .content-3 > .life-sharing > :nth-child(2) {
+    text-align: center;
+}
+.introduce-box > .content-3 > .life-sharing > :nth-child(3) {
+    text-align: right;
+}
+
+.introduce-box > .content-3 .start {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
