@@ -28,6 +28,10 @@ header {
 
     font-family: 'Pretendard-Bold';
     font-size: 1.035rem;
+
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 @media (prefers-color-scheme: dark) {
     header {
