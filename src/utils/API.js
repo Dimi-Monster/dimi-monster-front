@@ -266,7 +266,7 @@ class API {
     }
 
 
-    async report({id, reason, token}) {
+    async report({id, category, reason, token}) {
         await this.refreshIfExpired();
         const url = `${this.serverUrl}/report`;
 
@@ -278,6 +278,7 @@ class API {
             },
             body: JSON.stringify({
                 'target-id': id,
+                'category': category,
                 'reason': reason,
                 'token': token
             })
