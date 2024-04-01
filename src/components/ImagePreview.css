@@ -196,7 +196,7 @@
 
 .image-preview > .loading {
     position: absolute;
-    top: 2rem;
-    left: 2rem;
-    width: 1rem;
+    top: 2.5rem;
+    left: 2.5rem;
+    width: .9rem;
 }
