@@ -146,11 +146,12 @@ export default function Upload() {
     }
     function onFileChanged(event) {
         async function f() {
+            let fileObj = event.target.files[0];
+            let filename = fileObj.name;
+
             if(fileObj === undefined)
                 return;
 
-            let fileObj = event.target.files[0];
-            let filename = fileObj.name;
             setFilename(filename);
 
             let compressedFile = await imageCompression(fileObj, {
