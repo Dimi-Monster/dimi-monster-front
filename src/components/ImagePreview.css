@@ -53,13 +53,12 @@
     }
 }
 
-.image-preview > .bottom-bar {
+/*.image-preview > .bottom-bar {
     height: 12%;
-    /* color: rgb(156, 154, 154); */
     color: #333333;
 
     position: absolute;
-    bottom: -15%; /* 13% + 6% */
+    bottom: -15%;
     left: 0;
     right: 0;
 
@@ -102,9 +101,6 @@
 }
 
 .image-preview > .bottom-bar > .title-contents-box > .content {
-    /* display: flex;
-    flex-direction: row;
-    align-items: center; */
 
     overflow: hidden;
 
