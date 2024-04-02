@@ -15,7 +15,6 @@ export default function Header({onRefresh, isVisible}) {
     const navigate = useNavigate();
     const isMobile = useMediaQuery({query : "(max-width:520px)"});
     const location = useLocation();
-    // const [searchParams, /*setSearchParams*/] = useSearchParams();
 
     useEffect(() => {
         if(localStorage.getItem('refresh-token') === null)

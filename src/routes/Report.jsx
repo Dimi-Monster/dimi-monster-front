@@ -69,14 +69,8 @@ export default function Report() {
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
         if (e.matches) {
             setIsDarkMode(true);
-            // if (croppedImageSrc === defaultImage){
-            //     setCroppedImageSrc(defaultImageDark);
-            // }
         } else {
             setIsDarkMode(false);
-            // if (croppedImageSrc === defaultImageDark){
-            //     setCroppedImageSrc(defaultImage);
-            // }
         }
     });
 
@@ -131,9 +125,6 @@ export default function Report() {
         if (uploadingState)
             return;
 
-        //alert(searchParams.get('id'));
-        //alert(reason);
-        //alert(explanation);
         const id = searchParams.get('id');
 
         let token = event.target[0].value;

@@ -102,8 +102,6 @@ export default function Upload() {
         }
     });
 
-    //console.log(process.env.REACT_APP_RECAPTCHA_SITEKEY);
-
     return (
         <div className='upload-outer-box'>
             <div className='upload-inner-box'>

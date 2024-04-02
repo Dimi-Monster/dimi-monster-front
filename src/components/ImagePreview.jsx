@@ -17,8 +17,6 @@ export default function ImagePreview(props) {
     const [searchParams, setSearchParams] = useSearchParams();
 
     const [imageUrl, setImageUrl] = useState(props.src); // 기본값은 썸네일
-    //const contentRef = useRef(null);
-    //const [animateState, setAnimateState] = useState(false);
 
     const [loaded, setLoadedState] = useState(false);
 
@@ -31,31 +29,12 @@ export default function ImagePreview(props) {
 
         if(!searchParams.has('id'))
             setSearchParams({...searchParams, 'id': props.id});
-
-        //return () => setSearchParams({}); // 이렇게 하면 계속 뭔가 잘 안된다 ㅠㅠ
     }, []);
-
-    // useEffect(() => {
-    //     if(contentRef.current.scrollWidth > contentRef.current.clientWidth)
-    //         setAnimateState(true);
-    // }, [contentRef]);
 
     return (
         <div className='image-preview-box' onClick={onClose}>
             <div className='image-preview' onClick={onInnerBoxClicked} onDoubleClick={onInnerBoxClicked}>
                 <img className='main-img' src={imageUrl} alt='몬스터 확대 이미지'/>
-                {/* <div className='bottom-bar'>
-                    <div className='title-contents-box'>
-                        <div className='title'>{props.title}</div>
-                        <div className='content animated' ref={contentRef}>
-                            <div className={animateState ? 'text-animated' : ''}>{props.content}</div>
-                        </div>
-                    </div>
-                    <button className='like' onClick={props.onLikeClicked}>
-                        <img src={props.like ? heart : heartDisabled} alt='좋아요'/>
-                        <div>+{props.hearts}</div>
-                    </button>
-                </div> */}
                 
                 <BottomBar 
                     title={props.title}
