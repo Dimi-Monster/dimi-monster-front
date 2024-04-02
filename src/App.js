@@ -12,8 +12,12 @@ import Banned from './routes/Banned';
 import Report from './routes/Report';
 import Introduce from './routes/Introduce';
 import PullToRefresh from 'react-simple-pull-to-refresh';
+import { useMediaQuery } from 'react-responsive';
 
 function App() {
+  // same as Mainpage.jsx
+  const isMobile = useMediaQuery({query : "(max-width:520px)"}); // 한줄로 뜨는 최대 너비
+
   const [refresh, setRefresh] = useState(0);
 
   const [headerVisibility, setHeaderVisibility] = useState(true);
@@ -24,7 +28,7 @@ function App() {
 
   const mainpage = (
     <PullToRefresh onRefresh={async () => triggerRefresh()} pullingContent='' resistance={5}
-      isPullable={headerVisibility}>
+      isPullable={isMobile && headerVisibility}>
       <Mainpage refresh={refresh} setHeaderVisibility={setHeaderVisibility}/>
     </PullToRefresh>
   )
