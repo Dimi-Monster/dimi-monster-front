@@ -288,9 +288,29 @@
 .introduce-box > .content-3 > .life-sharing > :nth-child(3) {
     text-align: right;
 }
+.introduce-box > .content-3 > .life-sharing > :nth-child(3) > img {
+    height: 2.8rem;
+}
 
 .introduce-box > .content-3 .start {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+
+@media (max-width: 600px) {
+    .introduce-box > .content-3 > .yourturn {
+        font-size: 2rem;
+        line-height: 2.3rem;
+    }
+    .introduce-box > .content-3 > .life-sharing {
+        grid-template-columns: 2fr 3fr 2fr;
+    }
+    .introduce-box > .content-3 > .life-sharing > :nth-child(1) {
+        font-size: 1.2rem;
+    }
+    .introduce-box > .content-3 > .life-sharing > :nth-child(3) > img {
+        height: 2.2rem;
+    }
 }

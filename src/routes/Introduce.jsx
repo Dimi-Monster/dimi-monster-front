@@ -84,8 +84,8 @@ export default function Introduce() {
                     <em>일상을<br/>공유하는</em>
                     <h1>김승억</h1>
                     <div>
-                        <img src={dimibug} style={{height: '2.8rem'}}/>
-                        <img src={dimibug} style={{height: '2.8rem'}}/>
+                        <img src={dimibug}/>
+                        <img src={dimibug}/>
                     </div>
                 </div>
 
