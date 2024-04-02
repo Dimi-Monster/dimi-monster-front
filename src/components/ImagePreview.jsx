@@ -42,7 +42,7 @@ export default function ImagePreview(props) {
 
     return (
         <div className='image-preview-box' onClick={onClose}>
-            <div className='image-preview' onClick={onInnerBoxClicked}>
+            <div className='image-preview' onClick={onInnerBoxClicked} onDoubleClick={onInnerBoxClicked}>
                 <img className='main-img' src={imageUrl} alt='몬스터 확대 이미지'/>
                 {/* <div className='bottom-bar'>
                     <div className='title-contents-box'>
