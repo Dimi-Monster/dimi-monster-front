@@ -101,7 +101,8 @@ export default function Mainpage(props) {
             setInitialPopup(searchParams.get('id'));
         }
 
-
+        if(searchParams.get('app') === 'true')
+            localStorage.setItem('isPWA', 'true');
     }, []);
 
     function onLike(id) {

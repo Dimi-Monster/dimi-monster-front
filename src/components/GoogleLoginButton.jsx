@@ -2,6 +2,7 @@ import React from 'react';
 import './GoogleLoginButton.css';
 import Button from './Button';
 import googlelogo from '../images/googlelogo.svg';
+import { LOGIN_URL } from '../routes/login';
 
 export default function GoogleLoginButton() {
 
@@ -12,6 +13,7 @@ export default function GoogleLoginButton() {
     function click() {
         // 로그인 처리
 
-        window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?client_id=752669101446-ssmoaio24ohfv2vhg59gphbbdqtpe7kb.apps.googleusercontent.com&response_type=code&redirect_uri=https://dimi.monster/redirect/gauth&state=${process.env.REACT_APP_ENV}&scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email`;
+        window.location.href = LOGIN_URL;
+        //window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?client_id=752669101446-ssmoaio24ohfv2vhg59gphbbdqtpe7kb.apps.googleusercontent.com&response_type=code&redirect_uri=https://dimi.monster/redirect/gauth&state=${process.env.REACT_APP_ENV}&scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email`;
     }
 }

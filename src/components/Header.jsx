@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './Header.css';
 
-import { NavLink, Link, useNavigate, useLocation } from 'react-router-dom';
+import { NavLink, Link, useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 
 import logo from '../images/logo.svg';
 import logoDark from '../images/logo-dark.svg';
@@ -15,10 +15,16 @@ export default function Header({onRefresh, isVisible}) {
     const navigate = useNavigate();
     const isMobile = useMediaQuery({query : "(max-width:520px)"});
     const location = useLocation();
+    const [searchParams, /*setSearchParams*/] = useSearchParams();
 
     useEffect(() => {
+        let loginpage = '/introduce';
+
+        if(searchParams.get('app') === 'true' || localStorage.getItem('isPWA'))
+            loginpage = '/login';
+
         if(localStorage.getItem('refresh-token') === null)
-            navigate('/login', {replace: true});
+            navigate(loginpage, {replace: true});
     }, []);
 
     let [isDarkMode, setIsDarkMode] = useState(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);

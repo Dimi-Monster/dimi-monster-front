@@ -5,11 +5,13 @@ import logoDark from '../images/logo-dark.svg';
 import logoMobile from '../images/logo-mobile.svg';
 
 import { useMediaQuery } from 'react-responsive';
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 import dimibug from '../images/dimibug.svg';
 import downArrow from '../images/down-arrow.svg';
 import monsters from '../images/monsters.png';
+
+import { LOGIN_URL } from "./login";
 
 export default function Introduce() {
     const isMobile = useMediaQuery({query : "(max-width:520px)"});
@@ -23,6 +25,10 @@ export default function Introduce() {
         }
     });
 
+    function login() {
+        document.location.href = LOGIN_URL;
+    }
+
     return (
         <div className='introduce-box'>
             <div className='introduce-header'>
@@ -31,9 +37,9 @@ export default function Introduce() {
                     {isMobile && <img src={logoMobile} className='logo' alt='디미몬스터'/>}
                 </div>
                 <div className='placeholder'/>
-                <Link className='login' to='/login'>
+                <button className='login' onClick={login}>
                     간편 로그인
-                </Link>
+                </button>
             </div>
 
             <div className='content-1'>
@@ -84,7 +90,7 @@ export default function Introduce() {
                 </div>
 
                 <div className='start'>
-                    <Link to='/login'>시작하기</Link>
+                    <button onClick={login}>시작하기</button>
                 </div>
             </div>
         </div>
