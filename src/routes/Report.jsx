@@ -25,7 +25,7 @@ export default function Report() {
         "기타",
     ];
 
-    const [category, setCategory] = useState('');
+    const [category, setCategory] = useState(categoryList[0]);
     const [explanation, setExplanation] = useState('');
 
     const [buttonTitle, setButtonTitle] = useState('신고하기');
