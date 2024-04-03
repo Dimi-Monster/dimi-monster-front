@@ -297,6 +297,8 @@
 
     margin-top: 20vh;
     margin-bottom: 23vh;
+
+    height: 5rem;
 }
 
 .introduce-box > .content-3 > .life-sharing > :nth-child(1) {
