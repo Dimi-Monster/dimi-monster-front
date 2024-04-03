@@ -155,7 +155,7 @@ export default function Introduce() {
                     </h1>
                     <div className='underline'>
                         <div></div>
-                        <img className='dimibug' src={dimibug}/>
+                        <img className='dimibug' src={dimibug} alt='디미몬스터'/>
                     </div>
                 </div>
                 <div style={{height: '4rem'}}/>
@@ -165,7 +165,7 @@ export default function Introduce() {
 
                 <div style={{flexGrow: 1}}/>
 
-                <img src={downArrow} style={{height: '0.5rem'}} className='down-arrow'/>
+                <img src={downArrow} style={{height: '0.5rem'}} className='down-arrow' alt='아래쪽 화살표'/>
             </div>
 
             <div style={{height: '4rem'}}/>
