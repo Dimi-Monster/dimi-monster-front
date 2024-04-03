@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import './Introduce.css';
 
 import logoDark from '../images/logo-dark.svg';
@@ -14,6 +14,9 @@ import monsters from '../images/monsters.png';
 import { LOGIN_URL } from "./login";
 
 export default function Introduce() {
+    const [sharingLifeName, setSharingLifeName] = useState('');
+    const [animationState, setAnimationState] = useState(false);
+
     const isMobile = useMediaQuery({query : "(max-width:520px)"});
     let [/*isDarkMode*/, setIsDarkMode] = useState(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
     // update isDarkMode when the system changes the theme
@@ -28,6 +31,96 @@ export default function Introduce() {
     function login() {
         document.location.href = LOGIN_URL;
     }
+
+    const names = ['김승억', '김종현'];
+
+
+    // ㅂ, 붸, 뷁 이런식으로 나오게
+    function divideKor(kor) {
+        const f = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ',
+            'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ',
+            'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+        const s = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ',
+            'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ',
+            'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'];
+        // const t = ['', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ',
+        //     'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ',
+        //     'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ',
+        //     'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+
+        const doubleMoum = {
+            'ㅘ': [8, 9],
+            'ㅙ': [8, 10],
+            'ㅚ': [8, 11],
+            'ㅝ': [13, 14],
+            'ㅞ': [13, 15],
+            'ㅟ': [13, 16],
+            'ㅢ': [18, 19]
+        }
+        
+
+        const ga = 44032;
+        let uni = kor.charCodeAt(0);
+
+        uni = uni - ga;
+
+        let fn = parseInt(uni / 588);
+        let sn = parseInt((uni - (fn * 588)) / 28);
+        let tn = parseInt(uni % 28);
+
+        let res = [f[fn]];
+
+        if(s[sn] in doubleMoum) {
+            for(let m of doubleMoum[s[sn]])
+                res.push(String.fromCharCode(fn*588 + m*28 + ga));
+        }
+        else {
+            res = [...res, String.fromCharCode(uni - tn + ga)];
+        }
+
+        if(res[res.length-1] != kor)
+            res = [...res, kor];
+
+        return res;
+    }
+    console.log(divideKor('의'));
+    //[출처] [자바스크립트] 한글 자음 모음 분리 / 초성 * 중성 * 종성|작성자 Scripter
+
+    async function lifeSharingAnimation() {
+        const sleep = (ms) => new Promise((resolve, /*reject*/) => {
+            setTimeout(() => resolve(), ms);
+        });
+        
+        //await sleep(1000);
+
+        let nowStr = '';
+        for(let name of names) {
+            for(let ch of name) {
+                let str = nowStr;
+                let arr = divideKor(ch);
+
+                for(let k of arr) {
+                    setSharingLifeName(str + k);
+                    await sleep(120);
+                }
+                nowStr += ch;
+            }
+
+            await sleep(1000);
+
+            for(let i=name.length-1; i>=0; i--) {
+                nowStr = nowStr.substring(0, i);
+                setSharingLifeName(nowStr);
+                await sleep(150);
+            }
+            
+            await sleep(1000);
+        }
+
+        setAnimationState(!animationState);
+    }
+
+    useEffect(() => {lifeSharingAnimation();}, [animationState]);
 
     return (
         <div className='introduce-box'>
@@ -69,7 +162,7 @@ export default function Introduce() {
                     평범한 삶에<br/><em>디미몬스터 한 방울.</em>
                 </h2>
 
-                <img class='monsters-image' src={monsters}/>
+                <img className='monsters-image' src={monsters}/>
             </div>
 
             <div style={{height: '4rem'}}/>
@@ -82,7 +175,10 @@ export default function Introduce() {
 
                 <div className='life-sharing'>
                     <em>일상을<br/>공유하는</em>
-                    <h1>김승억</h1>
+                    <h1 className="cursor-box">
+                        {sharingLifeName}
+                        <div className="cursor"/>
+                    </h1>
                     <div>
                         <img src={dimibug}/>
                         <img src={dimibug}/>
