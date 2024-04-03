@@ -119,15 +119,15 @@ export default function Introduce() {
                 nowStr += ch;
             }
 
-            await sleep(1000);
+            await sleep(1623);
 
             for(let i=name.length-1; i>=0; i--) {
                 nowStr = nowStr.substring(0, i);
                 setSharingLifeName(nowStr);
-                await sleep(150);
+                await sleep(169);
             }
             
-            await sleep(1000);
+            await sleep(1012);
         }
 
         setAnimationState(!animationState);
