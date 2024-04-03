@@ -66,7 +66,7 @@ export default function Upload() {
 
     const [cropState, setCropState] = useState(false);
 
-    const [locationName, setLocationName] = useState(locationList[0]);
+    const [locationName, setLocationName] = useState(locationList[1]);
     const [explanation, setExplanation] = useState('');
 
     const [buttonTitle, setButtonTitle] = useState('사진 업로드');
