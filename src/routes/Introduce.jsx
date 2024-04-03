@@ -83,7 +83,7 @@ export default function Introduce() {
 
         return res;
     }
-    console.log(divideKor('의'));
+    //console.log(divideKor('의'));
     //[출처] [자바스크립트] 한글 자음 모음 분리 / 초성 * 중성 * 종성|작성자 Scripter
 
     async function lifeSharingAnimation() {
