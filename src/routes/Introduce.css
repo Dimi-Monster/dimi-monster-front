@@ -1,3 +1,25 @@
+@keyframes cursor-blink {
+    0% {
+        opacity: 0;
+    }
+}
+.cursor-box {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: center;
+    align-items: center;
+}
+.cursor-box > .cursor {
+    height: 1em;
+    width: 1px;
+    margin-left: 0.1rem;
+    background-color: white;
+
+    animation: cursor-blink 1s steps(2) infinite;
+}
+
+
 .introduce-box {
     --dimi-magenta: #DD0D75;
     --dark-gray: #333333;
@@ -275,6 +297,8 @@
 
     margin-top: 20vh;
     margin-bottom: 23vh;
+
+    height: 5rem;
 }
 
 .introduce-box > .content-3 > .life-sharing > :nth-child(1) {
