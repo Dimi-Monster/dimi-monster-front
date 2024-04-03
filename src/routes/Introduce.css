@@ -19,6 +19,49 @@
     animation: cursor-blink 1s steps(2) infinite;
 }
 
+@keyframes move-left-1 {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    49.9% {
+        transform: translateX(-100%);
+        opacity: 1;
+    }
+    49.91% {
+        opacity: 0;
+    }
+    49.92% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    50% {
+        transform: translateX(100%);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes move-left-2 {
+    0% {
+        opacity: 1;
+        transform: translateX(100%);
+    }
+    99.9% {
+        transform: translateX(-100%);
+        opacity: 1;
+    }
+    99.91% {
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
 
 .introduce-box {
     --dimi-magenta: #DD0D75;
@@ -245,6 +288,7 @@
 .introduce-box > .content-2 {
     box-sizing: border-box;
     height: calc(100vh);
+    overflow-x: hidden;
 
     padding-top: 15vh;
     /* padding-left: var(--margin);
@@ -260,11 +304,59 @@
     margin-bottom: 2rem;
 }
 
-.introduce-box > .content-2 > .monsters-image {
-    width: 120vw;
+.introduce-box > .content-2 .monsters-image {
+    width: 140vw;
+
+    animation: move-left-1 35s linear infinite;
+    position: absolute;
+    padding-left: 0.8vw;
+    padding-right: 0.8vw;
+}
+.introduce-box > .content-2 .monsters-image-2 {
+    width: 140vw;
+
+    animation: move-left-2 35s linear infinite;
+    position: absolute;
+    padding-left: 0.8vw;
+    padding-right: 0.8vw;
 }
 
-
+@media (max-width: 730px) {
+    .introduce-box > .content-2 .monsters-image {
+        width: 170vw;
+    
+        animation: move-left 35s linear infinite;
+        position: absolute;
+        padding-left: 1vw;
+        padding-right: 1vw;
+    }
+    .introduce-box > .content-2 .monsters-image-2 {
+        width: 170vw;
+    
+        animation: move-left-2 35s linear infinite;
+        position: absolute;
+        padding-left: 1vw;
+        padding-right: 1vw;
+    }
+}
+@media (max-width: 520px) {
+    .introduce-box > .content-2 .monsters-image {
+        width: 300vw;
+    
+        animation: move-left-1 35s linear infinite;
+        position: absolute;
+        padding-left: 1.4vw;
+        padding-right: 1.4vw;
+    }
+    .introduce-box > .content-2 .monsters-image-2 {
+        width: 300vw;
+    
+        animation: move-left-2 35s linear infinite;
+        position: absolute;
+        padding-left: 1.4vw;
+        padding-right: 1.4vw;
+    }
+}
 
 
 

@@ -174,8 +174,11 @@ export default function Introduce() {
                 <h2>
                     평범한 삶에<br/><em>디미몬스터 한 방울.</em>
                 </h2>
-
-                <img className='monsters-image' src={monsters}/>
+                
+                <div style={{position: 'relative'}}>
+                    <img className='monsters-image' src={monsters}/>
+                    <img className='monsters-image-2' src={monsters}/>
+                </div>
             </div>
 
             <div style={{height: '4rem'}}/>
