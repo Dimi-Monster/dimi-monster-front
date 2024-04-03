@@ -102,7 +102,9 @@ export default function Introduce() {
         
         //await sleep(1000);
 
-        const names = [namer.generate(true)];
+        let isMale = Math.random() >= 0.5;
+        const names = [namer.generate(isMale)];
+        console.log(isMale);
 
         let nowStr = '';
         for(let name of names) {
