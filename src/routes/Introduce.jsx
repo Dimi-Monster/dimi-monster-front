@@ -36,13 +36,13 @@ export default function Introduce() {
 
     //const names = [namer.generate(true), '김승억', '김종현'];
 
-    useEffect(() => {
-        let namelist = [];
-        for(let i=0; i<100; i++) {
-            namelist.push(namer.generate(Math.random() >= 0.5));
-        }
-        console.log(JSON.stringify(namelist));
-    }, []);
+    // useEffect(() => {
+    //     let namelist = [];
+    //     for(let i=0; i<100; i++) {
+    //         namelist.push(namer.generate(Math.random() >= 0.5));
+    //     }
+    //     console.log(JSON.stringify(namelist));
+    // }, []);
 
     // ㅂ, 붸, 뷁 이런식으로 나오게
     function divideKor(kor) {
@@ -102,7 +102,9 @@ export default function Introduce() {
         
         //await sleep(1000);
 
-        const names = [namer.generate(true)];
+        let isMale = Math.random() >= 0.5;
+        const names = [namer.generate(isMale)];
+        console.log(isMale);
 
         let nowStr = '';
         for(let name of names) {
