@@ -18,6 +18,8 @@ function App() {
   // same as Mainpage.jsx
   const isMobile = useMediaQuery({query : "(max-width:520px)"}); // 한줄로 뜨는 최대 너비
 
+  const isPullable = isMobile || (localStorage.getItem('isPWA') === 'true');
+
   const [refresh, setRefresh] = useState(0);
 
   const [headerVisibility, setHeaderVisibility] = useState(true);
@@ -28,7 +30,7 @@ function App() {
 
   const mainpage = (
     <PullToRefresh onRefresh={async () => triggerRefresh()} pullingContent='' resistance={5}
-      isPullable={isMobile && headerVisibility}>
+      isPullable={isPullable && headerVisibility}>
       <Mainpage refresh={refresh} setHeaderVisibility={setHeaderVisibility}/>
     </PullToRefresh>
   )
