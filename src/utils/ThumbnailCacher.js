@@ -32,7 +32,7 @@ class ThumbnailCacher {
             this.lastPage = -1;
 
         if(loadThumbnail) {
-            this.cacheThumbnails(res).then(() => console.log('Cache finished'));
+            this.cacheThumbnails(res)//.then(() => console.log('Cache finished'));
             return res;
         }
 

@@ -5,7 +5,6 @@ import logoDark from '../images/logo-dark.svg';
 import logoMobile from '../images/logo-mobile.svg';
 
 import { useMediaQuery } from 'react-responsive';
-//import { Link } from "react-router-dom";
 
 import dimibug from '../images/dimibug.svg';
 import downArrow from '../images/down-arrow.svg';
@@ -33,16 +32,6 @@ export default function Introduce() {
     function login() {
         document.location.href = LOGIN_URL;
     }
-
-    //const names = [namer.generate(true), '김승억', '김종현'];
-
-    // useEffect(() => {
-    //     let namelist = [];
-    //     for(let i=0; i<100; i++) {
-    //         namelist.push(namer.generate(Math.random() >= 0.5));
-    //     }
-    //     console.log(JSON.stringify(namelist));
-    // }, []);
 
     // ㅂ, 붸, 뷁 이런식으로 나오게
     function divideKor(kor) {

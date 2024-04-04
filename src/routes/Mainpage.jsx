@@ -92,7 +92,7 @@ export default function Mainpage(props) {
         if(!isLoaded)
             return;
 
-        console.log(window.innerHeight, mainpageRef.current.clientHeight);
+        // console.log(window.innerHeight, mainpageRef.current.clientHeight);
         if(window.innerHeight > mainpageRef.current.clientHeight)
             imageManager.getImageBottom(setImageList);
     }, [isLoaded]);
