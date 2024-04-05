@@ -28,10 +28,7 @@ export default function Login() {
     
     return (
         <div className="login-div">
-            {
-                <img className="logo" src={isDarkMode ? darklogo : logo}alt='디미몬스터 로고'/> 
-            }
-            
+            <img className="logo" src={isDarkMode ? darklogo : logo}alt='디미몬스터 로고'/>
             
             <GoogleLoginButton/>
         </div>

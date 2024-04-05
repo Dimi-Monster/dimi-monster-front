@@ -36,27 +36,25 @@ function App() {
   )
 
   return (
-    // <PullToRefresh onRefresh={async () => triggerRefresh()}>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/login' element={<Login/>} />
-          <Route path='/banned' element={<Banned/>} />
+    <BrowserRouter>
+      <Routes>
+        <Route path='/login' element={<Login/>} />
+        <Route path='/banned' element={<Banned/>} />
 
-          <Route path='/redirect/gauth' element={<GAuthRoute/>} />
+        <Route path='/redirect/gauth' element={<GAuthRoute/>} />
 
-          <Route element={<Layout onRefresh={triggerRefresh} isVisible={headerVisibility}/>}>
-            <Route path='/' element={mainpage} />
-            <Route path='/about' element={<About/>} />
-            <Route path='/upload' element={<Upload/>} />
-            <Route path='/report' element={<Report/>} />
-          </Route>
+        <Route element={<Layout onRefresh={triggerRefresh} isVisible={headerVisibility}/>}>
+          <Route path='/' element={mainpage} />
+          <Route path='/about' element={<About/>} />
+          <Route path='/upload' element={<Upload/>} />
+          <Route path='/report' element={<Report/>} />
+        </Route>
 
-          <Route path='/introduce' element={<Introduce/>} />
+        <Route path='/introduce' element={<Introduce/>} />
 
-          <Route path='/*' element={<NotFound/>} />
-        </Routes>
-      </BrowserRouter>
-    // </PullToRefresh>
+        <Route path='/*' element={<NotFound/>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

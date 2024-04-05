@@ -14,6 +14,5 @@ export default function GoogleLoginButton() {
         // 로그인 처리
 
         window.location.href = LOGIN_URL;
-        //window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?client_id=752669101446-ssmoaio24ohfv2vhg59gphbbdqtpe7kb.apps.googleusercontent.com&response_type=code&redirect_uri=https://dimi.monster/redirect/gauth&state=${process.env.REACT_APP_ENV}&scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email`;
     }
 }

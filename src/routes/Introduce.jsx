@@ -88,8 +88,6 @@ export default function Introduce() {
         const sleep = (ms) => new Promise((resolve, /*reject*/) => {
             setTimeout(() => resolve(), ms);
         });
-        
-        //await sleep(1000);
 
         let isMale = Math.random() >= 0.5;
         const names = [namer.generate(isMale)];
