@@ -162,7 +162,7 @@ export default function Introduce() {
                     평범한 삶에<br/><em>디미몬스터 한 방울.</em>
                 </h2>
                 
-                <div style={{position: 'relative'}}>
+                <div className='monsters' style={{position: 'relative'}}>
                     <img className='monsters-image' src={monsters} alt='예시 화면'/>
                     <img className='monsters-image-2' src={monsters} alt='예시 화면'/>
                 </div>
