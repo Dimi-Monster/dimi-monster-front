@@ -53,7 +53,7 @@ export default function GAuthRoute() {
                 } else {
                     alert('오류가 발생했습니다. 관리자에게 문의해주세요.\n\n에러 타입: '+error);
                 }
-                navigate('/login', {replace: true});
+                navigate('/main', {replace: true});
             }
         }
         
