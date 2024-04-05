@@ -24,8 +24,18 @@ export default function GAuthRoute() {
         async function login() {
             const code = searchParams.get('code');
             const state = searchParams.get('state');
+            
             if (state === "dev") {
-                document.location.href = `http://localhost:5173/redirect/gauth?code=${code}`;
+                let params = new URLSearchParams();
+                params.set('code', code);
+
+                document.location.href = `http://localhost:5173/redirect/gauth?${params.toString()}`;
+            }
+            else if(state === "beta") {
+                let params = new URLSearchParams();
+                params.set('code', code);
+
+                document.location.href = `https://beta.dimi.monster/redirect/gauth?code=${params.toString()}`;
             }
             const statusCode = await api.login(code);
             if(statusCode == 200)
