@@ -76,7 +76,7 @@ export default function Mainpage(props) {
             if(!res && api.getLastError() == 'Unauthorized') {
                 localStorage.removeItem('refresh-token');
                 localStorage.removeItem('access-token');
-                navigate('/login');
+                navigate('/main');
             }
             
             setLoadedState(true);
@@ -127,7 +127,7 @@ export default function Mainpage(props) {
             if(!res && api.getLastError() == 'Unauthorized') {
                 localStorage.removeItem('refresh-token');
                 localStorage.removeItem('access-token');
-                navigate('/login');
+                navigate('/main');
             }
             
             setLoadedState(true);

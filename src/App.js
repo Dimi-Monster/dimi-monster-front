@@ -39,6 +39,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/login' element={<Login/>} />
+        <Route path='/main' element={<Login/>} />
         <Route path='/banned' element={<Banned/>} />
 
         <Route path='/redirect/gauth' element={<GAuthRoute/>} />
