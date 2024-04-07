@@ -150,6 +150,8 @@ export default function Mainpage(props) {
     if(isMobile)
         weeklyCount = 3;
 
+    console.log('weeklyimage.length : ', weeklyImage.length);
+
     const NowImageView = isMobile ? MobileImageView : ImageView; // 아니 이게 되네? 
 
     let weekly = weeklyImage.slice(0, weeklyCount).map(({id, src, title, content, hearts, like}) => (id ? <NowImageView
@@ -175,19 +177,34 @@ export default function Mainpage(props) {
         onUnlike={onUnlike}
         setHeaderVisibility={props.setHeaderVisibility} />));
 
+    while(weekly.length < weeklyCount)
+        weekly.push(<NowImageView 
+            big={true}
+            src={isDarkMode ? defaultImageDark : defaultImage} 
+            title={''}
+            content={''}
+            hearts={0}
+            like={false}
+            onLike={onLike}
+            onUnlike={onUnlike}
+            setHeaderVisibility={props.setHeaderVisibility} />);
+
+    console.log(weekly.length);
+
     const settings = {
         dots: true,
         infinite: true,
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        arrows: false
+        arrows: false,
+        lazyLoad: true
     };
 
     return (
         <>
         {
-            isMobile && <Slider {...settings} className='weekly'>{weekly}</Slider>
+            isMobile && <Slider key={weekly.length} {...settings} className='weekly'>{weekly}</Slider>
         }
         <div className="mainpage" ref={mainpageRef}>
             {/* <button onClick={refresh}>새로고침</button> */}
