@@ -12,6 +12,8 @@ import Button from "../components/Button";
 import dimibug from '../images/dimibug.svg';
 import { useNavigate } from "react-router-dom";
 
+import UploadPopup from "../components/UploadPopup";
+
 export default function Upload() {
     const locationList = [
         "--- 본관 ---",
@@ -75,6 +77,9 @@ export default function Upload() {
 
     const [filename, setFilename] = useState('');
 
+    const [popupState, setPopupState] = useState(false);
+    const [captchaToken, setCaptchaToken] = useState('');
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -103,6 +108,7 @@ export default function Upload() {
     });
 
     return (
+        <>
         <div className='upload-outer-box'>
             <div className='upload-inner-box'>
                 <div className='title'>
@@ -111,7 +117,7 @@ export default function Upload() {
                 </div>
 
                 <div className='contents'>
-                    <button className='contents-left' onClick={selectFile}>
+                    <button className='contents-left' onClick={onImageSelect}>
                         <img src={croppedImageSrc} ref={image} className='image' alt='업로드할 몬스터 사진'/>
                         <div>이미지 선택하기</div>
                     </button>
@@ -127,7 +133,7 @@ export default function Upload() {
                     </div>
                 </div>
 
-                <form onSubmit={(e) => onUpload(e)}>
+                <form onSubmit={onSubmit}>
                     <div className="g-recaptcha" data-sitekey={process.env.REACT_APP_RECAPTCHA_SITEKEY} data-action="image_upload" 
                         data-theme={isDarkMode ? 'dark' : undefined}></div>
                     <Button title={buttonTitle} imgSrc={dimibug} color='default' height='1.2rem' type='submit'/>
@@ -137,9 +143,17 @@ export default function Upload() {
             {cropState ? <CropView image={imageSrc} ratio={1} onFinished={onCropFinished} className="cropview" filename={filename}/> : <div />}
             <input type="file" id="file" ref={inputFile} style={{ display: "none" }} accept="image/*" onChange={onFileChanged} />
         </div>
+
+        {popupState && <UploadPopup onFinish={selectFile}/>}
+        </>
     )
 
+    function onImageSelect() {
+        setPopupState(true);
+    }
     function selectFile() {
+        setPopupState(false);
+
         inputFile.current.click();
     }
     function onFileChanged(event) {
@@ -214,7 +228,25 @@ export default function Upload() {
             setExplanation(e.target.value);
     }
 
+    function onSubmit(event) {
+        event.preventDefault();
+
+        let token = event.target[0].value;
+
+        if(token === '' || token === null) {
+            alert('캡챠 인증 후 업로드해주세요.');
+            return;
+        }
+
+        setCaptchaToken(token);
+        //setPopupState(true);
+
+        onUpload(event);
+    }
+
     function onUpload(event) {
+        //setPopupState(false);
+
         event.preventDefault();
 
         if(uploadingState)
@@ -225,13 +257,7 @@ export default function Upload() {
             return;
         }
         
-        let token = event.target[0].value;
-        console.log(token);
-
-        if(token === '' || token === null) {
-            alert('캡챠 인증 후 업로드해주세요.');
-            return;
-        }
+        let token = captchaToken;
 
         setUplodingState(true);
         setButtonTitle('업로드 중...');
