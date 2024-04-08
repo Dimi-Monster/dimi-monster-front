@@ -117,7 +117,7 @@ export default function Upload() {
                 </div>
 
                 <div className='contents'>
-                    <button className='contents-left' onClick={selectFile}>
+                    <button className='contents-left' onClick={onImageSelect}>
                         <img src={croppedImageSrc} ref={image} className='image' alt='업로드할 몬스터 사진'/>
                         <div>이미지 선택하기</div>
                     </button>
@@ -144,11 +144,16 @@ export default function Upload() {
             <input type="file" id="file" ref={inputFile} style={{ display: "none" }} accept="image/*" onChange={onFileChanged} />
         </div>
 
-        {popupState && <UploadPopup onFinish={onUpload}/>}
+        {popupState && <UploadPopup onFinish={selectFile}/>}
         </>
     )
 
+    function onImageSelect() {
+        setPopupState(true);
+    }
     function selectFile() {
+        setPopupState(false);
+
         inputFile.current.click();
     }
     function onFileChanged(event) {
@@ -234,11 +239,13 @@ export default function Upload() {
         }
 
         setCaptchaToken(token);
-        setPopupState(true);
+        //setPopupState(true);
+
+        onUpload(event);
     }
 
     function onUpload(event) {
-        setPopupState(false);
+        //setPopupState(false);
 
         event.preventDefault();
 
