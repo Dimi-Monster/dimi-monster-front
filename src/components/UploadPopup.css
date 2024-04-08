@@ -33,6 +33,12 @@
     position: relative;
 }
 
+@media (prefers-color-scheme: dark) {
+    .upload-popup {
+        background-color: #333333;
+    }
+}
+
 .upload-popup .title {
     margin-bottom: 3rem;
 }
