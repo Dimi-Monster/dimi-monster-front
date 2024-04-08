@@ -4,7 +4,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    
+
     /* From https://css.glass */
     /* background: rgba(255, 255, 255, 0.1); */
     background: rgba(165, 165, 165, 0.188); /* 확대 이미지 배경 색 */
@@ -80,4 +80,93 @@
 
     bottom: 2rem;
     right: 2rem;
+}
+
+@media (max-width: 520px) {
+    .upload-popup {
+        width: 25rem;
+    }
+    .upload-popup ol {
+        margin-bottom: 8rem;
+    }
+    .upload-popup .bottom-left {
+        position: absolute;
+    
+        bottom: 2rem;
+        left: 2rem;
+    
+        font-size: 0.6rem;
+        line-height: 0.82rem;
+        color: #A8A8A8;
+    }
+}
+@media (max-width: 450px) {
+    .upload-popup {
+        width: 23rem;
+        padding: 1.7rem;
+    }
+    .upload-popup ol {
+        margin-bottom: 8rem;
+    }
+    .upload-popup .bottom-left {
+        position: absolute;
+    
+        bottom: 1.7rem;
+        left: 1.7rem;
+    
+        font-size: 0.6rem;
+        line-height: 0.82rem;
+        color: #A8A8A8;
+    }
+    .upload-popup .bottom-right {
+        bottom: 1.7rem;
+        right: 1.7rem;
+    }
+    .upload-popup .dimibug {
+        height: 1.5rem;
+        top: 0.2rem;
+        margin-right: 0.45rem;
+    }
+    .upload-popup .title {
+        font-size: 1.5rem;
+        font-family: 'Pretendard-SemiBold';
+    }
+    .upload-popup ol {
+        font-size: 1.05rem;
+        line-height: 1.65rem;
+        margin-left: 1.5rem;
+    }
+}
+@media (max-width: 400px) {
+    .upload-popup {
+        width: 20rem;
+        padding: 1.5rem;
+    }
+    .upload-popup .dimibug {
+        height: 1.35rem;
+        top: 0.2rem;
+        margin-right: 0.42rem;
+    }
+    .upload-popup .title {
+        font-size: 1.35rem;
+        font-family: 'Pretendard-SemiBold';
+    }
+    .upload-popup .bottom-left {
+        bottom: 1.5rem;
+        left: 1.5rem;
+    
+        font-size: 0.55rem;
+        line-height: 0.77rem;
+    }
+    .upload-popup .bottom-right {
+        bottom: 1.5rem;
+        right: 1.5rem;
+    }
+    .upload-popup ol {
+        font-size: 0.96rem;
+        line-height: 1.6rem;
+    
+        margin-left: 1.4rem;
+        margin-bottom: 7.2rem;
+    }
 }
