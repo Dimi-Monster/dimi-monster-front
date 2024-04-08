@@ -1,0 +1,39 @@
+.mini-button {
+    height: 2.2rem;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    
+    background-color: #FFFDFE;
+
+    font-family: "Pretendard-SemiBold";
+
+    display: flex;
+    flex-direction: row;
+    font-size: 0.93rem;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 0.9px solid #bebebe;
+    border-radius: 0.7rem;
+    box-sizing: border-box;
+    padding: 0.5rem;
+}
+@media (prefers-color-scheme: dark) {
+    .mini-button {
+        background-color: #333333;
+    }
+}
+
+.mini-button > img {
+    height: 1.17rem;
+    color: #333333;
+
+    margin-right: 0.3rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    .mini-button > img {
+        color: white;
+    }
+}
