@@ -1,0 +1,77 @@
+.upload-popup-outer-box {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #ff000033;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 100000;
+}
+
+.upload-popup {
+    border: 0.9px solid #BEBEBE;
+    border-radius: 1.5rem;
+    background-color: #FFFDFE;
+
+    box-sizing: border-box;
+    padding: 2rem;
+
+    width: 30rem;
+
+    position: relative;
+}
+
+.upload-popup .title {
+    margin-bottom: 3rem;
+}
+
+.upload-popup .dimibug {
+    height: 1.6rem;
+    position: relative;
+    top: 0.2rem;
+    margin-right: 0.5rem;
+}
+.upload-popup .title {
+    font-size: 1.6rem;
+    font-family: 'Pretendard-SemiBold';
+}
+
+.upload-popup ol {
+    list-style-type: decimal;
+
+    font-family: 'Pretendard-Medium';
+    font-size: 1.05rem;
+    line-height: 1.7rem;
+
+    margin-left: 2.3rem;
+
+    margin-bottom: 5rem;
+}
+.upload-popup em {
+    color: #DD0D75;
+}
+
+
+
+.upload-popup .bottom-left {
+    position: absolute;
+
+    bottom: 2rem;
+    left: 2rem;
+
+    font-size: 0.77rem;
+    line-height: 0.9rem;
+    color: #A8A8A8;
+}
+.upload-popup .bottom-right {
+    position: absolute;
+
+    bottom: 2rem;
+    right: 2rem;
+}
