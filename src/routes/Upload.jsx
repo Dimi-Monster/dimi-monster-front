@@ -144,7 +144,7 @@ export default function Upload() {
             <input type="file" id="file" ref={inputFile} style={{ display: "none" }} accept="image/*" onChange={onFileChanged} />
         </div>
 
-        {popupState && <UploadPopup onFinish={selectFile}/>}
+        {popupState && <UploadPopup onFinish={selectFile} onCancel={() => navigate('/')}/>}
         </>
     )
 
