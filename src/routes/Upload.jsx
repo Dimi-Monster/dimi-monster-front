@@ -78,7 +78,7 @@ export default function Upload() {
     const [filename, setFilename] = useState('');
 
     const [popupState, setPopupState] = useState(false);
-    const [captchaToken, setCaptchaToken] = useState('');
+    //const [captchaToken, setCaptchaToken] = useState('');
 
     const navigate = useNavigate();
 
@@ -152,12 +152,12 @@ export default function Upload() {
         setPopupState(true);
     }
     function selectFile() {
-        setPopupState(false);
-
         inputFile.current.click();
     }
     function onFileChanged(event) {
         async function f() {
+            setPopupState(false);
+
             let fileObj = event.target.files[0];
             let filename = fileObj.name;
 
@@ -238,7 +238,7 @@ export default function Upload() {
             return;
         }
 
-        setCaptchaToken(token);
+        //setCaptchaToken(token);
         //setPopupState(true);
 
         onUpload(event);
@@ -257,7 +257,7 @@ export default function Upload() {
             return;
         }
         
-        let token = captchaToken;
+        let token = event.target[0].value; // 이거 왜 state 쓰면 안되지? 모르겠다
 
         setUplodingState(true);
         setButtonTitle('업로드 중...');
