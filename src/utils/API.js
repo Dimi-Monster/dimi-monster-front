@@ -1,297 +1,290 @@
 class API {
-    serverUrl = '';
-    lastError = '';
-    currentIdx = 0;
+  serverUrl = "";
+  lastError = "";
+  currentIdx = 0;
 
-    constructor() {
-        this.serverUrl = process.env.REACT_APP_API_URL;
+  constructor() {
+    this.serverUrl = process.env.REACT_APP_API_URL;
+  }
+
+  getLastError() {
+    return this.lastError;
+  }
+
+  async login(code) {
+    const url = `${this.serverUrl}/auth/login?code=${code}`;
+    let data = await fetch(url, {
+      headers: {},
+    });
+    if (data.status != 200) {
+      this.lastError = new TextDecoder().decode(await data.arrayBuffer());
+      return data.status;
     }
 
-    getLastError() {
-        return this.lastError;
+    let json = await data.json();
+
+    data = fetch(json.picture);
+
+    localStorage.setItem("email", json["email"]);
+    localStorage.setItem("access-token", json["access-token"]);
+    localStorage.setItem("refresh-token", json["refresh-token"]);
+    localStorage.setItem("name", json["name"]);
+    localStorage.setItem(
+      "expires",
+      (Math.floor(Date.now() / 1000) + json["at-expire"]).toString()
+    );
+
+    let blob = await data.then((response) => response.blob());
+    const objectURL = URL.createObjectURL(blob);
+    // 여기서 프로필 이미지 처리
+    //console.log(objectURL);
+    localStorage.setItem("profile-image", objectURL);
+
+    return 200;
+  }
+  async logout() {
+    let email = localStorage.getItem("email");
+    let refreshToken = localStorage.getItem("refresh-token");
+
+    const url = `${this.serverUrl}/auth/logout`;
+
+    let data = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        "refresh-token": refreshToken,
+      }),
+    });
+    if (data.status != 200) return false;
+
+    localStorage.removeItem("access-token");
+    localStorage.removeItem("refresh-token");
+
+    return true;
+  }
+  async refresh() {
+    let email = localStorage.getItem("email");
+    let refreshToken = localStorage.getItem("refresh-token");
+
+    const url = `${this.serverUrl}/auth/refresh`;
+
+    let data = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        "refresh-token": refreshToken,
+      }),
+    });
+    if (data.status != 200) {
+      if (data.status == 403) {
+        localStorage.removeItem("access-token");
+        localStorage.removeItem("refresh-token");
+        document.location.href = "/banned";
+      }
+      this.lastError = "Unauthorized";
+      return false;
     }
 
-    async login(code) {
-        const url = `${this.serverUrl}/auth/login?code=${code}`;
-        let data = await fetch(url, {
-            headers: {}
-        });
-        if(data.status != 200) {
-            this.lastError = new TextDecoder().decode(await data.arrayBuffer());
-            return data.status;
-        }
+    let json = await data.json();
 
-        let json = await data.json();
+    localStorage.setItem("access-token", json["access-token"]);
+    localStorage.setItem(
+      "expires",
+      (Math.floor(Date.now() / 1000) + json["at-expire"]).toString()
+    );
+    return true;
+  }
+  async refreshIfExpired() {
+    let current = Math.floor(Date.now() / 1000);
 
-        data = fetch(json.picture);
-
-        localStorage.setItem('email', json['email']);
-        localStorage.setItem('access-token', json['access-token']);
-        localStorage.setItem('refresh-token', json['refresh-token']);
-        localStorage.setItem('name', json['name']);
-        localStorage.setItem('expires', (Math.floor(Date.now() / 1000) + json['at-expire']).toString());
-
-        let blob = await data.then((response) => response.blob());
-        const objectURL = URL.createObjectURL(blob);
-        // 여기서 프로필 이미지 처리
-        //console.log(objectURL);
-        localStorage.setItem('profile-image', objectURL);
-        
-
-        return 200;
+    if (parseInt(localStorage.getItem("expires")) - 50 < current) {
+      if (!(await this.refresh())) return false;
     }
-    async logout() {
-        let email = localStorage.getItem('email');
-        let refreshToken = localStorage.getItem('refresh-token');
+    return true;
+  }
+  async getImage(pageIdx, thumbnail = true) {
+    if (!(await this.refreshIfExpired())) return false;
 
-        const url = `${this.serverUrl}/auth/logout`;
+    const url = `${this.serverUrl}/image/list?page=${pageIdx}&thumbnail=${thumbnail}`;
 
-        let data = await fetch(url, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                'email': email,
-                'refresh-token': refreshToken
-            })
-        });
-        if(data.status != 200)
-            return false;
+    let data = await fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+      },
+    });
 
-        localStorage.removeItem('access-token');
-        localStorage.removeItem('refresh-token');
+    if (data.status == 401) this.lastError = "Unauthorized";
 
-        return true;
-    }
-    async refresh() {
-        let email = localStorage.getItem('email');
-        let refreshToken = localStorage.getItem('refresh-token');
+    if (data.status != 200) return false;
 
-        const url = `${this.serverUrl}/auth/refresh`;
+    let json = await data.json();
+    //console.log(json);
 
-        let data = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                'email': email,
-                'refresh-token': refreshToken
-            })
-        });
-        if(data.status != 200) {
-            if (data.status == 403) {
-                localStorage.removeItem('access-token');
-                localStorage.removeItem('refresh-token');
-                document.location.href = '/banned';
-            }
-            this.lastError = 'Unauthorized';
-            return false;
-        }
+    let res = json.map((json) => {
+      return {
+        id: json["id"],
+        src: json["thumbnail"],
+        hearts: json["like"],
+        title: json["location"],
+        content: json["description"],
+        like: json["liked-by-me"],
+      };
+    });
 
-        let json = await data.json();
+    return res;
+  }
+  async getRecentImageID() {
+    await this.refreshIfExpired();
 
-        localStorage.setItem('access-token', json['access-token']);
-        localStorage.setItem('expires', (Math.floor(Date.now() / 1000) + json['at-expire']).toString());
-        return true;
-    }
-    async refreshIfExpired() {
-        let current = Math.floor(Date.now() / 1000);
+    const url = `${this.serverUrl}/image/recent`;
 
-        if(parseInt(localStorage.getItem('expires')) - 50 < current) {
-            if(!await this.refresh())
-                return false;
-        }
-        return true;
-    }
-    async getImage(pageIdx, thumbnail = true) {
-        if(!await this.refreshIfExpired())
-            return false;
+    let data = await fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+      },
+    });
 
-        const url = `${this.serverUrl}/image/list?page=${pageIdx}&thumbnail=${thumbnail}`;
+    if (data.status != 200) return false;
 
-        let data = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('access-token')}`
-            }
-        });
+    let json = await data.json();
+    return json.id;
+  }
+  async getOriginalImageUrl(id) {
+    await this.refreshIfExpired();
 
-        if(data.status == 401)
-            this.lastError = 'Unauthorized';
+    const url = `${this.serverUrl}/image/${id}`;
+    return url;
+  }
+  async uploadImage({ img, location, description, token }) {
+    // token: 리캡차 토큰
+    await this.refreshIfExpired();
+    console.log(img);
 
-        if(data.status != 200)
-            return false;
+    const blob = img;
 
-        let json = await data.json();
-        //console.log(json);
+    const url = `${this.serverUrl}/image/upload`;
 
-        let res = json.map(json => {
-            return {
-                id: json['id'],
-                src: json['thumbnail'], 
-                hearts: json['like'],
-                title: json['location'],
-                content: json['description'],
-                like: json['liked-by-me']
-            }
-        })
+    let formData = new FormData();
+    formData.append("token", token);
+    formData.append("description", description);
+    formData.append("location", location);
+    formData.append("image", blob, "a.jpg");
 
-        return res;
-    }
-    async getRecentImageID() {
-        await this.refreshIfExpired();
+    let data = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+      },
+      body: formData,
+    });
 
-        const url = `${this.serverUrl}/image/recent`;
+    if (data.status != 200) return false;
 
-        let data = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('access-token')}`
-            }
-        });
+    return true;
+  }
+  async like(id) {
+    await this.refreshIfExpired();
+    const url = `${this.serverUrl}/image/like/${id}`;
 
-        if(data.status != 200)
-            return false;
+    let data = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+      },
+    });
 
-        let json = await data.json();
-        return json.id;
-    }
-    async getOriginalImageUrl(id) {
-        await this.refreshIfExpired();
+    if (data.status != 200) return false;
 
-        const url = `${this.serverUrl}/image/${id}`;
-        return url;
-    }
-    async uploadImage({img, location, description, token}) { // token: 리캡차 토큰
-        await this.refreshIfExpired();
-        console.log(img);
+    return true;
+  }
+  async unlike(id) {
+    await this.refreshIfExpired();
+    const url = `${this.serverUrl}/image/like/${id}`;
 
-        const blob = img;
+    let data = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+      },
+    });
 
-        const url = `${this.serverUrl}/image/upload`;
+    if (data.status != 200) return false;
 
-        let formData = new FormData();
-        formData.append('token', token);
-        formData.append('description', description);
-        formData.append('location', location);
-        formData.append('image', blob, 'a.jpg');
+    return true;
+  }
+  async getWeeklyImage() {
+    await this.refreshIfExpired();
 
-        let data = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('access-token')}`
-            },
-            body: formData
-        });
+    const url = `${this.serverUrl}/image/weekly`;
 
-        if(data.status != 200)
-            return false;
-        
-        return true;
-    }
-    async like(id) {
-        await this.refreshIfExpired();
-        const url = `${this.serverUrl}/image/like/${id}`;
+    let data = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+      },
+    });
 
-        let data = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('access-token')}`
-            }
-        });
+    if (data.status != 200) return false;
 
-        if(data.status != 200)
-            return false;
+    let json = await data.json();
+    return json.map((json) => ({
+      id: json["id"],
+      src: json["thumbnail"],
+      hearts: json["like"],
+      title: json["location"],
+      content: json["description"],
+      like: json["liked-by-me"],
+    }));
+  }
+  async getLikeCount(id) {
+    await this.refreshIfExpired();
+    const url = `${this.serverUrl}/image/like/${id}`;
 
-        return true;
-    }
-    async unlike(id) {
-        await this.refreshIfExpired();
-        const url = `${this.serverUrl}/image/like/${id}`;
+    let data = await fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+      },
+    });
 
-        let data = await fetch(url, {
-            method: 'DELETE',
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('access-token')}`
-            }
-        });
+    if (data.status != 200) return false;
 
-        if(data.status != 200)
-            return false;
+    let json = await data.json();
+    return json.like;
+  }
 
-        return true;
-    }
-    async getWeeklyImage() {
-        await this.refreshIfExpired();
+  async report({ id, category, reason, token }) {
+    await this.refreshIfExpired();
+    const url = `${this.serverUrl}/report`;
 
-        const url = `${this.serverUrl}/image/weekly`;
+    let data = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "target-id": id,
+        category: category,
+        reason: reason,
+        token: token,
+      }),
+    });
 
-        let data = await fetch(url, {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('access-token')}`
-            }
-        });
+    if (data.status != 200) return false;
 
-        if(data.status != 200)
-            return false;
-
-        let json = await data.json();
-        return json.map(json => ({
-            id: json['id'],
-            src: json['thumbnail'], 
-            hearts: json['like'],
-            title: json['location'],
-            content: json['description'],
-            like: json['liked-by-me']
-        }));
-    }
-    async getLikeCount(id) {
-        await this.refreshIfExpired();
-        const url = `${this.serverUrl}/image/like/${id}`;
-
-        let data = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('access-token')}`
-            }
-        });
-
-        if(data.status != 200)
-            return false;
-
-        let json = await data.json();
-        return json.like;
-    }
-
-
-    async report({id, category, reason, token}) {
-        await this.refreshIfExpired();
-        const url = `${this.serverUrl}/report`;
-
-        let data = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('access-token')}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                'target-id': id,
-                'category': category,
-                'reason': reason,
-                'token': token
-            })
-        });
-
-        if(data.status != 200)
-            return false;
-
-        //let json = await data.json();
-        //return json.like;
-        //alert(JSON.stringify(json));
-        return true;
-    }
+    //let json = await data.json();
+    //return json.like;
+    //alert(JSON.stringify(json));
+    return true;
+  }
 }
 
 let api = new API();
