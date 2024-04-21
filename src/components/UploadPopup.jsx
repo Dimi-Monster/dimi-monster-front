@@ -45,4 +45,5 @@ export default function UploadPopup({ onFinish, onCancel }) {
 
 UploadPopup.propTypes = {
   onFinish: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired
 };
