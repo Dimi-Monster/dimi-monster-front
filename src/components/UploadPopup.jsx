@@ -5,9 +5,9 @@ import MiniButton from "./MiniButton";
 
 import dimibug from "../images/dimibug.svg";
 
-export default function UploadPopup({ onFinish }) {
+export default function UploadPopup({ onFinish, onCancel }) {
   return (
-    <div className="upload-popup-outer-box">
+    <div className="upload-popup-outer-box" onClick={onCancel}>
       <div className="upload-popup">
         <div className="title">
           <img className="dimibug" src={dimibug} />

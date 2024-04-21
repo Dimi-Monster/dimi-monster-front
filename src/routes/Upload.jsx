@@ -206,9 +206,9 @@ export default function Upload() {
         />
       </div>
 
-      {popupState && <UploadPopup onFinish={selectFile} />}
-    </>
-  );
+        {popupState && <UploadPopup onFinish={selectFile} onCancel={() => navigate('/')}/>}
+        </>
+    )
 
   function onImageSelect() {
     setPopupState(true);
