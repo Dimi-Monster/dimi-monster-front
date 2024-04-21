@@ -6,6 +6,12 @@ import MiniButton from "./MiniButton";
 import dimibug from "../images/dimibug.svg";
 
 export default function UploadPopup({ onFinish, onCancel }) {
+  function finish(event) {
+    event.stopPropagation();
+
+    onFinish();
+  }
+
   return (
     <div className="upload-popup-outer-box" onClick={onCancel}>
       <div className="upload-popup">
@@ -36,7 +42,7 @@ export default function UploadPopup({ onFinish, onCancel }) {
         </div>
 
         <div className="bottom-right">
-          <MiniButton src={dimibug} buttonTitle="확인" onClick={onFinish} />
+          <MiniButton src={dimibug} buttonTitle="확인" onClick={finish} />
         </div>
       </div>
     </div>
