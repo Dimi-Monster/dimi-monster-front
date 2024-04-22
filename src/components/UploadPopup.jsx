@@ -14,7 +14,7 @@ export default function UploadPopup({ onFinish, onCancel }) {
 
   return (
     <div className="upload-popup-outer-box" onClick={onCancel}>
-      <div className="upload-popup">
+      <div className="upload-popup" onClick={ (ev) => ev.stopPropagation() }>
         <div className="title">
           <img className="dimibug" src={dimibug} />
           업로드가 제한되는 이미지
