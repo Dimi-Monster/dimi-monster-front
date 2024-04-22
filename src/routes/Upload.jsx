@@ -12,7 +12,7 @@ import Button from "../components/Button";
 import dimibug from "../images/dimibug.svg";
 import { useNavigate } from "react-router-dom";
 import UploadPopup from "../components/UploadPopup";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 export default function Upload() {
   const locationList = [
@@ -47,7 +47,7 @@ export default function Upload() {
     "3-4 교실",
     "3-5 교실",
     "3-6 교실",
-    "강당"
+    "강당",
 
     "--- 기타 장소 ---",
 
@@ -207,9 +207,11 @@ export default function Upload() {
         />
       </div>
 
-        {popupState && <UploadPopup onFinish={selectFile} onCancel={() => navigate('/')}/>}
-        </>
-    )
+      {popupState && (
+        <UploadPopup onFinish={selectFile} onCancel={() => navigate("/")} />
+      )}
+    </>
+  );
 
   function onImageSelect() {
     setPopupState(true);
@@ -299,7 +301,7 @@ export default function Upload() {
       // toast.error('안녕하세요.');
       // toast.warn('안녕하세요.');
 
-      toast.warn('캡차 인증 후 업로드해주세요.');
+      toast.warn("캡차 인증 후 업로드해주세요.");
       return;
     }
 
