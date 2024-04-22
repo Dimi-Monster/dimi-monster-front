@@ -9,8 +9,8 @@ import api from "../utils/API";
 import Button from "../components/Button";
 import dimibug from "../images/dimibug.svg";
 import { useNavigate, useSearchParams } from "react-router-dom";
-
 import thumbnailCacher from "../utils/ThumbnailCacher";
+import { toast } from 'react-toastify';
 
 export default function Report() {
   const categoryList = [
@@ -158,7 +158,7 @@ export default function Report() {
   }
 
   function onExplanationChanged(e) {
-    if (e.target.value.length > 300) alert("설명이 너무 길어요.");
+    if (e.target.value.length > 300) toast.warn("설명이 너무 길어요.");
     else setExplanation(e.target.value);
   }
 
@@ -173,7 +173,7 @@ export default function Report() {
     console.log(token);
 
     if (token === "" || token === null) {
-      alert("캡챠 인증 후 업로드해주세요.");
+      toast.warn("캡챠 인증 후 업로드해주세요.");
       return;
     }
 
@@ -191,8 +191,8 @@ export default function Report() {
         setUplodingState(false);
         setButtonTitle("신고하기");
 
-        if (!isSuccess) alert("신고에 실패했습니다.");
-        else alert("신고에 성공했습니다.");
+        if (!isSuccess) toast.error("신고에 실패했습니다.");
+        else toast.success("신고에 성공했습니다.");
 
         navigate("/");
       });
