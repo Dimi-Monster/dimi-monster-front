@@ -40,11 +40,11 @@ export default function GAuthRoute() {
             }
             const statusCode = await api.login(code);
             if(statusCode == 200) {
-                toast.success('로그인되었습니다.');
+                // toast.success('로그인되었습니다.');
                 navigate('/', {replace: true});
             }
             else if (statusCode == 403) {
-                toast.error('차단된 사용자입니다.');
+                // toast.error('차단된 사용자입니다.');
                 navigate('/banned', {replace: true});
             }
             else {
