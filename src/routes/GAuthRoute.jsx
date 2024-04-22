@@ -6,6 +6,7 @@ import loginWaitLogo from '../images/login_wait_logo.svg';
 import loginWaitLogoDark from '../images/login_wait_logo-dark.svg';
 import sponsorLogo from '../images/clast-cloud-logo.svg';
 import sponsorLogoDark from '../images/clast-cloud-logo-dark.svg';
+import { toast } from 'react-toastify';
 
 export default function GAuthRoute() {
     const [searchParams, /*setSearchParams*/] = useSearchParams();
@@ -38,21 +39,27 @@ export default function GAuthRoute() {
                 document.location.href = `https://beta.dimi.monster/redirect/gauth?${params.toString()}`;
             }
             const statusCode = await api.login(code);
-            if(statusCode == 200)
+            if(statusCode == 200) {
+                toast.success('로그인되었습니다.');
                 navigate('/', {replace: true});
+            }
             else if (statusCode == 403) {
+                toast.error('차단된 사용자입니다.');
                 navigate('/banned', {replace: true});
             }
             else {
                 let error = api.getLastError();
 
-                if(error == 'Invalid Email Address'){
-                    alert('디미고 구글 계정으로만 로그인할 수 있습니다.');
-                } else if(error == 'Internal Server Error'){
-                    alert('로그인 정보를 불러오는 데 실패했습니다.');
-                } else {
-                    alert('오류가 발생했습니다. 관리자에게 문의해주세요.\n\n에러 타입: '+error);
+                if(error == 'Invalid Email Address') {
+                    toast.error('디미고 구글 계정으로만 로그인할 수 있습니다.');
+                } 
+                else if(error == 'Internal Server Error') {
+                    toast.error('로그인 정보를 불러오는 데 실패했습니다.');
+                } 
+                else {
+                    toast.error('오류가 발생했습니다. 관리자에게 문의해주세요.\n\n에러 타입: '+error);
                 }
+
                 navigate('/main', {replace: true});
             }
         }

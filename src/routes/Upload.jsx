@@ -292,10 +292,13 @@ export default function Upload() {
     let token = event.target[0].value;
 
     if (token === "" || token === null) {
-      alert("캡챠 인증 후 업로드해주세요.");
-      toast.info('안녕하세요.');
-      toast.success('안녕하세요.');
-      toast.error('안녕하세요.');
+      // alert("캡챠 인증 후 업로드해주세요.");
+      // toast.info('안녕하세요.');
+      // toast.success('안녕하세요.');
+      // toast.error('안녕하세요.');
+      // toast.warn('안녕하세요.');
+
+      toast.warn('캡차 인증 후 업로드해주세요.');
       return;
     }
 
@@ -313,7 +316,7 @@ export default function Upload() {
     if (uploadingState) return;
 
     if (!imageSelected) {
-      alert("업로드할 이미지를 선택해주세요.");
+      toast.warn("업로드할 이미지를 선택해주세요.");
       return;
     }
 
@@ -334,8 +337,8 @@ export default function Upload() {
         setButtonTitle("사진 업로드");
 
         if (!isSuccess) {
-          alert("업로드에 실패했습니다.");
-        } else alert("업로드에 성공했습니다.");
+          toast.error("업로드에 실패했습니다.");
+        } else toast.success("업로드에 성공했습니다.");
 
         navigate("/");
       });

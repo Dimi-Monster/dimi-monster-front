@@ -8,7 +8,6 @@ import { useMediaQuery } from "react-responsive";
 import "./Mainpage.css";
 import TitleBox from "../components/TitleBox";
 import ImageView from "../components/ImageView";
-
 import api from "../utils/API";
 import imageManager from "../utils/ImageManager";
 import { useInView } from "react-intersection-observer";
@@ -18,6 +17,7 @@ import defaultImage from "../images/default-image.svg";
 import defaultImageDark from "../images/default-image-dark.svg";
 import MobileImageView from "../components/MobileImageView";
 import ImagePreview from "../components/ImagePreview";
+import { toast } from 'react-toastify';
 
 export default function Mainpage(props) {
   const [searchParams /*setSearchParams*/] = useSearchParams();
@@ -62,7 +62,7 @@ export default function Mainpage(props) {
       if (inView && isLoaded) {
         imageManager.getImageBottom(setImageList).then((res) => {
           if (!res) {
-            alert("정보를 불러오는 데 실패했습니다.");
+            toast.error("정보를 불러오는 데 실패했습니다.");
             return;
           }
           if (res.end) {
