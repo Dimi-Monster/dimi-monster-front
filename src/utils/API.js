@@ -285,6 +285,32 @@ class API {
     //alert(JSON.stringify(json));
     return true;
   }
+
+  async processReport({id, process, reason, secret}) {
+    await this.refreshIfExpired();
+    const url = `${this.serverUrl}/report/process`;
+
+    let data = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "report-id": id,
+        process: process,
+        reason: reason,
+        secret: secret,
+      }),
+    });
+
+    if (data.status != 200) {
+      this.lastError = await data.text();
+      return false;
+    }
+
+    return true;
+  }
 }
 
 let api = new API();
