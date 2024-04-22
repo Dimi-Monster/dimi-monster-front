@@ -47,6 +47,7 @@ export default function Upload() {
     "3-4 교실",
     "3-5 교실",
     "3-6 교실",
+    "강당"
 
     "--- 기타 장소 ---",
 
