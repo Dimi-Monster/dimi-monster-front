@@ -11,8 +11,8 @@ import api from "../utils/API";
 import Button from "../components/Button";
 import dimibug from "../images/dimibug.svg";
 import { useNavigate } from "react-router-dom";
-
 import UploadPopup from "../components/UploadPopup";
+import { toast } from 'react-toastify';
 
 export default function Upload() {
   const locationList = [
@@ -293,6 +293,9 @@ export default function Upload() {
 
     if (token === "" || token === null) {
       alert("캡챠 인증 후 업로드해주세요.");
+      toast.info('안녕하세요.');
+      toast.success('안녕하세요.');
+      toast.error('안녕하세요.');
       return;
     }
 
