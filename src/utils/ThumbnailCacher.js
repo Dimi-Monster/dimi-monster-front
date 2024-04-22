@@ -7,7 +7,8 @@ class ThumbnailCacher {
     lastPage = -1;
 
     // loadThumbnail 값이 지정되면 그 값에 따라 작동하고, 지정되지 않으면 자동으로 지정한다
-    async getImage(pageIdx, loadThumbnail) {
+    // recentID 값이 undefined가 아니라면, recentID 값에 따라 캐싱된 값을 사용할지 여부를 결정한다
+    async getImage(pageIdx, loadThumbnail, recentID) {
         //console.log(`pageIdx: ${pageIdx}, thumbnailCount: ${this.thumbnailsCount}`);
 
         if(loadThumbnail === undefined) {
@@ -19,6 +20,14 @@ class ThumbnailCacher {
                 loadThumbnail = false;
             else
                 loadThumbnail = true;
+        }
+
+        if(pageIdx == 0) {
+            if(recentID === undefined)
+                recentID = await api.getRecentImageID();
+
+            if(recentID in this.thumbnails)
+                loadThumbnail = false;
         }
 
         let res = await api.getImage(pageIdx, loadThumbnail);

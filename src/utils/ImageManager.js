@@ -7,8 +7,6 @@ class ImageManager {
 
   set = new Set();
   originalImages = {};
-  thumbnails = {};
-  thumbnailsCount = 0;
 
   fetchID = 1;
   latestFetchID = {};
@@ -52,7 +50,7 @@ class ImageManager {
 
     while (!isEnd) {
       // 이게 실행되는 타이밍에는 무조건 새로운 이미지가 있기 때문에 썸네일을 캐싱하지 않는게 이득이다
-      let res = await thumbnailCacher.getImage(pageIdx, true);
+      let res = await thumbnailCacher.getImage(pageIdx, true, recentID);
 
       if (!res) return false;
 
