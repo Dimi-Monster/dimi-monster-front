@@ -14,7 +14,7 @@ import { useTranslation, Trans } from 'react-i18next';
 export default function Introduce() {
     const [sharingLifeName, setSharingLifeName] = useState('');
     const [animationState, setAnimationState] = useState(false);
-    const { /*t,*/ i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
 
     const isMobile = useMediaQuery({query : "(max-width:520px)"});
     let [/*isDarkMode*/, setIsDarkMode] = useState(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
@@ -131,7 +131,7 @@ export default function Introduce() {
                 {/* <button onClick={() => {i18n.changeLanguage('ko')}}>한국어</button>
                 <button onClick={() => {i18n.changeLanguage('en')}}>English</button>
                 <button onClick={() => {i18n.changeLanguage('ja')}}>日本語</button> */}
-                <select onChange={(e) => i18n.changeLanguage(e.target.value)}>
+                <select defaultValue={t('lang')} onChange={(e) => i18n.changeLanguage(e.target.value)}>
                     <option key='ko' value='ko'>한국어</option>
                     <option key='en' value='en'>English</option>
                     <option key='ja' value='ja'>日本語</option>
@@ -147,7 +147,7 @@ export default function Introduce() {
                     <h1>
                         <Trans i18nKey="introduce.subject">혼자만 간직하기엔<br/>세상은 너무 넓다</Trans>
                     </h1>
-                    <div className='underline'>
+                    <div className={`underline underline-${t('lang')}`}>
                         <div></div>
                         <img className='dimibug' src={dimibug} alt='디미몬스터'/>
                     </div>

@@ -225,6 +225,20 @@
     background-color: var(--dimi-magenta);
     transform: rotate(-1deg); /* 361도 */
 }
+
+.introduce-box .underline-zh {
+    left: 0rem;
+}
+.introduce-box .underline-zh > div {
+    width: 20rem;
+}
+.introduce-box .underline-ja {
+    left: 11.6rem;
+}
+.introduce-box .underline-ja > div {
+    width: 16.3rem;
+}
+
 .introduce-box .underline > .dimibug {
     height: 1.9rem;
 }
@@ -247,6 +261,18 @@
     .introduce-box .underline > .dimibug {
         height: 1.8rem;
     }
+    .introduce-box .underline-zh {
+        left: 0rem;
+    }
+    .introduce-box .underline-zh > div {
+        width: 18rem;
+    }
+    .introduce-box .underline-ja {
+        left: 10.3rem;
+    }
+    .introduce-box .underline-ja > div {
+        width: 14.4rem;
+    }
 }
 @media (max-width: 600px) {
     .introduce-box h1 {
@@ -262,6 +288,18 @@
     }
     .introduce-box .underline > .dimibug {
         height: 1.6rem;
+    }
+    .introduce-box .underline-zh {
+        left: 0rem;
+    }
+    .introduce-box .underline-zh > div {
+        width: 15.8rem;
+    }
+    .introduce-box .underline-ja {
+        left: 9rem;
+    }
+    .introduce-box .underline-ja > div {
+        width: 12.5rem;
     }
 }
 @media (max-width: 470px) {
@@ -279,6 +317,18 @@
     .introduce-box .underline > .dimibug {
         height: 1.4rem;
     }
+    .introduce-box .underline-zh {
+        left: 0rem;
+    }
+    .introduce-box .underline-zh > div {
+        width: 13.5rem;
+    }
+    .introduce-box .underline-ja {
+        left: 7.7rem;
+    }
+    .introduce-box .underline-ja > div {
+        width: 10.8rem;
+    }
 }
 @media (max-width: 400px) {
     .introduce-box h1 {
@@ -294,6 +344,18 @@
     }
     .introduce-box .underline > .dimibug {
         height: 1.2rem;
+    }
+    .introduce-box .underline-zh {
+        left: 0rem;
+    }
+    .introduce-box .underline-zh > div {
+        width: 10.5rem;
+    }
+    .introduce-box .underline-ja {
+        left: 5.9rem;
+    }
+    .introduce-box .underline-ja > div {
+        width: 8.3rem;
     }
 }
 
