@@ -5,6 +5,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import langKo from './lang.ko.json';
 import langEn from './lang.en.json';
 import langJa from './lang.ja.json';
+import langZh from './lang.zh.json';
 
 i18n
     .use(LanguageDetector) // 사용자 언어 탐지
@@ -25,6 +26,9 @@ i18n
             },
             ja: {
                 translation: langJa
+            },
+            zh: {
+                translation: langZh
             }
         },
     });

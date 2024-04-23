@@ -135,6 +135,7 @@ export default function Introduce() {
                     <option key='ko' value='ko'>한국어</option>
                     <option key='en' value='en'>English</option>
                     <option key='ja' value='ja'>日本語</option>
+                    <option key='zh' value='zh'>简体中文</option>
                 </select>
                 <button className='login' onClick={login}>
                     <Trans i18nKey="introduce.login">간편 로그인</Trans>
