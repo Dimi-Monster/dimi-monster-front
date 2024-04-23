@@ -174,6 +174,11 @@
     font-family: 'Pretendard-SemiBold';
     line-height: 1.2rem;
 }
+.introduce-box select {
+    background-color: transparent;
+    color: white;
+    border: none;
+}
 
 .introduce-box > .introduce-header {
     display: flex;
@@ -220,6 +225,27 @@
     background-color: var(--dimi-magenta);
     transform: rotate(-1deg); /* 361도 */
 }
+.introduce-box .underline-zh {
+    left: 0rem;
+}
+.introduce-box .underline-zh > div {
+    width: 20rem;
+}
+.introduce-box .underline-ja {
+    left: 11.6rem;
+}
+.introduce-box .underline-ja > div {
+    width: 16.3rem;
+}
+
+.introduce-box-en h1 {
+    font-size: 3.8rem;
+    line-height: 4.3rem;
+}
+.introduce-box .underline-en {
+    display: none; /* 이건 임시로 해놓은 거 ,, */
+}
+
 .introduce-box .underline > .dimibug {
     height: 1.9rem;
 }
@@ -228,7 +254,7 @@
     margin-bottom: 1rem;
 }
 
-@media (max-width: 730px) {
+@media (max-width: 770px) {
     .introduce-box h1 {
         font-size: 4rem;
         line-height: 4.5rem;
@@ -242,8 +268,20 @@
     .introduce-box .underline > .dimibug {
         height: 1.8rem;
     }
+    .introduce-box .underline-zh {
+        left: 0rem;
+    }
+    .introduce-box .underline-zh > div {
+        width: 18rem;
+    }
+    .introduce-box .underline-ja {
+        left: 10.3rem;
+    }
+    .introduce-box .underline-ja > div {
+        width: 14.4rem;
+    }
 }
-@media (max-width: 600px) {
+@media (max-width: 660px) {
     .introduce-box h1 {
         font-size: 3.5rem;
         line-height: 4rem;
@@ -258,8 +296,20 @@
     .introduce-box .underline > .dimibug {
         height: 1.6rem;
     }
+    .introduce-box .underline-zh {
+        left: 0rem;
+    }
+    .introduce-box .underline-zh > div {
+        width: 15.8rem;
+    }
+    .introduce-box .underline-ja {
+        left: 9rem;
+    }
+    .introduce-box .underline-ja > div {
+        width: 12.5rem;
+    }
 }
-@media (max-width: 470px) {
+@media (max-width: 490px) {
     .introduce-box h1 {
         font-size: 3rem;
         line-height: 3.5rem;
@@ -274,8 +324,20 @@
     .introduce-box .underline > .dimibug {
         height: 1.4rem;
     }
+    .introduce-box .underline-zh {
+        left: 0rem;
+    }
+    .introduce-box .underline-zh > div {
+        width: 13.5rem;
+    }
+    .introduce-box .underline-ja {
+        left: 7.7rem;
+    }
+    .introduce-box .underline-ja > div {
+        width: 10.8rem;
+    }
 }
-@media (max-width: 400px) {
+@media (max-width: 420px) {
     .introduce-box h1 {
         font-size: 2.3rem;
         line-height: 2.7rem;
@@ -289,6 +351,18 @@
     }
     .introduce-box .underline > .dimibug {
         height: 1.2rem;
+    }
+    .introduce-box .underline-zh {
+        left: 0rem;
+    }
+    .introduce-box .underline-zh > div {
+        width: 10.5rem;
+    }
+    .introduce-box .underline-ja {
+        left: 5.9rem;
+    }
+    .introduce-box .underline-ja > div {
+        width: 8.3rem;
     }
 }
 
