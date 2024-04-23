@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "browser-image-compression": "^2.0.2",
     "i18next": "^23.11.2",
+    "i18next-browser-languagedetector": "^7.2.1",
     "korean-name-generator": "^1.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

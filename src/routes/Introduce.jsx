@@ -1,22 +1,20 @@
 import React, {useEffect, useState} from "react";
 import './Introduce.css';
-
 import logoDark from '../images/logo-dark.svg';
 import logoMobile from '../images/logo-mobile.svg';
-
 import { useMediaQuery } from 'react-responsive';
-
 import dimibug from '../images/dimibug.svg';
 import downArrow from '../images/down-arrow.svg';
 import monsters from '../images/monsters.png';
-
 import { LOGIN_URL } from "./login";
-
 import namer from 'korean-name-generator';
+import { useTranslation, Trans } from 'react-i18next';
+//import { toast } from "react-toastify";
 
 export default function Introduce() {
     const [sharingLifeName, setSharingLifeName] = useState('');
     const [animationState, setAnimationState] = useState(false);
+    const { /*t,*/ i18n } = useTranslation();
 
     const isMobile = useMediaQuery({query : "(max-width:520px)"});
     let [/*isDarkMode*/, setIsDarkMode] = useState(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
@@ -130,15 +128,23 @@ export default function Introduce() {
                     {isMobile && <img src={logoMobile} className='logo' alt='디미몬스터'/>}
                 </div>
                 <div className='placeholder'/>
+                {/* <button onClick={() => {i18n.changeLanguage('ko')}}>한국어</button>
+                <button onClick={() => {i18n.changeLanguage('en')}}>English</button>
+                <button onClick={() => {i18n.changeLanguage('ja')}}>日本語</button> */}
+                <select onChange={(e) => i18n.changeLanguage(e.target.value)}>
+                    <option key='ko' value='ko'>한국어</option>
+                    <option key='en' value='en'>English</option>
+                    <option key='ja' value='ja'>日本語</option>
+                </select>
                 <button className='login' onClick={login}>
-                    간편 로그인
+                    <Trans i18nKey="introduce.login">간편 로그인</Trans>
                 </button>
             </div>
 
             <div className='content-1'>
                 <div className='subject-box'>
                     <h1>
-                        혼자만 간직하기엔<br/>세상은 너무 넓다
+                        <Trans i18nKey="introduce.subject">혼자만 간직하기엔<br/>세상은 너무 넓다</Trans>
                     </h1>
                     <div className='underline'>
                         <div></div>
@@ -147,7 +153,7 @@ export default function Introduce() {
                 </div>
                 <div style={{height: '4rem'}}/>
                 <h3>
-                    디미몬스터와 함께라면<br/>평범했던 일상을 361도 휙.
+                    <Trans i18nKey="introduce.subtitle">디미몬스터와 함께라면<br/>평범했던 일상을 361도 휙.</Trans>
                 </h3>
 
                 <div style={{flexGrow: 1}}/>
@@ -159,7 +165,7 @@ export default function Introduce() {
 
             <div className='content-2'>
                 <h2>
-                    평범한 삶에<br/><em>디미몬스터 한 방울.</em>
+                    <Trans i18nKey="introduce.subject2">평범한 삶에<br/><em>디미몬스터 한 방울.</em></Trans>
                 </h2>
                 
                 <div className='monsters' style={{position: 'relative'}}>
@@ -173,11 +179,11 @@ export default function Introduce() {
             <div className='content-3'>
                 <div className='yourturn'>
                     <img src={logoDark} style={{height: '2rem'}}/> <br/>
-                    <em>이젠, 당신의 차례.</em>
+                    <em><Trans i18nKey="introduce.subject3">이젠, 당신의 차례.</Trans></em>
                 </div>
 
                 <div className='life-sharing'>
-                    <em>일상을<br/>공유하는</em>
+                    <em><Trans i18nKey="introduce.page3-1">일상을<br/>공유하는</Trans></em>
                     <h1 className="cursor-box">
                         {sharingLifeName}
                         <div className="cursor"/>
@@ -189,7 +195,7 @@ export default function Introduce() {
                 </div>
 
                 <div className='start'>
-                    <button onClick={login}>시작하기</button>
+                    <button onClick={login}><Trans i18nKey="introduce.start">시작하기</Trans></button>
                 </div>
             </div>
         </div>

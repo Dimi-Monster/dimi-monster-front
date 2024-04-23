@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import './lang/i18n'; // import만 해두면 된다.
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
