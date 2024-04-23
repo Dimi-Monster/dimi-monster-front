@@ -121,7 +121,7 @@ export default function Introduce() {
     useEffect(() => {lifeSharingAnimation();}, [animationState]);
 
     return (
-        <div className='introduce-box'>
+        <div className={`introduce-box introduce-box-${t('lang')}`}>
             <div className='introduce-header'>
                 <div className='logo'>
                     {!isMobile && <img src={logoDark} className='logo' alt='디미몬스터'/>}
