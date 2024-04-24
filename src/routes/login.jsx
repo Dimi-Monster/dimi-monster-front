@@ -11,26 +11,26 @@ export const LOGIN_URL = `https://accounts.google.com/o/oauth2/v2/auth?client_id
 import Introduce from "./Introduce";
 
 export default function Login() {
-    const [searchParams, /*setSearchParams*/] = useSearchParams();
+  const [searchParams, /*setSearchParams*/] = useSearchParams();
 
-    let [isDarkMode, setIsDarkMode] = useState(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    // update isDarkMode when the system changes the theme
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-        if (e.matches) {
-            setIsDarkMode(true);
-        } else {
-            setIsDarkMode(false);
-        }
-    });
+  let [isDarkMode, setIsDarkMode] = useState(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  // update isDarkMode when the system changes the theme
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    if (e.matches) {
+      setIsDarkMode(true);
+    } else {
+      setIsDarkMode(false);
+    }
+  });
 
-    if(searchParams.get('app') !== 'true' && localStorage.getItem('isPWA') !== 'true')
-        return <Introduce/>;
-    
-    return (
-        <div className="login-div">
-            <img className="logo" src={isDarkMode ? darklogo : logo}alt='디미몬스터 로고'/>
-            
-            <GoogleLoginButton/>
-        </div>
-    )
+  if (searchParams.get('app') !== 'true' && localStorage.getItem('isPWA') !== 'true')
+    return <Introduce />;
+
+  return (
+    <div className="login-div">
+      <img className="logo" src={isDarkMode ? darklogo : logo} alt='디미몬스터 로고' />
+
+      <GoogleLoginButton />
+    </div>
+  )
 }

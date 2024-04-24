@@ -16,8 +16,6 @@ export default function GoogleLoginButton() {
   );
 
   function click() {
-    // 로그인 처리
-
     window.location.href = LOGIN_URL;
   }
 }

@@ -270,7 +270,6 @@ export default function Upload() {
 
       // Blob을 URL로 변환
       const compressedUrl = URL.createObjectURL(blob);
-      //console.log(compressedUrl);
 
       setCroppedImageSrc(compressedUrl);
       setImageBlob(blob);
@@ -295,11 +294,6 @@ export default function Upload() {
     let token = event.target[0].value;
 
     if (token === "" || token === null) {
-      // alert("캡챠 인증 후 업로드해주세요.");
-      // toast.info('안녕하세요.');
-      // toast.success('안녕하세요.');
-      // toast.error('안녕하세요.');
-      // toast.warn('안녕하세요.');
 
       toast.warn("캡차 인증 후 업로드해주세요.");
       return;

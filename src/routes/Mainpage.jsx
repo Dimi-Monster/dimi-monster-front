@@ -56,7 +56,6 @@ export default function Mainpage(props) {
 
   const [ref /*inView*/ /*entry*/, ,] = useInView({
     // 무한 스크롤 구현
-    /* Optional options */
     threshold: 0,
     onChange: (inView) => {
       if (inView && isLoaded) {
@@ -102,7 +101,6 @@ export default function Mainpage(props) {
     // 화면 크기가 한 페이지를 넘는 고해상도 환경에서 두 페이지 불러오게 하는 코드
     if (!isLoaded) return;
 
-    // console.log(window.innerHeight, mainpageRef.current.clientHeight);
     if (window.innerHeight > mainpageRef.current.clientHeight)
       imageManager.getImageBottom(setImageList);
   }, [isLoaded]);
@@ -235,7 +233,6 @@ export default function Mainpage(props) {
         </Slider>
       )}
       <div className="mainpage" ref={mainpageRef}>
-        {/* <button onClick={refresh}>새로고침</button> */}
         {!isMobile && (
           <TitleBox
             title="주간 몬스터"
@@ -270,7 +267,7 @@ export default function Mainpage(props) {
               />
             ))}
         </TitleBox>
-        <div /*ref={ref}*/ style={{ marginTop: "1rem" }}>
+        <div style={{ marginTop: "1rem" }}>
           {!isEnd && (
             <img
               src={isDarkMode ? loadingImg_2Dark : loadingImg_2}
