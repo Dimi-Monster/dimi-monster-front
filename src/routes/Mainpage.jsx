@@ -160,7 +160,7 @@ export default function Mainpage(props) {
   if (isTablet) weeklyCount = 1;
   if (isMobile) weeklyCount = 3;
 
-  console.log("weeklyimage.length : ", weeklyImage.length);
+  //console.log("weeklyimage.length : ", weeklyImage.length);
 
   const NowImageView = isMobile ? MobileImageView : ImageView; // 아니 이게 되네?
 
@@ -213,7 +213,7 @@ export default function Mainpage(props) {
       />
     );
 
-  console.log(weekly.length);
+  //console.log(weekly.length);
 
   const settings = {
     dots: true,

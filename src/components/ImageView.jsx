@@ -80,7 +80,7 @@ const ImageView = forwardRef(function ImageView(props, forwardedRef) {
 });
 
 ImageView.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   src: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
