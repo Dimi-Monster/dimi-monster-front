@@ -32,6 +32,14 @@ export default function ImagePreview(props) {
       setSearchParams({ ...searchParams, id: props.id });
   }, []);
 
+  useEffect(() => {
+    const element = document.documentElement;
+
+    element.style.overflow = 'hidden';
+    return () => element.style.overflow = 'unset';
+  }, []);
+
+
   return (
     <div className="image-preview-box" onClick={onClose}>
       <div
