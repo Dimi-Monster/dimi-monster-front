@@ -1,4 +1,6 @@
 header {
+    position: relative;
+
     box-sizing: border-box;
 
     width: 100vw;
@@ -84,6 +86,10 @@ header > .header-right > div {
     text-overflow: ellipsis;
 }
 
+header > .menu {
+    right: calc((100% - 70rem) / 2);
+}
+
 @media (max-width: 1200px) {
     header > * {
         margin-left: 1rem;
@@ -93,6 +99,9 @@ header > .header-right > div {
     }
     header > .header-right {
         margin-right: calc((100% - 45rem) / 2);
+    }
+    header > .menu {
+        right: calc((100% - 45rem) / 2);
     }
 }
 @media (max-width: 865px) {
@@ -104,6 +113,9 @@ header > .header-right > div {
     }
     header > .header-right {
         margin-right: 2rem;
+    }
+    header > .menu {
+        right: 2rem;
     }
     header > .header-right > div {
         max-width: 6rem;
@@ -122,6 +134,9 @@ header > .header-right > div {
     header > .header-right {
         margin-right: 1rem;
     }
+    header > .menu {
+        right: 1rem;
+    }
 }
 @media (max-width: 340px) {
     header > * {
@@ -133,6 +148,9 @@ header > .header-right > div {
     header > .header-right {
         margin-right: 0.6rem;
     }
+    header > .menu {
+        right: 0.6rem;
+    }
     header > .header-right > div {
         max-width: 5.5rem;
     }
@@ -143,4 +161,21 @@ header > .header-right > .logout {
     font-size: 0.67rem;
     margin-right: .05rem;
     margin-bottom: 0.1rem;
+}
+
+header > .menu {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    box-sizing: border-box;
+    border: .8px solid #BEBEBE;
+    border-radius: 0.5rem;
+    padding: 0.6rem;
+    z-index: 10000;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    background-color: white;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.03), 0 3px 6px rgba(0,0,0,0.1);
+    width: 13rem;
 }

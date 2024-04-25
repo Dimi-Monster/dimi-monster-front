@@ -17,6 +17,10 @@ export default function Header({ onRefresh, isVisible }) {
   const isMobile = useMediaQuery({ query: "(max-width:520px)" });
   const location = useLocation();
 
+  const [menuState, setMenuState] = useState(false);
+
+  const menuFeature = false;
+
   useEffect(() => {
     if (localStorage.getItem("refresh-token") === null)
       navigate("/main", { replace: true });
@@ -48,6 +52,15 @@ export default function Header({ onRefresh, isVisible }) {
   }
 
   if (!isVisible) return <></>;
+
+  const logout = () => {
+    if(menuFeature)
+      setMenuState(!menuState);
+    else {
+      if (confirm("로그아웃하시겠습니까?"))
+        api.logout().then(() => navigate("/main", { replace: true }));
+    }
+  }
 
   return (
     <header>
@@ -109,13 +122,20 @@ export default function Header({ onRefresh, isVisible }) {
         <div className="logout">로그아웃</div>
         <div>{localStorage.getItem("name")}</div>
       </button>
+
+      {menuState && (
+        <div className="menu">
+          <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+            <img src={logoMobile} style={{boxSizing: 'border-box', width: '2rem', padding: '0.15rem', marginRight: '0.5rem', borderRadius: '1rem', border: '.7px solid #BEBEBE'}} />
+            2319이동현
+          </div>
+          <div>언어 설정</div>
+          <div>로그아웃</div>
+        </div>
+      )}
+      
     </header>
   );
-
-  function logout() {
-    if (confirm("로그아웃하시겠습니까?"))
-      api.logout().then(() => navigate("/main", { replace: true }));
-  }
 }
 
 Header.propTypes = {
