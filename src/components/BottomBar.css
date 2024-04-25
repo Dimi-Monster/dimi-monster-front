@@ -95,7 +95,7 @@
 
 .bottom-bar-component > .like {
     height: calc(100% - var(--width-1percent) * 5.6);
-    width: calc(var(--width-1percent) * 13.2);
+    width: calc(var(--width-1percent) * 14);
     flex-shrink: 0;
     margin-right: calc(var(--width-1percent) * 3);
     font-size: 87%;
@@ -123,7 +123,7 @@
     height: calc(var(--width-1percent) * 2.7);
     color: #333333;
 
-    margin-right: calc(var(--width-1percent) * 0.5);
+    margin-right: calc(var(--width-1percent) * 1);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -132,30 +132,36 @@
     }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 570px) {
     .bottom-bar-component {
         font-size: calc(var(--width-1percent) * 4.5);
+        height: 14%;
+        bottom: -17%;
+        border-radius: calc(var(--width-1percent) * 3.9);
     }
     .bottom-bar-component > .like {
-        height: calc(100% - var(--width-1percent) * 4.8);
-        width: calc(var(--width-1percent) * 16.2);
+        height: calc(100% - var(--width-1percent) * 5.5);
+        width: calc(var(--width-1percent) * 17);
     }
     .bottom-bar-component > .like > img {
         height: calc(var(--width-1percent) * 3.7);
-        margin-right: calc(var(--width-1percent) * 0.5);
+        margin-right: calc(var(--width-1percent) * 0.9);
     }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 400px) {
     .bottom-bar-component {
         font-size: calc(var(--width-1percent) * 5.5);
+        height: 15%;
+        bottom: -18%;
+        border-radius: calc(var(--width-1percent) * 4.1);
     }
     .bottom-bar-component > .like {
         height: calc(100% - var(--width-1percent) * 5.1);
-        width: calc(var(--width-1percent) * 18.3);
+        width: calc(var(--width-1percent) * 19);
     }
     .bottom-bar-component > .like > img {
         height: calc(var(--width-1percent) * 4.2);
-        margin-right: calc(var(--width-1percent) * 0.5);
+        margin-right: calc(var(--width-1percent) * 0.8);
     }
 }
