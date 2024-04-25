@@ -33,13 +33,13 @@
 }
 .bottom-bar-component > .title-contents-box {
     flex-grow: 1;
-    margin-right: 5%;
+    margin-right: 2%;
 
     width: calc(95% - var(--width-1percent) * 20);
 
     box-sizing: border-box;
     padding-left: calc(var(--width-1percent) * 2);
-    padding-right: calc(var(--width-1percent) * 2);
+    padding-right: calc(var(--width-1percent) * 0.6);
 
     white-space: nowrap;
 
