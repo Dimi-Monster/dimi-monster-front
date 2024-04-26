@@ -73,16 +73,9 @@ export default function Mainpage(props) {
     },
   });
 
-  useEffect(() => {
-    const timer = setInterval(
-      () => imageManager.getImageTop(setImageList),
-      25000
-    );
-
-    imageManager.clear();
-
+  const getImageTop = () => {
     imageManager.getImageTop(setImageList).then((res) => {
-      if (!res && api.getLastError() == "Unauthorized") {
+      if (!res || api.getLastError() == "Unauthorized") {
         localStorage.removeItem("refresh-token");
         localStorage.removeItem("access-token");
         navigate("/main");
@@ -90,10 +83,31 @@ export default function Mainpage(props) {
 
       setLoadedState(true);
     });
-
+  }
+  const getWeeklyImage = () => {
     api.getWeeklyImage().then((data) => {
+      if (!data || api.getLastError() == "Unauthorized") {
+        localStorage.removeItem("refresh-token");
+        localStorage.removeItem("access-token");
+        navigate("/main");
+
+        return;
+      }
+
       setWeeklyImage(data);
     });
+  }
+
+  useEffect(() => {
+    const timer = setInterval(
+      () => getImageTop(),
+      25000
+    );
+
+    imageManager.clear();
+
+    getImageTop();
+    getWeeklyImage();
 
     return () => clearInterval(timer);
   }, []);
@@ -120,26 +134,14 @@ export default function Mainpage(props) {
     imageManager.unlike(id, setImageList, weeklyImage, setWeeklyImage);
   }
 
-  // refresh 처리 테스트
   function refresh() {
     setLoadedState(false);
     imageManager.clear();
     setImageList(defaultImageList);
     setWeeklyImage(defaultWeeklyImageList);
 
-    api.getWeeklyImage().then((data) => {
-      setWeeklyImage(data);
-    });
-
-    imageManager.getImageTop(setImageList).then((res) => {
-      if (!res && api.getLastError() == "Unauthorized") {
-        localStorage.removeItem("refresh-token");
-        localStorage.removeItem("access-token");
-        navigate("/main");
-      }
-
-      setLoadedState(true);
-    });
+    getImageTop();
+    getWeeklyImage();
   }
 
   Mainpage.propTypes = {
