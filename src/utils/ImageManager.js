@@ -54,6 +54,11 @@ class ImageManager {
 
       if (!res) return false;
 
+      if(res.length == 0) {
+        isEnd = true;
+        break;
+      }
+
       for (const k of res) {
         if (this.set.has(k.id)) {
           isEnd = true;
