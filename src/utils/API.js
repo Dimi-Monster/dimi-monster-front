@@ -69,8 +69,9 @@ class API {
     return true;
   }
   async refresh() {
-    if(this.refreshing)
-      return true;
+    // needs to be fixed
+    // if(this.refreshing)
+    //   return true;
     this.refreshing = true;
 
     if(Date.now() - this.lastRefresh < 10000)
