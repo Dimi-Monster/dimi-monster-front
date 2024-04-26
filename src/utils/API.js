@@ -3,6 +3,9 @@ class API {
   lastError = "";
   currentIdx = 0;
 
+  refreshing = false;
+  lastRefresh = -1;
+
   constructor() {
     this.serverUrl = process.env.REACT_APP_API_URL;
   }
@@ -66,6 +69,13 @@ class API {
     return true;
   }
   async refresh() {
+    if(this.refreshing)
+      return true;
+    this.refreshing = true;
+
+    if(Date.now() - this.lastRefresh < 10000)
+      return true;
+
     let email = localStorage.getItem("email");
     let refreshToken = localStorage.getItem("refresh-token");
 
@@ -88,6 +98,9 @@ class API {
         document.location.href = "/banned";
       }
       this.lastError = "Unauthorized";
+
+      this.refreshing = false;
+      this.lastRefresh = Date.now();
       return false;
     }
 
@@ -98,13 +111,17 @@ class API {
       "expires",
       (Math.floor(Date.now() / 1000) + json["at-expire"]).toString()
     );
+
+    this.refreshing = false;
     return true;
   }
   async refreshIfExpired() {
     let current = Math.floor(Date.now() / 1000);
 
-    if (parseInt(localStorage.getItem("expires")) - 50 < current) {
-      if (!(await this.refresh())) return false;
+    let expires = parseInt(localStorage.getItem("expires"));
+    if (expires - 50 < current) {
+      if (!(await this.refresh()) && expires - 15 < current)
+        return false;
     }
     return true;
   }

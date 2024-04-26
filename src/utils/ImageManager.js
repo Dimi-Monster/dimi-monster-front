@@ -34,13 +34,13 @@ class ImageManager {
     else return { end: true };
   }
   async getImageTop(setImageList) {
-    if (this.set.size == 0) return await this.getImageBottom(setImageList);
+    if (this.set.size == 0) return !!(await this.getImageBottom(setImageList));
 
     let recentID = await api.getRecentImageID();
 
     if (this.set.has(recentID)) {
       setImageList(this.imageList);
-      return;
+      return true;
     }
 
     let addData = [];
