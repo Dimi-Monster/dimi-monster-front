@@ -75,10 +75,12 @@ export default function Mainpage(props) {
 
   const getImageTop = () => {
     imageManager.getImageTop(setImageList).then((res) => {
-      if (!res || api.getLastError() == "Unauthorized") {
+      if (!res && api.getLastError() == "Unauthorized") {
         localStorage.removeItem("refresh-token");
         localStorage.removeItem("access-token");
         navigate("/main");
+
+        return;
       }
 
       setLoadedState(true);
@@ -86,7 +88,7 @@ export default function Mainpage(props) {
   }
   const getWeeklyImage = () => {
     api.getWeeklyImage().then((data) => {
-      if (!data || api.getLastError() == "Unauthorized") {
+      if (!data && api.getLastError() == "Unauthorized") {
         localStorage.removeItem("refresh-token");
         localStorage.removeItem("access-token");
         navigate("/main");
