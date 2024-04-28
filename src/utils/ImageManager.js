@@ -1,6 +1,9 @@
 import api from "./API";
 import thumbnailCacher from "./ThumbnailCacher";
 
+// ImageManager: 게시판 이미지 전체(썸네일, 제목 및 내용, 원본 이미지 등등)를 담당하는 클래스이다
+// 최대한의 성능을 내기 위해 최대한의 캐싱을 진행하도록 구현되었다.
+
 class ImageManager {
   currentIdx = 0;
   imageList = [];
@@ -11,6 +14,8 @@ class ImageManager {
   fetchID = 1;
   latestFetchID = {};
 
+  // getImageBottom : 이미지 최하단을 불러온다
+  // 이미지를 불러온 후 setImageList()를 호출해 화면에 보여준다
   async getImageBottom(setImageList) {
     let res = await thumbnailCacher.getImage(this.currentIdx);
 
@@ -33,6 +38,8 @@ class ImageManager {
     if (addData.length > 0) return { end: false };
     else return { end: true };
   }
+
+  // getImageTop : 이미지 최상단을 불러온다
   async getImageTop(setImageList) {
     if (this.set.size == 0) return !!(await this.getImageBottom(setImageList));
 
@@ -77,9 +84,13 @@ class ImageManager {
     this.currentIdx = Math.floor(this.imageList.length / 21);
     return true;
   }
+
+  // 현재 이미지 리스트를 불러온다
   getCurrentList(setImageList) {
     setImageList([...this.imageList]);
   }
+
+  // 원본 이미지를 불러온다
   async getOriginalImage(id) {
     if (id in this.originalImages) return this.originalImages[id];
 
@@ -97,6 +108,8 @@ class ImageManager {
     this.originalImages[id] = img;
     return img;
   }
+
+  // 리스트 전체를 초기화한다
   async clear() {
     this.currentIdx = 0;
     this.imageList = [];

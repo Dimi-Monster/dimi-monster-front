@@ -1,5 +1,7 @@
 import TokenManager from "./TokenManager";
 
+// API.js : 서버 API 처리를 담당한다
+// 실제 API 명세와 1대1 대응하기 때문에 일부 메서드는 다른 클래스 (ImageManager, ThumbnailCacher 등) 를 통해 처리하는 게 좋다
 class API {
   serverUrl = "";
   lastError = "";
@@ -32,14 +34,10 @@ class API {
 
     localStorage.setItem("email", json["email"]);
     localStorage.setItem("name", json["name"]);
-    // localStorage.setItem("access-token", json["access-token"]);
-    // localStorage.setItem("refresh-token", json["refresh-token"]);
-    // localStorage.setItem(
-    //   "expires",
-    //   (Math.floor(Date.now() / 1000) + json["at-expire"]).toString()
-    // );
-
-    this.tokenManager.initialize(json['access-token'], json['refresh-token'], json['at-expire']);
+    
+    localStorage.setItem("access-token", json["access-token"]);
+    localStorage.setItem("refresh-token", json["refresh-token"]);
+    localStorage.setItem("expires", (Math.floor(Date.now() / 1000) + json["at-expire"]).toString());
 
     let blob = await data.then((response) => response.blob());
     const objectURL = URL.createObjectURL(blob);
@@ -74,8 +72,6 @@ class API {
   }
   async refreshIfExpired() { return true; }
   async getImage(pageIdx, thumbnail = true) {
-    if (!(await this.refreshIfExpired())) return false;
-
     const url = `${this.serverUrl}/image/list?page=${pageIdx}&thumbnail=${thumbnail}`;
 
     let data = await fetch(url, {
@@ -106,8 +102,6 @@ class API {
     return res;
   }
   async getRecentImageID() {
-    await this.refreshIfExpired();
-
     const url = `${this.serverUrl}/image/recent`;
 
     let data = await fetch(url, {
@@ -123,14 +117,11 @@ class API {
     return json.id;
   }
   async getOriginalImageUrl(id) {
-    await this.refreshIfExpired();
-
     const url = `${this.serverUrl}/image/${id}`;
     return url;
   }
   async uploadImage({ img, location, description, token }) {
     // token: 리캡차 토큰
-    await this.refreshIfExpired();
     console.log(img);
 
     const blob = img;
@@ -156,7 +147,6 @@ class API {
     return true;
   }
   async like(id) {
-    await this.refreshIfExpired();
     const url = `${this.serverUrl}/image/like/${id}`;
 
     let data = await fetch(url, {
@@ -171,7 +161,6 @@ class API {
     return true;
   }
   async unlike(id) {
-    await this.refreshIfExpired();
     const url = `${this.serverUrl}/image/like/${id}`;
 
     let data = await fetch(url, {
@@ -186,8 +175,6 @@ class API {
     return true;
   }
   async getWeeklyImage() {
-    await this.refreshIfExpired();
-
     const url = `${this.serverUrl}/image/weekly`;
 
     let data = await fetch(url, {
@@ -209,7 +196,6 @@ class API {
     }));
   }
   async getLikeCount(id) {
-    await this.refreshIfExpired();
     const url = `${this.serverUrl}/image/like/${id}`;
 
     let data = await fetch(url, {
@@ -226,7 +212,6 @@ class API {
   }
 
   async report({ id, category, reason, token }) {
-    await this.refreshIfExpired();
     const url = `${this.serverUrl}/report`;
 
     let data = await fetch(url, {
@@ -252,7 +237,6 @@ class API {
   }
 
   async processReport({id, process, reason, secret}) {
-    await this.refreshIfExpired();
     const url = `${this.serverUrl}/report/process`;
 
     let data = await fetch(url, {

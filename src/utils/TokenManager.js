@@ -17,16 +17,6 @@ export default class TokenManager {
         return Math.floor(Date.now() / 1000);
     }
 
-    initialize(accessToken, refreshToken, expireAt) {
-        // this.accessToken = accessToken;
-        // this.refreshToken = refreshToken;
-        // this.expires = Math.floor(Date.now() / 1000) + expireAt;
-
-        localStorage.setItem("access-token", accessToken);
-        localStorage.setItem("refresh-token", refreshToken);
-        localStorage.setItem("expires", (Math.floor(Date.now() / 1000) + expireAt).toString());
-    }
-
     // accessToken 값을 반환한다.
     async getAccessToken() {
         let expires = parseInt(localStorage.getItem('expires'));
