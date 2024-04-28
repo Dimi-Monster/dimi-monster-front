@@ -1,13 +1,15 @@
+import TokenManager from "./TokenManager";
+
 class API {
   serverUrl = "";
   lastError = "";
   currentIdx = 0;
 
-  refreshing = false;
-  lastRefresh = -1;
+  tokenManager;
 
   constructor() {
     this.serverUrl = process.env.REACT_APP_API_URL;
+    this.tokenManager = new TokenManager();
   }
 
   getLastError() {
@@ -29,13 +31,15 @@ class API {
     data = fetch(json.picture);
 
     localStorage.setItem("email", json["email"]);
-    localStorage.setItem("access-token", json["access-token"]);
-    localStorage.setItem("refresh-token", json["refresh-token"]);
     localStorage.setItem("name", json["name"]);
-    localStorage.setItem(
-      "expires",
-      (Math.floor(Date.now() / 1000) + json["at-expire"]).toString()
-    );
+    // localStorage.setItem("access-token", json["access-token"]);
+    // localStorage.setItem("refresh-token", json["refresh-token"]);
+    // localStorage.setItem(
+    //   "expires",
+    //   (Math.floor(Date.now() / 1000) + json["at-expire"]).toString()
+    // );
+
+    this.tokenManager.initialize(json['access-token'], json['refresh-token'], json['at-expire']);
 
     let blob = await data.then((response) => response.blob());
     const objectURL = URL.createObjectURL(blob);
@@ -68,64 +72,7 @@ class API {
 
     return true;
   }
-  async refresh() {
-    // needs to be fixed
-    // if(this.refreshing)
-    //   return true;
-    this.refreshing = true;
-
-    if(Date.now() - this.lastRefresh < 10000)
-      return true;
-
-    let email = localStorage.getItem("email");
-    let refreshToken = localStorage.getItem("refresh-token");
-
-    const url = `${this.serverUrl}/auth/refresh`;
-
-    let data = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email,
-        "refresh-token": refreshToken,
-      }),
-    });
-    if (data.status != 200) {
-      if (data.status == 403) {
-        localStorage.removeItem("access-token");
-        localStorage.removeItem("refresh-token");
-        document.location.href = "/banned";
-      }
-      this.lastError = "Unauthorized";
-
-      this.refreshing = false;
-      this.lastRefresh = Date.now();
-      return false;
-    }
-
-    let json = await data.json();
-
-    localStorage.setItem("access-token", json["access-token"]);
-    localStorage.setItem(
-      "expires",
-      (Math.floor(Date.now() / 1000) + json["at-expire"]).toString()
-    );
-
-    this.refreshing = false;
-    return true;
-  }
-  async refreshIfExpired() {
-    let current = Math.floor(Date.now() / 1000);
-
-    let expires = parseInt(localStorage.getItem("expires"));
-    if (expires - 50 < current) {
-      if (!(await this.refresh()) && expires - 15 < current)
-        return false;
-    }
-    return true;
-  }
+  async refreshIfExpired() { return true; }
   async getImage(pageIdx, thumbnail = true) {
     if (!(await this.refreshIfExpired())) return false;
 
@@ -134,7 +81,7 @@ class API {
     let data = await fetch(url, {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+        Authorization: `Bearer ${await this.tokenManager.getAccessToken()}`,
       },
     });
 
@@ -166,7 +113,7 @@ class API {
     let data = await fetch(url, {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+        Authorization: `Bearer ${await this.tokenManager.getAccessToken()}`,
       },
     });
 
@@ -199,7 +146,7 @@ class API {
     let data = await fetch(url, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+        Authorization: `Bearer ${await this.tokenManager.getAccessToken()}`,
       },
       body: formData,
     });
@@ -215,7 +162,7 @@ class API {
     let data = await fetch(url, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+        Authorization: `Bearer ${await this.tokenManager.getAccessToken()}`,
       },
     });
 
@@ -230,7 +177,7 @@ class API {
     let data = await fetch(url, {
       method: "DELETE",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+        Authorization: `Bearer ${await this.tokenManager.getAccessToken()}`,
       },
     });
 
@@ -245,7 +192,7 @@ class API {
 
     let data = await fetch(url, {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+        Authorization: `Bearer ${await this.tokenManager.getAccessToken()}`,
       },
     });
 
@@ -268,7 +215,7 @@ class API {
     let data = await fetch(url, {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+        Authorization: `Bearer ${await this.tokenManager.getAccessToken()}`,
       },
     });
 
@@ -285,7 +232,7 @@ class API {
     let data = await fetch(url, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+        Authorization: `Bearer ${await this.tokenManager.getAccessToken()}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -311,7 +258,7 @@ class API {
     let data = await fetch(url, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+        Authorization: `Bearer ${await this.tokenManager.getAccessToken()}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
