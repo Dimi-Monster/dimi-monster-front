@@ -1,5 +1,11 @@
 import api from './API';
 
+// TokenManager: 토큰 (access-token, refresh-token)을 관리하는 클래스
+// 기존에 refreshIfExpired() 를 활용하는 방식은 여러 요청을 동시에 보냈을 때 refresh도 동시에 보내는 문제가 존재한다
+// 이를 해결하기 위해 getAccessToken() 호출 시 토큰 만료까지 남은 시간을 계산해서
+// 만료되었거나 15초 이하로 남았다면 동기적으로 refresh하고
+// 15초 이상 60초 이하로 남았다면 비동기적으로 refresh한다.
+
 export default class TokenManager {
     // accessToken = '';
     // refreshToken = '';
@@ -21,6 +27,7 @@ export default class TokenManager {
         localStorage.setItem("expires", (Math.floor(Date.now() / 1000) + expireAt).toString());
     }
 
+    // accessToken 값을 반환한다.
     async getAccessToken() {
         let expires = parseInt(localStorage.getItem('expires'));
 
@@ -33,6 +40,7 @@ export default class TokenManager {
         return localStorage.getItem('access-token');
     }
 
+    // 실제 토큰 재발행을 수행한다. 이 함수 대신 triggerRefresh()를 호출하는 것이 좋다
     async refresh() {
         this.refreshing = true;
 
@@ -76,6 +84,7 @@ export default class TokenManager {
         return true;
     }
 
+    // 토큰 재발행을 트리거하고, 재발행이 완료되었을 때 콜백을 호출한다.
     async triggerRefresh() {
         if(this.refreshing)
             return;
@@ -92,8 +101,14 @@ export default class TokenManager {
         this.refreshCallbackList = [];
     }
 
+    // 토큰 재발행 중이라면, 토큰 재발행이 완료될 때까지 기다린다.
     waitForRefresh() {
         return new Promise((resolve, reject) => {
+            if(!this.refreshing) {
+                resolve();
+                return;
+            }
+
             this.refreshCallbackList.push({
                 resolve: resolve,
                 reject: reject
