@@ -168,7 +168,7 @@ export default function Mainpage(props) {
 
   const NowImageView = isMobile ? MobileImageView : ImageView; // 아니 이게 되네?
 
-  let weekly = weeklyImage
+  let weekly = (typeof weeklyImage != 'boolean' ? weeklyImage : defaultImageList)
     .slice(0, weeklyCount)
     .map(({ id, src, title, content, hearts, like }) =>
       id ? (
