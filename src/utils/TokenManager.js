@@ -18,6 +18,7 @@ export default class TokenManager {
     }
 
     // accessToken 값을 반환한다.
+    // refresh에 실패할 경우 new Error('Unauthorized') 를 throw한다
     async getAccessToken() {
         let expires = parseInt(localStorage.getItem('expires'));
 
@@ -34,41 +35,49 @@ export default class TokenManager {
     async refresh() {
         this.refreshing = true;
 
-        let email = localStorage.getItem("email");
-        let refreshToken = localStorage.getItem("refresh-token");
+        try {
+            let email = localStorage.getItem("email");
+            let refreshToken = localStorage.getItem("refresh-token");
 
-        const url = `${api.serverUrl}/auth/refresh`;
+            const url = `${api.serverUrl}/auth/refresh`;
 
-        let data = await fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                email: email,
-                "refresh-token": refreshToken,
-            }),
-        });
-        if (data.status != 200) {
-            if (data.status == 403) {
-                localStorage.removeItem("access-token");
-                localStorage.removeItem("refresh-token");
-                document.location.href = "/banned";
+            let data = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email: email,
+                    "refresh-token": refreshToken,
+                }),
+            });
+            if (data.status != 200) {
+                if (data.status == 403) {
+                    localStorage.removeItem("access-token");
+                    localStorage.removeItem("refresh-token");
+                    document.location.href = "/banned";
+                }
+                this.lastError = "Unauthorized";
+
+                this.refreshing = false;
+                this.lastRefresh = Date.now();
+                return false;
             }
-            this.lastError = "Unauthorized";
 
-            this.refreshing = false;
-            this.lastRefresh = Date.now();
-            return false;
+            let json = await data.json();
+
+            localStorage.setItem("access-token", json["access-token"]);
+            localStorage.setItem(
+                "expires",
+                (Math.floor(Date.now() / 1000) + json["at-expire"]).toString()
+            );
         }
+        catch(e) {
+            this.refreshing = false;
 
-        let json = await data.json();
-
-        localStorage.setItem("access-token", json["access-token"]);
-        localStorage.setItem(
-            "expires",
-            (Math.floor(Date.now() / 1000) + json["at-expire"]).toString()
-        );
+            if(e.message.indexOf('fetch') === -1)
+                return false;
+        }
 
         this.refreshing = false;
         return true;
@@ -85,7 +94,7 @@ export default class TokenManager {
             this.refreshCallbackList.forEach(({resolve}) => resolve());
         }
         else {
-            this.refreshCallbackList.forEach(({reject}) => reject());
+            this.refreshCallbackList.forEach(({reject}) => reject(new Error('Unauthorized')));
         }
 
         this.refreshCallbackList = [];

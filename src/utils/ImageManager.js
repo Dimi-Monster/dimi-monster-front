@@ -1,5 +1,6 @@
 import api from "./API";
 import thumbnailCacher from "./ThumbnailCacher";
+//import defaultImage from '../images/default-image.svg';
 
 // ImageManager: 게시판 이미지 전체(썸네일, 제목 및 내용, 원본 이미지 등등)를 담당하는 클래스이다
 // 최대한의 성능을 내기 위해 최대한의 캐싱을 진행하도록 구현되었다.
@@ -94,19 +95,24 @@ class ImageManager {
   async getOriginalImage(id) {
     if (id in this.originalImages) return this.originalImages[id];
 
-    let res = await fetch(await api.getOriginalImageUrl(id), {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
-      },
-    });
+    try {
+      let res = await fetch(await api.getOriginalImageUrl(id), {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+        },
+      });
 
-    if (res.status != 200) return false;
+      if (res.status != 200) return false;
 
-    let blob = await res.blob();
-    const img = URL.createObjectURL(blob);
+      let blob = await res.blob();
+      const img = URL.createObjectURL(blob);
 
-    this.originalImages[id] = img;
-    return img;
+      this.originalImages[id] = img;
+      return img;
+    }
+    catch(e) {
+      return false;
+    }
   }
 
   // 리스트 전체를 초기화한다
