@@ -83,7 +83,7 @@ function App() {
           <Route path="/introduce" element={<Introduce />} />
 
           <Route path="/admin/delete/:id" element={<ReportDelete />} />
-          <Route paht="/admin/deleteban/:id" element={<ReportDeleteBan />} />
+          <Route path="/admin/deleteban/:id" element={<ReportDeleteBan />} />
           <Route path="/admin/withdraw/:id" element={<ReportWithdraw />} />
           <Route path="/admin/banreporter/:id" element={<NotFound />} />
 
