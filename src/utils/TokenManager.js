@@ -57,7 +57,7 @@ export default class TokenManager {
                     localStorage.removeItem("refresh-token");
                     document.location.href = "/banned";
                 }
-                this.lastError = "Unauthorized";
+                api.lastError = "Unauthorized";
 
                 this.refreshing = false;
                 this.lastRefresh = Date.now();
