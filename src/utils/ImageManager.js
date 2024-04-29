@@ -46,6 +46,9 @@ class ImageManager {
 
     let recentID = await api.getRecentImageID();
 
+    // 자동 새로고침과 수동 새로고침이 겹치는 경우 이런 케이스가 있을 수 있다
+    if (this.set.size == 0) return !!(await this.getImageBottom(setImageList));
+
     if (this.set.has(recentID)) {
       setImageList(this.imageList);
       return true;
