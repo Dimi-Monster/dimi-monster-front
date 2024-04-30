@@ -176,7 +176,7 @@ export default function Introduce() {
 
       <div className='content-3'>
         <div className='yourturn'>
-          <img src={logoDark} style={{ height: '2rem' }} /> <br/>
+          <img src={logoDark} style={{ height: '2rem' }} alt="DIMI MONSTER" /> <br/>
           <em><Trans i18nKey="introduce.subject3">이젠, 당신의 차례.</Trans></em>
         </div>
 
@@ -187,8 +187,8 @@ export default function Introduce() {
             <div className="cursor" />
           </h1>
           <div>
-            <img src={dimibug} />
-            <img src={dimibug} />
+            <img src={dimibug} alt="디미충" />
+            <img src={dimibug} alt="한국디지털미디어고등학교" />
           </div>
         </div>
 
