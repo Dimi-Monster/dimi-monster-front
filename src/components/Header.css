@@ -145,3 +145,14 @@ header > .menu {
     box-shadow: 0 3px 6px rgba(0,0,0,0.03), 0 3px 6px rgba(0,0,0,0.1);
     width: 13rem;
 }
+
+header .profile-image {
+    box-sizing: border-box;
+    width: 2rem;
+    padding: 0.15rem;
+    border-radius: 1rem;
+    border: .7px solid #BEBEBE;
+}
+header .menu > button {
+    text-align: start;
+}

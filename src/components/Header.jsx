@@ -20,7 +20,7 @@ export default function Header({ onRefresh, isVisible }) {
   const [menuState, setMenuState] = useState(false);
 
   // 메뉴 UI 테스트 (false시 기존 ui, true시 새 ui)
-  const menuFeature = false;
+  const menuFeature = true;
 
   useEffect(() => {
     if (localStorage.getItem("refresh-token") === null)
@@ -120,19 +120,21 @@ export default function Header({ onRefresh, isVisible }) {
       <div className="margin"></div>
 
       <button className="header-right" onClick={logout}>
-        {!menuFeature && <><div className="logout">로그아웃</div>
-        <div>{localStorage.getItem("name")}</div></>}
-        {menuFeature && <img src={logoMobile} style={{boxSizing: 'border-box', width: '2rem', padding: '0.15rem', marginRight: '0.5rem', borderRadius: '1rem', border: '.7px solid #BEBEBE'}}/>}
+        {!menuFeature && <>
+          <div className="logout">로그아웃</div>
+          <div>{localStorage.getItem("name")}</div>
+        </>}
+        {menuFeature && <img src={logoMobile} className='profile-image' />}
       </button>
 
       {menuState && (
         <div className="menu">
-          <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-            <img src={logoMobile} style={{boxSizing: 'border-box', width: '2rem', padding: '0.15rem', marginRight: '0.5rem', borderRadius: '1rem', border: '.7px solid #BEBEBE'}} />
-            2319이동현
+          <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '0.5rem'}}>
+            <img src={logoMobile} className='profile-image' />
+            {localStorage.getItem('name')}
           </div>
-          <div>언어 설정</div>
-          <div>로그아웃</div>
+          <button>언어 설정</button>
+          <button onClick={() => api.logout().then(() => navigate("/main", { replace: true }))}>로그아웃</button>
         </div>
       )}
       
