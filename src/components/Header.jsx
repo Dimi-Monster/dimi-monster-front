@@ -19,6 +19,7 @@ export default function Header({ onRefresh, isVisible }) {
 
   const [menuState, setMenuState] = useState(false);
 
+  // 메뉴 UI 테스트 (false시 기존 ui, true시 새 ui)
   const menuFeature = false;
 
   useEffect(() => {
@@ -119,8 +120,9 @@ export default function Header({ onRefresh, isVisible }) {
       <div className="margin"></div>
 
       <button className="header-right" onClick={logout}>
-        <div className="logout">로그아웃</div>
-        <div>{localStorage.getItem("name")}</div>
+        {!menuFeature && <><div className="logout">로그아웃</div>
+        <div>{localStorage.getItem("name")}</div></>}
+        {menuFeature && <img src={logoMobile} style={{boxSizing: 'border-box', width: '2rem', padding: '0.15rem', marginRight: '0.5rem', borderRadius: '1rem', border: '.7px solid #BEBEBE'}}/>}
       </button>
 
       {menuState && (
