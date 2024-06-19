@@ -134,6 +134,7 @@ export default function Header({ onRefresh, isVisible }) {
             {localStorage.getItem('name')}
           </div>
           <button>언어 설정</button>
+          <button>내 블로그</button>
           <button onClick={() => api.logout().then(() => navigate("/main", { replace: true }))}>로그아웃</button>
         </div>
       )}
