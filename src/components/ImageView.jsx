@@ -13,6 +13,9 @@ const ImageView = forwardRef(function ImageView(props, forwardedRef) {
   const navigate = useNavigate();
 
   function onImageClicked() {
+    if (props.id === undefined)
+      return;
+
     setPreviewState(true);
     props.setHeaderVisibility(false);
   }
@@ -25,6 +28,9 @@ const ImageView = forwardRef(function ImageView(props, forwardedRef) {
   }
 
   function onLikeClicked() {
+    if (props.id === undefined)
+      return;
+
     if (props.like) props.onUnlike(props.id);
     else props.onLike(props.id);
   }
@@ -41,7 +47,8 @@ const ImageView = forwardRef(function ImageView(props, forwardedRef) {
       className={props.big ? "imageview-big" : "imageview"}
       ref={forwardedRef}
     >
-      <button className="thumbnail" onClick={onImageClicked}>
+      <button className="thumbnail" onClick={onImageClicked}
+        style={props.id !== undefined ? {} : {cursor: 'initial'}}>
         <img src={props.src} alt="몬스터 이미지" />
       </button>
       <div className="rightbox">
@@ -53,12 +60,14 @@ const ImageView = forwardRef(function ImageView(props, forwardedRef) {
         <button
           className={props.like ? "" : "disabled"}
           onClick={onLikeClicked}
+          style={props.id !== undefined ? {} : {cursor: 'initial'}}
         >
           {props.like ? "좋아해요!" : "좋아요"}
         </button>
       </div>
 
-      <button className="floatbox" onClick={onLikeClicked}>
+      <button className="floatbox" onClick={onLikeClicked}
+        style={props.id !== undefined ? {} : {cursor: 'initial'}}>
         <img src={props.like ? heart : heartDisabled} alt="좋아요" />
         <div>+{props.hearts}</div>
       </button>

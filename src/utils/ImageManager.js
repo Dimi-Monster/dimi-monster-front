@@ -127,16 +127,20 @@ class ImageManager {
 
   // imageList에서 아이디가 id인 이미지의 hearts, like를 수정한 결과를 반환한다
   updateImageList(imageList, setImageList, id, heartsFunc, like) {
-    let res = [...imageList];
+    try {
+      let res = [...imageList];
 
-    for (let i = 0; i < res.length; i++) {
-      if (res[i].id != id) continue;
+      for (let i = 0; i < res.length; i++) {
+        if (res[i].id != id) continue;
 
-      res[i].hearts = heartsFunc(res[i].hearts);
-      res[i].like = like;
+        res[i].hearts = heartsFunc(res[i].hearts);
+        res[i].like = like;
+      }
+
+      setImageList(res);
+    } catch(e) {
+      return;
     }
-
-    setImageList(res);
   }
 
   async like(id, setImageList, weeklyImage, setWeeklyImage) {
