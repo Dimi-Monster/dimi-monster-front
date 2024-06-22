@@ -11,6 +11,7 @@ import logoMobile from "../images/logo-mobile.svg";
 import api from "../utils/API";
 
 import { useMediaQuery } from "react-responsive";
+import HeaderPopup from "./HeaderPopup";
 
 export default function Header({ onRefresh, isVisible }) {
   const navigate = useNavigate();
@@ -128,15 +129,16 @@ export default function Header({ onRefresh, isVisible }) {
       </button>
 
       {menuState && (
-        <div className="menu">
-          <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '0.5rem'}}>
-            <img src={logoMobile} className='profile-image' />
-            {localStorage.getItem('name')}
-          </div>
-          <button>언어 설정</button>
-          <button>내 블로그</button>
-          <button onClick={() => api.logout().then(() => navigate("/main", { replace: true }))}>로그아웃</button>
-        </div>
+        // <div className="menu">
+        //   <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '0.5rem'}}>
+        //     <img src={logoMobile} className='profile-image' />
+        //     {localStorage.getItem('name')}
+        //   </div>
+        //   <button>언어 설정</button>
+        //   <button>내 블로그</button>
+        //   <button onClick={() => api.logout().then(() => navigate("/main", { replace: true }))}>로그아웃</button>
+        // </div>
+        <HeaderPopup/>
       )}
       
     </header>
