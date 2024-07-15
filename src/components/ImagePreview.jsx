@@ -45,7 +45,7 @@ export default function ImagePreview(props) {
       <div
         className="image-preview"
         onClick={onInnerBoxClicked}
-        onDoubleClick={onInnerBoxClicked}
+        onDoubleClick={onInnerBoxDoubleClicked}
       >
         <img className="main-img" src={imageUrl} alt="몬스터 확대 이미지" />
 
@@ -70,6 +70,10 @@ export default function ImagePreview(props) {
   function onInnerBoxClicked(event) {
     event.stopPropagation();
   }
+  function onInnerBoxDoubleClicked(event) {
+    props.onDoubleClick();
+    event.stopPropagation();
+  }
 
   function onClose() {
     props.onFinish();
@@ -83,4 +87,5 @@ ImagePreview.propTypes = {
   content: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   onFinish: PropTypes.func.isRequired,
+  onDoubleClick: PropTypes.func
 };

@@ -6,6 +6,7 @@ import "./ImageViewBig.css";
 import heart from "../images/heart.svg";
 import heartDisabled from "../images/heart-disabled.svg";
 import ImagePreview from "./ImagePreview";
+//import { toast } from "react-toastify";
 
 const ImageView = forwardRef(function ImageView(props, forwardedRef) {
   const [previewState, setPreviewState] = useState(false);
@@ -41,11 +42,18 @@ const ImageView = forwardRef(function ImageView(props, forwardedRef) {
 
     navigate(`/report?id=${props.id}`);
   }
+  function onDoubleClicked() {
+    //toast.info("더블클릭");
+
+    if(!props.like)
+      props.onLike(props.id);
+  }
 
   return (
     <div
       className={props.big ? "imageview-big" : "imageview"}
       ref={forwardedRef}
+      onDoubleClick={onDoubleClicked}
     >
       <button className="thumbnail" onClick={onImageClicked}
         style={props.id !== undefined ? {} : {cursor: 'initial'}}>
@@ -82,6 +90,7 @@ const ImageView = forwardRef(function ImageView(props, forwardedRef) {
           like={props.like}
           hearts={props.hearts}
           onClick={onReportClicked}
+          onDoubleClick={ /*onDoubleClicked*/ () => {} }
         />
       )}
     </div>
