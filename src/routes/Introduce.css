@@ -94,6 +94,11 @@
     font-weight: 600;
     letter-spacing: -0.025em;
 }
+.introduce-box-zh {
+    font-family: 'Noto Sans SC';
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
 
 @media (max-width: 1200px) {
     .introduce-box {
@@ -157,7 +162,7 @@
     z-index: 1;
 }
 .introduce-box-zh h1 {
-    font-family: 'Noto Sans KR';
+    font-family: 'Noto Sans SC';
     font-weight: 500;
     /* font-size: 4.35rem; */
 }
@@ -166,6 +171,13 @@
     font-weight: 500;
     /* font-size: 4.35rem; */
     letter-spacing: -0.055em;
+}
+.introduce-box-zh h2 {
+    font-size: 2rem;
+    font-family: 'Noto Sans SC';
+    line-height: 2.4rem;
+
+    color: var(--gray);
 }
 .introduce-box h2 {
     font-size: 2rem;
@@ -245,7 +257,7 @@
     left: 0rem;
 }
 .introduce-box .underline-zh > div {
-    width: 21.7rem;
+    width: 22.4rem;
 }
 .introduce-box .underline-ja {
     left: 12.8rem;
@@ -288,7 +300,7 @@
         left: 0rem;
     }
     .introduce-box .underline-zh > div {
-        width: 18rem;
+        width: 19.9rem;
     }
     .introduce-box .underline-ja {
         left: 11.4rem;
@@ -316,7 +328,7 @@
         left: 0rem;
     }
     .introduce-box .underline-zh > div {
-        width: 15.8rem;
+        width: 17.4rem;
     }
     .introduce-box .underline-ja {
         left: 10rem;
@@ -344,7 +356,7 @@
         left: 0rem;
     }
     .introduce-box .underline-zh > div {
-        width: 13.5rem;
+        width: 14.9rem;
     }
     .introduce-box .underline-ja {
         left: 8.5rem;
@@ -372,7 +384,7 @@
         left: 0rem;
     }
     .introduce-box .underline-zh > div {
-        width: 10.5rem;
+        width: 11.5rem;
     }
     .introduce-box .underline-ja {
         left: 6.4rem;
@@ -490,6 +502,12 @@
     font-size: 3rem;
     font-family: 'Pretendard-Bold';
     line-height: 3.6rem;
+}
+.introduce-box-zh > .content-3 > .yourturn {
+    font-family: 'Noto Sans SC';
+}
+.introduce-box-ja > .content-3 > .yourturn {
+    font-family: 'Noto Sans JP';
 }
 
 .introduce-box > .content-3 > .life-sharing {
