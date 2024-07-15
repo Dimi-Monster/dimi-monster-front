@@ -89,6 +89,16 @@
 
     overflow: hidden;
 }
+.introduce-box-ja {
+    font-family: 'Noto Sans JP';
+    font-weight: 600;
+    letter-spacing: -0.025em;
+}
+.introduce-box-zh {
+    font-family: 'Noto Sans SC';
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
 
 @media (max-width: 1200px) {
     .introduce-box {
@@ -150,6 +160,24 @@
 
     position: relative;
     z-index: 1;
+}
+.introduce-box-zh h1 {
+    font-family: 'Noto Sans SC';
+    font-weight: 500;
+    /* font-size: 4.35rem; */
+}
+.introduce-box-ja h1 {
+    font-family: 'Noto Sans JP';
+    font-weight: 500;
+    /* font-size: 4.35rem; */
+    letter-spacing: -0.055em;
+}
+.introduce-box-zh h2 {
+    font-size: 2rem;
+    font-family: 'Noto Sans SC';
+    line-height: 2.4rem;
+
+    color: var(--gray);
 }
 .introduce-box h2 {
     font-size: 2rem;
@@ -229,13 +257,13 @@
     left: 0rem;
 }
 .introduce-box .underline-zh > div {
-    width: 20rem;
+    width: 22.4rem;
 }
 .introduce-box .underline-ja {
-    left: 11.6rem;
+    left: 12.8rem;
 }
 .introduce-box .underline-ja > div {
-    width: 16.3rem;
+    width: 16.9rem;
 }
 
 .introduce-box-en h1 {
@@ -272,13 +300,13 @@
         left: 0rem;
     }
     .introduce-box .underline-zh > div {
-        width: 18rem;
+        width: 19.9rem;
     }
     .introduce-box .underline-ja {
-        left: 10.3rem;
+        left: 11.4rem;
     }
     .introduce-box .underline-ja > div {
-        width: 14.4rem;
+        width: 14.9rem;
     }
 }
 @media (max-width: 660px) {
@@ -300,13 +328,13 @@
         left: 0rem;
     }
     .introduce-box .underline-zh > div {
-        width: 15.8rem;
+        width: 17.4rem;
     }
     .introduce-box .underline-ja {
-        left: 9rem;
+        left: 10rem;
     }
     .introduce-box .underline-ja > div {
-        width: 12.5rem;
+        width: 13rem;
     }
 }
 @media (max-width: 490px) {
@@ -328,13 +356,13 @@
         left: 0rem;
     }
     .introduce-box .underline-zh > div {
-        width: 13.5rem;
+        width: 14.9rem;
     }
     .introduce-box .underline-ja {
-        left: 7.7rem;
+        left: 8.5rem;
     }
     .introduce-box .underline-ja > div {
-        width: 10.8rem;
+        width: 11.2rem;
     }
 }
 @media (max-width: 420px) {
@@ -356,13 +384,13 @@
         left: 0rem;
     }
     .introduce-box .underline-zh > div {
-        width: 10.5rem;
+        width: 11.5rem;
     }
     .introduce-box .underline-ja {
-        left: 5.9rem;
+        left: 6.4rem;
     }
     .introduce-box .underline-ja > div {
-        width: 8.3rem;
+        width: 8.8rem;
     }
 }
 
@@ -474,6 +502,12 @@
     font-size: 3rem;
     font-family: 'Pretendard-Bold';
     line-height: 3.6rem;
+}
+.introduce-box-zh > .content-3 > .yourturn {
+    font-family: 'Noto Sans SC';
+}
+.introduce-box-ja > .content-3 > .yourturn {
+    font-family: 'Noto Sans JP';
 }
 
 .introduce-box > .content-3 > .life-sharing {
