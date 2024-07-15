@@ -141,7 +141,7 @@ export default function Introduce() {
 
       <div className='content-1'>
         <div className='subject-box'>
-          <h1>
+          <h1 className={`lang-${t('lang')}`}>
             <Trans i18nKey="introduce.subject">혼자만 간직하기엔<br />세상은 너무 넓다</Trans>
           </h1>
           <div className={`underline underline-${t('lang')}`}>
